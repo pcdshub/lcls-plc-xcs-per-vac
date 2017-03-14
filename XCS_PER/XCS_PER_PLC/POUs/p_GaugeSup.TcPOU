@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="p_GaugeSup" Id="{78d5f85d-9799-4512-bee8-19c16f64f92a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_GaugeSup
+VAR
+fbPBT_GCC_02 : FB_500_VG;	
+fbPBT_GCC_04 : FB_500_VG;
+fbPBT_GCC_06 : FB_500_VG;
+fbPBT_GCC_07 : FB_500_VG;
+fbPBT_GCC_08 : FB_500_VG;
+
+fb_DUMB_GPI_D1 : FB_Dumb_Gauge;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Vacuum Gauge Supervisor *)
+
+(* Check the upstream PLC for the upstream vacuum OK signal -- p_XLegacyPLCModbus *)
+vgMXT_GCC_06.xAT_VAC := i_xUSVacOK;
+vgMXT_GCC_06.xPRESS_OK := i_xUSVacOK;
+
+
+(* Calculate Cold Cathode *)
+vgPBT_GPI_D1.xPRESS_OK := TRUE;
+vgPBT_GPI_D1.rPRESS := 1E-3;
+
+fbPBT_GCC_02(PG:=vgPBT_GPI_02,IG:=vgPBT_GCC_02);
+fbPBT_GCC_04(PG:=vgPBT_GPI_04,IG:=vgPBT_GCC_04);
+fbPBT_GCC_06(PG:=vgMFX_GPI_06,IG:=vgPBT_GCC_06);
+fbPBT_GCC_07(PG:=vgMFX_GPI_07,IG:=vgPBT_GCC_07);
+fbPBT_GCC_08(PG:=vgMFX_GPI_08,IG:=vgPBT_GCC_08);
+]]></ST>
+    </Implementation>
+    <LineIds Name="p_GaugeSup">
+      <LineId Id="6" Count="15" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
