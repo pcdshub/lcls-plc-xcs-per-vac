@@ -8,10 +8,10 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//mb_Output_Coils[0];  //System Controls
 g_stSystem.xOverrideMode:=mb_Output_Coils[1];  //System Controls
-//q_xDG1_MMS01_MPSOK :=mb_Output_Coils[2];  //System Controls
-//q_xMFX_VGC_OK :=mb_Output_Coils[3];  //System Controls
-//q_xMFX_preS45_MPSOK :=mb_Output_Coils[4];  //System Controls
-//q_xMFX_MPSOK :=mb_Output_Coils[5];  //System Controls
+//mb_Output_Coils[2];  //System Controls
+//mb_Output_Coils[3];  //System Controls
+//mb_Output_Coils[4];  //System Controls
+//mb_Output_Coils[5];  //System Controls
 //mb_Output_Coils[6];  //System Controls
 //mb_Output_Coils[7];  //System Controls
 //mb_Output_Coils[8];  //System Controls
@@ -125,12 +125,12 @@ vgcPBT_VGC_05.xOPN_SW:=mb_Output_Coils[14];  //Valve switch controls
 //mb_Output_Coils[117];  //Turbo Controls
 //mb_Output_Coils[118];  //Turbo Controls
 //mb_Output_Coils[119];  //Turbo Controls
-//mb_Output_Coils[120];  //CC HV Enable
-vgPBT_GCC_02.xHV_SW:=mb_Output_Coils[121];  //CC HV Enable
-vgPBT_GCC_04.xHV_SW:=mb_Output_Coils[122];  //CC HV Enable
-vgPBT_GCC_06.xHV_SW:=mb_Output_Coils[123];  //CC HV Enable
-vgPBT_GCC_07.xHV_SW:=mb_Output_Coils[124];  //CC HV Enable
-vgPBT_GCC_08.xHV_SW:=mb_Output_Coils[125];  //CC HV Enable
+vgPBT_GCC_02.xHV_SW:=mb_Output_Coils[120];  //CC HV Enable
+vgPBT_GCC_04.xHV_SW:=mb_Output_Coils[121];  //CC HV Enable
+vgPBT_GCC_06.xHV_SW:=mb_Output_Coils[122];  //CC HV Enable
+vgPBT_GCC_07.xHV_SW:=mb_Output_Coils[123];  //CC HV Enable
+vgPBT_GCC_08.xHV_SW:=mb_Output_Coils[124];  //CC HV Enable
+//mb_Output_Coils[125];  //CC HV Enable
 //mb_Output_Coils[126];  //CC HV Enable
 //mb_Output_Coils[127];  //CC HV Enable
 //mb_Output_Coils[128];  //CC HV Enable
@@ -263,7 +263,10 @@ vgPBT_GCC_08.xHV_SW:=mb_Output_Coils[125];  //CC HV Enable
 //mb_Output_Coils[255];  //]]></ST>
     </Implementation>
     <LineIds Name="p_ModbusRx_OutputCoils">
-      <LineId Id="6" Count="253" />
+      <LineId Id="6" Count="117" />
+      <LineId Id="125" Count="4" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="130" Count="129" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

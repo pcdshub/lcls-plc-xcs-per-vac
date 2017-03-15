@@ -12,17 +12,17 @@ END_VAR
 //	i_iR32_31el3064s01c03 AT %I*: INT;
 //	i_iR32_31el3064s01c04 AT %I*: INT;
 
-	i_xMFX_ppsStopperPos_In  := i_xR32_31el1008s02c01;
-	i_xMFX_ppsStopperPos_Out := i_xR32_31el1008s02c05;
-	i_xMFX_TFSmpsStatus_OK   := i_xR32_31el1008s02c03;
+//	i_xR32_31el1008s02c01 AT %I*: BOOL;
+//	i_xR32_31el1008s02c05 AT %I*: BOOL;
+//	i_xR32_31el1008s02c03 AT %I*: BOOL;
 //	i_xR32_31el1008s02c04 AT %I*: BOOL;
 //	i_xR32_31el1008s02c05 AT %I*: BOOL;
 //	i_xR32_31el1008s02c06 AT %I*: BOOL;
 //	i_xR32_31el1008s02c07 AT %I*: BOOL;
 //	i_xR32_31el1008s02c08 AT %I*: BOOL;
 	
-	q_xR32_31el2008s03c01:= q_xMFX_preS45_MPSOK; //AT %Q*: BOOL;
-	q_xR32_31el2008s03c02:= q_xMFX_MPSOK;
+//	q_xR32_31el2008s03c01 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c02 AT %Q*: BOOL;
 //	q_xR32_31el2008s03c03 AT %Q*: BOOL;
 //	q_xR32_31el2008s03c04 AT %Q*: BOOL;
 //	q_xR32_31el2008s03c05 AT %Q*: BOOL;
@@ -39,166 +39,143 @@ END_VAR
 //	q_xR32_31el2798s04c07 AT %Q*: BOOL;
 //	q_xR32_31el2798s04c08 AT %Q*: BOOL;
 //vgMXT_GCC_06 : ST_VG;
-
-
 //vgcMXT_VGC_04 : ST_VGC;
-	(* XRT stand 14 *)
-	vgcMXT_VGC_04.i_xOpnLS := i_xS14_EB1_ep2338c01;
-	vgcMXT_VGC_04.i_xClsLS := i_xS14_EB1_ep2338c02;
-	q_xS14_EB1_ep2338c03 := vgcMXT_VGC_04.xOPN_DO;
+	
+
+		(* XRT Stand IDNO 13 *)
+	vgPBT_GCC_02.iPRESS_R := i_iS13_EB1_ep3174c01;
+	vgPBT_GPI_02.iPRESS_R := i_iS13_EB1_ep3174c02;
+//	i_iS13_EB1_ep3174c03 AT %I* : INT;
+//	i_iS13_EB1_ep3174c04 AT %I* : INT;
+
+	q_xS13_EB2_ep2624c01 := vgPBT_GCC_02.xHV_DIS;
+	q_xS13_EB2_ep2624c02 := FALSE;
+	q_xS13_EB2_ep2624c03 := FALSE;
+	q_xS13_EB2_ep2624c04 := FALSE;
+
+	(* XRT stand IDNO 14 *)
+	gcPBT_VGC_01.i_xOpnLS := i_xS14_EB1_ep2338c01;
+	vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
+	q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
 	q_xS14_EB1_ep2338c04 := FALSE;
 	i_xUSVacOK := i_xS14_EB1_ep2338c05; //AT %I* : BOOL;
 //	i_xS14_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS14_EB1_ep2338c07 := FALSE;
-	q_xS14_EB1_ep2338c08 := FALSE;	
-
+	q_xS14_EB1_ep2338c08 := FALSE;
 	
-	(* XRT stand 20 *)
-	vgDVD_GCC_02.iPRESS_R := i_iS20_EB1_ep3174c01;
-//	i_iS20_EB1_ep3174c02 AT %I* : INT;
+
+	(* XRT stand IDNO 20 *)
+	vgPBT_GCC_04.iPRESS_R := i_iS20_EB1_ep3174c01;
+	vgPBT_GPI_04.iPRESS_R := i_iS20_EB1_ep3174c02;
 //	i_iS20_EB1_ep3174c03 AT %I* : INT;
 //	i_iS20_EB1_ep3174c04 AT %I* : INT;
-	
-	q_xS20_EB2_ep2624c01 := vgDVD_GCC_02.xHV_DIS;
+
+	q_xS20_EB2_ep2624c01 := vgPBT_GCC_04.xHV_DIS;
 	q_xS20_EB2_ep2624c02 := FALSE;
 	q_xS20_EB2_ep2624c03 := FALSE;
 	q_xS20_EB2_ep2624c04 := FALSE;
 	
-
-	(* XRT stand 26 *)
-	vgcDVD_VGC_01.i_xOpnLS := i_xS26_EB1_ep2338c01;
-	vgcDVD_VGC_01.i_xClsLS := i_xS26_EB1_ep2338c02;
-	q_xS26_EB1_ep2338c03 := vgcDVD_VGC_01.xOPN_DO;
-	q_xS26_EB1_ep2338c04 := FALSE;
-//	i_xS26_EB1_ep2338c05 AT %I* : BOOL;
-//	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
-	q_xS26_EB1_ep2338c07 := FALSE;
-	q_xS26_EB1_ep2338c08 := FALSE;	
 	
-	(* XRT stand 27 *)
-	vgDVD_GCC_04.iPRESS_R := i_iS27_EB1_ep3174c01;
-//	i_iS27_EB1_ep3174c02 AT %I* : INT;
-//	i_iS27_EB1_ep3174c03 AT %I* : INT;
-//	i_iS27_EB1_ep3174c04 AT %I* : INT;
+	(* XRT stand IDNO 78 *)
+	vgcPBT_VGC_02.i_xOpnLS := i_xS78_EB1_ep2338c01;
+	vgcMXT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
+	q_xS78_EB1_ep2338c03 := vgcPBT_VGC_02.xOPN_DO;
+	q_xS78_EB1_ep2338c04 := FALSE;
+	q_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS78_EB1_ep2338c06 AT %I* : BOOL;
+	q_xS78_EB1_ep2338c07 := FALSE;
+	q_xS78_EB1_ep2338c08 := FALSE;
 	
-	q_xS27_EB2_ep2624c01 := vgDVD_GCC_04.xHV_DIS;
-	q_xS27_EB2_ep2624c02 := FALSE;
-	q_xS27_EB2_ep2624c03 := FALSE;
-	q_xS27_EB2_ep2624c04 := FALSE;
+	vgPBT_GCC_06.iPRESS_R := i_iS78_EB1_ep3174c01;
+	vgPBT_GPI_06.iPRESS_R := i_iS78_EB1_ep3174c02;
+//	i_iS78_EB1_ep3174c03 AT %I* : INT;
+//	i_iS78_EB1_ep3174c04 AT %I* : INT;
 	
-	(* XRT stand 30 *)
-	vgMON_GCC_01.iPRESS_R := i_iS30_EB1_ep3174c01;
-//	i_iS30_EB1_ep3174c02 AT %I* : INT;
-//	i_iS30_EB1_ep3174c03 AT %I* : INT;
-//	i_iS30_EB1_ep3174c04 AT %I* : INT;
+	q_xS78_EB2_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
+	q_xS78_EB2_ep2624c02 := FALSE;
+	q_xS78_EB2_ep2624c03 := FALSE;
+	q_xS78_EB2_ep2624c04 := FALSE;
 	
-	q_xS30_EB2_ep2624c01 := vgMON_GCC_01.xHV_DIS;
-	q_xS30_EB2_ep2624c02 := FALSE;
-	q_xS30_EB2_ep2624c03 := FALSE;
-	q_xS30_EB2_ep2624c04 := FALSE;
+	
+	(* XRT stand IDNO 80 *)
+	vgcPBT_VGC_03.i_xOpnLS := i_xS80_EB1_ep2338c01;
+	vgcMXT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
+	q_xS80_EB1_ep2338c03 := vgcPBT_VGC_03.xOPN_DO;
+	q_xS80_EB1_ep2338c04 := FALSE;
+	q_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS80_EB1_ep2338c06 AT %I* : BOOL;
+	q_xS80_EB1_ep2338c07 := FALSE;
+	q_xS80_EB1_ep2338c08 := FALSE;
 	
 		
-	(* XRT stand 72 *)
-	vgcDIA_VGC_01.i_xOpnLS := i_xS72_EB1_ep2338c01; //AT %I* : BOOL;
-	vgcDIA_VGC_01.i_xClsLS := i_xS72_EB1_ep2338c02; //AT %I* : BOOL;
-	q_xS72_EB1_ep2338c03 := vgcDIA_VGC_01.xOPN_DO; //AT %Q* : BOOL;
-	q_xS72_EB1_ep2338c04 := FALSE; //AT %Q* : BOOL;
-//	i_xS72_EB1_ep2338c05 AT %I* : BOOL;
-//	i_xS72_EB1_ep2338c06 AT %I* : BOOL;
-	q_xS72_EB1_ep2338c07 := FALSE; //AT %Q* : BOOL;
-	q_xS72_EB1_ep2338c08 := FALSE; // AT %Q* : BOOL;
-	
-	vgDIA_GCC_01.iPRESS_R := i_iS72_EB2_ep3174c01;
-//	i_iS72_EB2_ep3174c02 AT %I* : INT;
-//	i_iS72_EB2_ep3174c03 AT %I* : INT;
-//	i_iS72_EB2_ep3174c04 AT %I* : INT;
-	
-	q_xS72_EB3_ep2624c01 := vgDIA_GCC_01.xHV_DIS;
-	q_xS72_EB3_ep2624c02 := FALSE;
-	q_xS72_EB3_ep2624c03 := FALSE;
-	q_xS72_EB3_ep2624c04 := FALSE;
+	(* XRT stand IDNO 26 *)
+	vgcPBT_VGC_04.i_xOpnLS := i_xS26_EB1_ep2338c01;
+	vgcMXT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
+	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
+	q_xS26_EB1_ep2338c04 := FALSE;
+	q_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
+	q_xS26_EB1_ep2338c07 := FALSE;
+	q_xS26_EB1_ep2338c08 := FALSE;
+
 	
 
-	(* XRT stand 62 *)
-	vgcDIA_VGC_02.i_xOpnLS := i_xS62_EB1_ep2338c01; // AT %I* : BOOL;
-	vgcDIA_VGC_02.i_xClsLS := i_xS62_EB1_ep2338c02; // AT %I* : BOOL;
-	q_xS62_EB1_ep2338c03 := vgcDIA_VGC_02.xOPN_DO; // AT %Q* : BOOL;
-	q_xS62_EB1_ep2338c04 := FALSE; // AT %Q* : BOOL;
-//	i_xS62_EB1_ep2338c05 AT %I* : BOOL;
-//	i_xS62_EB1_ep2338c06 AT %I* : BOOL;
-	q_xS62_EB1_ep2338c07 := FALSE; //  AT %Q* : BOOL;
-	q_xS62_EB1_ep2338c08 := FALSE; //  AT %Q* : BOOL;
+	(* XRT stand IDNO 83 *)
+	vgPBT_GCC_08.iPRESS_R := i_iS83_EB1_ep3174c01;
+	vgPBT_GPI_08.iPRESS_R := i_iS83_EB1_ep3174c02;
+//	i_iS83_EB1_ep3174c03 AT %I* : INT;
+//	i_iS83_EB1_ep3174c04 AT %I* : INT;
+	
+	q_xS83_EB2_ep2624c01 := vgPBT_GCC_08.xHV_DIS;
+	q_xS83_EB2_ep2624c02 := FALSE;
+	q_xS83_EB2_ep2624c03 := FALSE;
+	q_xS83_EB2_ep2624c04 := FALSE;
+	
 	
 
-	(* XCS stand SB2 *)
-	vgSB2_GCC_01.iPRESS_R := i_iSB2_EB1_ep3174c01;
-//	i_iS30_EB1_ep3174c02 AT %I* : INT;
-//	i_iS30_EB1_ep3174c03 AT %I* : INT;
-//	i_iS30_EB1_ep3174c04 AT %I* : INT;
+	(* XRT stand IDNO 63 *)
+	vgcPBT_VGC_05.i_xOpnLS := i_xS63_EB1_ep2338c01;
+	vgcMXT_VGC_05.i_xClsLS := i_xS63_EB1_ep2338c02;
+	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_05.xOPN_DO;
+	q_xS63_EB1_ep2338c04 := FALSE;
+	q_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS63_EB1_ep2338c06 AT %I* : BOOL;
+	q_xS63_EB1_ep2338c07 := FALSE;
+	q_xS63_EB1_ep2338c08 := FALSE;
 	
-	q_xSB2_EB2_ep2624c01 := vgSB2_GCC_01.xHV_DIS;
-	q_xS30_EB2_ep2624c02 := FALSE;
-	q_xS30_EB2_ep2624c03 := FALSE;
-	q_xS30_EB2_ep2624c04 := FALSE;
-	
-	(* Hutch4.5 stand DG1 *)
-	vgcDG1_VGC_01.i_xOpnLS := i_xDG1_EB1_ep2338c01; //AT %I* : BOOL;
-	vgcDG1_VGC_01.i_xClsLS := i_xDG1_EB1_ep2338c02; //AT %I* : BOOL;
-	q_xDG1_EB1_ep2338c03 := vgcDG1_VGC_01.xOPN_DO; //AT %Q* : BOOL;
-	q_xDG1_EB1_ep2338c04 := FALSE; //AT %Q* : BOOL;
-	vgcDG1_VGC_02.i_xOpnLS := i_xDG1_EB1_ep2338c05; //AT %I* : BOOL;
-	vgcDG1_VGC_02.i_xClsLS := i_xDG1_EB1_ep2338c06; // AT %I* : BOOL;
-	q_xDG1_EB1_ep2338c07 := vgcDG1_VGC_02.xOPN_DO; //AT %Q* : BOOL;
-	q_xDG1_EB1_ep2338c08 := FALSE; // AT %Q* : BOOL;
-	
-	vgDG1_GCC_01.iPRESS_R := i_iDG1_EB2_ep3174c01;
-//	i_iDG1_EB2_ep3174c02 AT %I* : INT;
-	vgDG2_GCC_01.iPRESS_R := i_iDG1_EB2_ep3174c02;
-	vgTFS_GCC_01.iPRESS_R := i_iDG1_EB2_ep3174c03;
-//	i_iDG1_EB2_ep3174c03 AT %I* : INT;
-//	i_iDG1_EB2_ep3174c04 AT %I* : INT;
-	
-	q_xDG1_EB3_ep2624c01 := vgDG1_GCC_01.xHV_DIS;
-	q_xDG1_EB3_ep2624c02 := vgDG2_GCC_01.xHV_DIS;
-	q_xDG1_EB3_ep2624c03 := vgTFS_GCC_01.xHV_DIS;
-//	q_xDG1_EB3_ep2624c02 := FALSE;
-//	q_xDG1_EB3_ep2624c03 := FALSE;
-	q_xDG1_EB3_ep2624c04 := FALSE;
-	
-	i_xDG1_MMS01_OUT := i_xDG1_EB4_ep2338c01; // AT %I* : BOOL;
-	i_xDG1_MMS01_IN := i_xDG1_EB4_ep2338c02; // AT %I* : BOOL;
-	q_xDG1_EB4_ep2338c03 := FALSE; // AT %Q* : BOOL;
-	q_xDG1_EB4_ep2338c04 := FALSE; //AT %Q* : BOOL;
-//	i_xDG1_EB4_ep2338c05 AT %I* : BOOL;
-//	i_xDG1_EB4_ep2338c06 AT %I* : BOOL;
-	q_xDG1_EB4_ep2338c07 := FALSE; //AT %Q* : BOOL;
-	q_xDG1_EB4_ep2338c08 := FALSE; //AT %Q* : BOOL;
-	
-	
-	
-		(* Hutch4.5 stand DG2 *)
-//	vgcDG2_VGC_01.i_xOpnLS := i_xDG2_EB1_ep2338c01; //AT %I* : BOOL;
-//	vgcDG2_VGC_01.i_xClsLS := i_xDG2_EB1_ep2338c02; //AT %I* : BOOL;
-//	q_xDG2_EB1_ep2338c03 := vgcDG2_VGC_01.xOPN_DO; //AT %Q* : BOOL;
-	q_xDG2_EB1_ep2338c03 := FALSE; //AT %Q* : BOOL;
-	q_xDG2_EB1_ep2338c04 := FALSE; //AT %Q* : BOOL;
-//	i_xDG2_EB1_ep2338c05 AT %I* : BOOL;
-//	i_xDG2_EB1_ep2338c06 AT %I* : BOOL;
-	q_xDG2_EB1_ep2338c07 := FALSE; //AT %Q* : BOOL;
-	q_xDG2_EB1_ep2338c08 := FALSE; // AT %Q* : BOOL;
-	
-//	vgDG2_GCC_01.iPRESS_R := i_iDG2_EB2_ep3174c01;
-//	i_iDG2_EB2_ep3174c02 AT %I* : INT;
-//	i_iDG2_EB2_ep3174c03 AT %I* : INT;
-//	i_iDG2_EB2_ep3174c04 AT %I* : INT;
-	
-//	q_xDG2_EB3_ep2624c01 := vgDG2_GCC_01.xHV_DIS; //AT %Q* : BOOL;
-	q_xDG2_EB3_ep2624c02 := FALSE; //AT %Q* : BOOL;
-	q_xDG2_EB3_ep2624c03 := FALSE; //AT %Q* : BOOL;
-	q_xDG2_EB3_ep2624c04 := FALSE; //AT %Q* : BOOL;]]></ST>
+	]]></ST>
     </Implementation>
     <LineIds Name="p_SoftIOMap">
-      <LineId Id="6" Count="188" />
+      <LineId Id="6" Count="32" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="198" Count="3" />
+      <LineId Id="204" Count="3" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="209" Count="7" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="63" Count="1" />
+      <LineId Id="218" Count="8" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="229" Count="8" />
+      <LineId Id="239" Count="3" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="81" Count="3" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="243" Count="7" />
+      <LineId Id="95" Count="2" />
+      <LineId Id="252" Count="7" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="116" Count="2" />
+      <LineId Id="262" Count="9" />
+      <LineId Id="127" Count="2" />
+      <LineId Id="273" Count="8" />
+      <LineId Id="130" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
