@@ -17,7 +17,6 @@
   <ItemGroup>
     <Compile Include="GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\GVL_IO.TcGVL">
       <SubType>Code</SubType>
@@ -25,7 +24,6 @@
     </Compile>
     <Compile Include="GVLs\GVL_Variables_Devices.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
@@ -98,11 +96,14 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="LCLS General,0.1.0,SLAC">
-      <Namespace>LCLS_General</Namespace>
-    </LibraryReference>
     <LibraryReference Include="LCLSVacuumLib,1.10.8,SLAC">
       <Namespace>LCLSVacuumLib</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc2_ModbusSrv,3.3.1.0,Beckhoff Automation GmbH">
+      <Namespace>Tc2_ModbusSrv</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="Tc3_Interfaces,3.4.2.0,Beckhoff Automation GmbH">
+      <Namespace>Tc3_Interfaces</Namespace>
     </LibraryReference>
   </ItemGroup>
   <ProjectExtensions>

@@ -3,6 +3,7 @@
   <GVL Name="GVL_Variables_Devices" Id="{ef0f0fb8-5ffa-4278-a23d-4ebcfe487349}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+	
 	//change these to reflect xcs devices
 	//VGC
 vgcPBT_VGC_01 : ST_VGC;
@@ -10,8 +11,9 @@ vgcPBT_VGC_02 : ST_VGC;
 vgcPBT_VGC_03 : ST_VGC;
 vgcPBT_VGC_04 : ST_VGC;
 vgcPBT_VGC_05 : ST_VGC;
-//VG
 
+
+//Vacuum Gauges
 
 //GPI
 vgPBT_GPI_02 : ST_VG; // real Pirani Gauge
