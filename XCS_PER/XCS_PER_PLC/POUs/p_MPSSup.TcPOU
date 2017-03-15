@@ -12,12 +12,12 @@ END_VAR
 //( i_xMFX_ppsStopperPos_In OR ( NOT(i_xMFX_ppsStopperPos_Out AND i_xMFX_ppsStopperPos_In) AND vgcDIA_VGC_01.i_xOpnLS AND vgcDIA_VGC_02.i_xOpnLS AND 
 //									vgcDG1_VGC_01.i_xOpnLS AND vgcDG1_VGC_02.i_xOpnLS AND q_xDG1_MMS01_MPSOK AND i_xMFX_TFSmpsStatus_OK));
 									
-q_xMFX_preS45_MPSOK:= g_xIOState AND vgcMXT_VGC_04.i_xOpnLS AND vgcDVD_VGC_01.i_xOpnLS; 								
+(* q_xMFX_preS45_MPSOK:= g_xIOState AND vgcMXT_VGC_04.i_xOpnLS AND vgcDVD_VGC_01.i_xOpnLS; 								
 q_xDG1_MMS01_MPSOK := i_xDG1_MMS01_OUT AND NOT i_xDG1_MMS01_IN;
 q_xMFX_VGC_OK      := vgcDIA_VGC_01.i_xOpnLS AND vgcDIA_VGC_02.i_xOpnLS
                        AND  vgcDG1_VGC_01.i_xOpnLS AND vgcDG1_VGC_02.i_xOpnLS;  								
 
-q_xMFX_MPSOK := q_xMFX_VGC_OK AND q_xDG1_MMS01_MPSOK;]]></ST>
+q_xMFX_MPSOK := q_xMFX_VGC_OK AND q_xDG1_MMS01_MPSOK; *)]]></ST>
     </Implementation>
     <LineIds Name="p_MPSSup">
       <LineId Id="6" Count="10" />

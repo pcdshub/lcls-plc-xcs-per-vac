@@ -15,7 +15,7 @@ END_VAR]]></Declaration>
       <ST><![CDATA[mb_Input_Coils[0]:=FALSE;  //default
 //mb_Input_Coils[1]:=i_xMFX_ppsStopperPos_Out;  //default
 //mb_Input_Coils[2]:=i_xMFX_ppsStopperPos_In;  //default
-mb_Input_Coils[3]:=q_xMFX_MPSOK;  //default
+mb_Input_Coils[3]:=q_xXCS_MPSOK;  //default
 mb_Input_Coils[4]:=g_xIOState;  //default
 //mb_Input_Coils[5]:=i_xDG1_MMS01_OUT;  //default
 mb_Input_Coils[6]:=FALSE;  //default

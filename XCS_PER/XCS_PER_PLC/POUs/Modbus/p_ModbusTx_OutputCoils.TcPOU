@@ -9,9 +9,9 @@ END_VAR
       <ST><![CDATA[mb_Output_Coils[0]:=FALSE;  //System Controls
 mb_Output_Coils[1]:=g_stSystem.xOverrideMode;  //System Controls
 mb_Output_Coils[2]:=FALSE;  //System Controls
-mb_Output_Coils[3] :=q_xMFX_VGC_OK;  //System Controls
-mb_Output_Coils[4] :=q_xMFX_preS45_MPSOK;  //System Controls
-mb_Output_Coils[5] :=q_xMFX_MPSOK;  //System Controlsmb_Output_Coils[2]:=FALSE;  //System Controls
+mb_Output_Coils[3] :=q_xXCS_VGC_OK;  //System Controls
+mb_Output_Coils[4] :=FALSE;  //System Controls
+mb_Output_Coils[5] :=q_xXCS_MPSOK;  //System Controlsmb_Output_Coils[2]:=FALSE;  //System Controls
 mb_Output_Coils[6]:=FALSE;  //System Controls
 mb_Output_Coils[7]:=FALSE;  //System Controls
 mb_Output_Coils[8]:=FALSE;  //System Controls

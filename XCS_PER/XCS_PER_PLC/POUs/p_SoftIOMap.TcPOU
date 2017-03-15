@@ -54,7 +54,7 @@ END_VAR
 	q_xS13_EB2_ep2624c04 := FALSE;
 
 	(* XRT stand IDNO 14 *)
-	gcPBT_VGC_01.i_xOpnLS := i_xS14_EB1_ep2338c01;
+	vgcPBT_VGC_01.i_xOpnLS := i_xS14_EB1_ep2338c01;
 	vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
 	q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
 	q_xS14_EB1_ep2338c04 := FALSE;
@@ -78,7 +78,7 @@ END_VAR
 	
 	(* XRT stand IDNO 78 *)
 	vgcPBT_VGC_02.i_xOpnLS := i_xS78_EB1_ep2338c01;
-	vgcMXT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
+	vgcPBT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
 	q_xS78_EB1_ep2338c03 := vgcPBT_VGC_02.xOPN_DO;
 	q_xS78_EB1_ep2338c04 := FALSE;
 	q_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
@@ -99,7 +99,7 @@ END_VAR
 	
 	(* XRT stand IDNO 80 *)
 	vgcPBT_VGC_03.i_xOpnLS := i_xS80_EB1_ep2338c01;
-	vgcMXT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
+	vgcPBT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
 	q_xS80_EB1_ep2338c03 := vgcPBT_VGC_03.xOPN_DO;
 	q_xS80_EB1_ep2338c04 := FALSE;
 	q_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
@@ -110,7 +110,7 @@ END_VAR
 		
 	(* XRT stand IDNO 26 *)
 	vgcPBT_VGC_04.i_xOpnLS := i_xS26_EB1_ep2338c01;
-	vgcMXT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
+	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
 	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
 	q_xS26_EB1_ep2338c04 := FALSE;
 	q_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
@@ -135,7 +135,7 @@ END_VAR
 
 	(* XRT stand IDNO 63 *)
 	vgcPBT_VGC_05.i_xOpnLS := i_xS63_EB1_ep2338c01;
-	vgcMXT_VGC_05.i_xClsLS := i_xS63_EB1_ep2338c02;
+	vgcPBT_VGC_05.i_xClsLS := i_xS63_EB1_ep2338c02;
 	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_05.xOPN_DO;
 	q_xS63_EB1_ep2338c04 := FALSE;
 	q_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
