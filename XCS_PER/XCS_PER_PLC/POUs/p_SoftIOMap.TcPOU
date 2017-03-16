@@ -81,20 +81,20 @@ END_VAR
 	vgcPBT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
 	q_xS78_EB1_ep2338c03 := vgcPBT_VGC_02.xOPN_DO;
 	q_xS78_EB1_ep2338c04 := FALSE;
-	q_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
-//	i_xS78_EB1_ep2338c06 AT %I* : BOOL;
+	i_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+	i_xS78_EB1_ep2338c06 := FALSE;
 	q_xS78_EB1_ep2338c07 := FALSE;
 	q_xS78_EB1_ep2338c08 := FALSE;
 	
-	vgPBT_GCC_06.iPRESS_R := i_iS78_EB1_ep3174c01;
-	vgPBT_GPI_06.iPRESS_R := i_iS78_EB1_ep3174c02;
-//	i_iS78_EB1_ep3174c03 AT %I* : INT;
-//	i_iS78_EB1_ep3174c04 AT %I* : INT;
+	vgPBT_GCC_06.iPRESS_R := i_iS78_EB2_ep3174c01;
+	vgPBT_GPI_06.iPRESS_R := i_iS78_EB2_ep3174c02;
+	vgPBT_GCC_07.iPRESS_R := i_iS78_EB2_ep3174c03; 
+	vgPBT_GPI_07.iPRESS_R := i_iS78_EB2_ep3174c04; 
 	
-	q_xS78_EB2_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
-	q_xS78_EB2_ep2624c02 := FALSE;
-	q_xS78_EB2_ep2624c03 := FALSE;
-	q_xS78_EB2_ep2624c04 := FALSE;
+	q_xS78_EB3_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
+	q_xS78_EB3_ep2624c02 := vgPBT_GCC_07.xHV_DIS;
+	q_xS78_EB3_ep2624c03 := FALSE;
+	q_xS78_EB3_ep2624c04 := FALSE;
 	
 	
 	(* XRT stand IDNO 80 *)
@@ -102,7 +102,7 @@ END_VAR
 	vgcPBT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
 	q_xS80_EB1_ep2338c03 := vgcPBT_VGC_03.xOPN_DO;
 	q_xS80_EB1_ep2338c04 := FALSE;
-	q_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+	i_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS80_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS80_EB1_ep2338c07 := FALSE;
 	q_xS80_EB1_ep2338c08 := FALSE;
@@ -113,7 +113,7 @@ END_VAR
 	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
 	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
 	q_xS26_EB1_ep2338c04 := FALSE;
-	q_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+	i_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS26_EB1_ep2338c07 := FALSE;
 	q_xS26_EB1_ep2338c08 := FALSE;
@@ -138,7 +138,7 @@ END_VAR
 	vgcPBT_VGC_05.i_xClsLS := i_xS63_EB1_ep2338c02;
 	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_05.xOPN_DO;
 	q_xS63_EB1_ep2338c04 := FALSE;
-	q_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+	i_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS63_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS63_EB1_ep2338c07 := FALSE;
 	q_xS63_EB1_ep2338c08 := FALSE;
