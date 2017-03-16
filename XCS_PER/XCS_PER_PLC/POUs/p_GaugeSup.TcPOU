@@ -21,9 +21,13 @@ END_VAR
       <ST><![CDATA[(* Vacuum Gauge Supervisor *)
 
 (* Check the upstream PLC for the upstream vacuum OK signal -- p_XLegacyPLCModbus *)
-//vgMXT_GCC_06.xAT_VAC := i_xUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
-//vgMXT_GCC_06.xPRESS_OK := i_xUSVacOK;
+//vgMXT_GCC_03.xAT_VAC := i_xUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
+//vgMXT_GCC_03.xPRESS_OK := i_xUSVacOK;
 
+
+(* Check the downstream PLC for the downstream vacuum OK signal -- p_XLegacyPLCModbus *)
+//vgMON_GCC_04??.xAT_VAC := i_xDSVacOK; //NEED TO DECIDE HOW TO HANDLE DSV
+//vgMON_GCC_04??.xPRESS_OK := i_xDSVacOK;
 
 (* Calculate Cold Cathode *)
 //vgPBT_GPI_D1.xPRESS_OK := TRUE;
@@ -37,7 +41,11 @@ fbPBT_GCC_08(PG:=vgPBT_GPI_08,IG:=vgPBT_GCC_08);
 ]]></ST>
     </Implementation>
     <LineIds Name="p_GaugeSup">
-      <LineId Id="6" Count="15" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="11" Count="10" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
