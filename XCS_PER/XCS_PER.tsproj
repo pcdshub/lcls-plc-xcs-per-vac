@@ -603,7 +603,7 @@
 					<Name>Image</Name>
 				</Image>
 				<Box BoxType="9099" Id="1">
-					<Name>Term 1 (EK1200)</Name>
+					<Name>PLC_XCS_PER_VAC (EK1200)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001388" InfoDataState="false" PortPhys="49" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1200-5000 EtherCAT Power supply (2A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>
 					<Box BoxType="9099" Id="2">
@@ -1953,4 +1953,42 @@ Bit1: Value smaller than Limit2]]>
 			</Device>
 		</Io>
 	</Project>
+	<Mappings>
+		<OwnerA Name="TIPC^XCS_PER_PLC^XCS_PER_PLC Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 10 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs26_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs26_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs26_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 11 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs80_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 12 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs78_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 13 (EP3174-0002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c01" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c02" VarB="AI Standard Channel 2^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 14 (EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs78_EB3_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 7 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS63_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 8 (EP3174-0002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 9 (EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS83_EB2_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>
