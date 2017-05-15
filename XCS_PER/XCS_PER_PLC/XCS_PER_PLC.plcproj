@@ -96,7 +96,7 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="LCLSVacuumLib,1.10.8,SLAC">
+    <LibraryReference Include="LCLSVacuumLib,newest,SLAC">
       <Namespace>LCLSVacuumLib</Namespace>
     </LibraryReference>
     <LibraryReference Include="Tc2_ModbusSrv,3.3.1.0,Beckhoff Automation GmbH">
