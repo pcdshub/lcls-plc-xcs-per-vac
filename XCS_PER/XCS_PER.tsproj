@@ -1023,7 +1023,7 @@ Bit1: Value bigger/equal Limit2]]>
 					</Box>
 				</Box>
 				<Box BoxType="9099" Id="21">
-					<Name>Box 1 (EP2338-1002)</Name>
+					<Name>XRT IDNO 63 EB1 XCS:PBT:VGC:05 (EP2338-1002)</Name>
 					<ImageId>1004</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09224052" RevisionNo="#x001103ea" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2338-1002 8 Ch. Dig. Input/Output 24V, 3ms, 0,5A, M12" Desc="EP2338-1002" PortABoxInfo="#x01000014">
 						<SyncMan>000f01004400010003000000010001000100000f44090000</SyncMan>
@@ -1113,7 +1113,7 @@ Bit1: Value bigger/equal Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="22">
-					<Name>Box 2 (EP3174-0002)</Name>
+					<Name>XRT IDNO 83 EB1 XCS:PBT:GCC/GPI:08 (EP3174-0002)</Name>
 					<ImageId>1005</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0605" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c664052" RevisionNo="#x00160002" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP3174-0002 4Ch. Ana. Input +/-10V, 0-10V, 0/4-20mA configurable" Desc="EP3174-0002" PortABoxInfo="#x01000015">
 						<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
@@ -1369,7 +1369,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="23">
-					<Name>Box 3 (EP2624-0002)</Name>
+					<Name>XRT IDNO 83 EB2 XCS:PBT:GCC:08 (EP2624-0002)</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0a404052" RevisionNo="#x00120002" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2624-0002 4Ch. Relay Output, NO (125V AC / 30V DC)" Desc="EP2624-0002" PortABoxInfo="#x01000016">
 						<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -1397,7 +1397,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="24">
-					<Name>Box 4 (EP2338-1002)</Name>
+					<Name>XRT IDNO 26 EB1 XCS:PBT:VGC:04 (EP2338-1002)</Name>
 					<ImageId>1004</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09224052" RevisionNo="#x001103ea" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2338-1002 8 Ch. Dig. Input/Output 24V, 3ms, 0,5A, M12" Desc="EP2338-1002" PortABoxInfo="#x01000017">
 						<SyncMan>000f01004400010003000000010001000100000f44090000</SyncMan>
@@ -1487,7 +1487,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="25">
-					<Name>Box 5 (EP2338-1002)</Name>
+					<Name>XRT IDNO 80 EB1 XCS:PBT:VGC:03 (EP2338-1002)</Name>
 					<ImageId>1004</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09224052" RevisionNo="#x001103ea" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2338-1002 8 Ch. Dig. Input/Output 24V, 3ms, 0,5A, M12" Desc="EP2338-1002" PortABoxInfo="#x01000018">
 						<SyncMan>000f01004400010003000000010001000100000f44090000</SyncMan>
@@ -1577,7 +1577,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="26">
-					<Name>Box 6 (EP2338-1002)</Name>
+					<Name>XRT IDNO 78 EB1 XCS:PBT:VGC:02 (EP2338-1002)</Name>
 					<ImageId>1004</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09224052" RevisionNo="#x001103ea" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2338-1002 8 Ch. Dig. Input/Output 24V, 3ms, 0,5A, M12" Desc="EP2338-1002" PortABoxInfo="#x01000019">
 						<SyncMan>000f01004400010003000000010001000100000f44090000</SyncMan>
@@ -1667,7 +1667,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="27">
-					<Name>Box 7 (EP3174-0002)</Name>
+					<Name>XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06 (EP3174-0002)</Name>
 					<ImageId>1005</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0605" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c664052" RevisionNo="#x00160002" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP3174-0002 4Ch. Ana. Input +/-10V, 0-10V, 0/4-20mA configurable" Desc="EP3174-0002" PortABoxInfo="#x0100001a">
 						<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
@@ -1923,7 +1923,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="28">
-					<Name>Box 8 (EP2624-0002)</Name>
+					<Name>XRT IDNO 78 EB3 XCS:PBT:GCC:06 (EP2624-0002)</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0a404052" RevisionNo="#x00120002" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2624-0002 4Ch. Relay Output, NO (125V AC / 30V DC)" Desc="EP2624-0002" PortABoxInfo="#x0100001b">
 						<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -1951,7 +1951,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="29">
-					<Name>Box 9 (EP3174-0002)</Name>
+					<Name>XRT IDNO 20 EB1 XCS:PBT:GCC/GPI:04 (EP3174-0002)</Name>
 					<ImageId>1005</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0605" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c664052" RevisionNo="#x00160002" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP3174-0002 4Ch. Ana. Input +/-10V, 0-10V, 0/4-20mA configurable" Desc="EP3174-0002" PortABoxInfo="#x0100001c">
 						<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
@@ -2207,7 +2207,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="30">
-					<Name>Box 10 (EP2624-0002)</Name>
+					<Name>XRT IDNO 20 EB2 XCS:PBT:GCC:04 (EP2624-0002)</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0a404052" RevisionNo="#x00130002" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2624-0002 4Ch. Relay Output, NO (125V AC / 30V DC)" Desc="EP2624-0002" PortABoxInfo="#x0100001d">
 						<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -2235,7 +2235,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="31">
-					<Name>Box 11 (EP2338-1002)</Name>
+					<Name>XRT IDNO 14 EB1 XCS:PBT:VGC:01 (EP2338-1002)</Name>
 					<ImageId>1004</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x09224052" RevisionNo="#x001103ea" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2338-1002 8 Ch. Dig. Input/Output 24V, 3ms, 0,5A, M12" Desc="EP2338-1002" PortABoxInfo="#x0100001e">
 						<SyncMan>000f01004400010003000000010001000100000f44090000</SyncMan>
@@ -2325,7 +2325,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="32">
-					<Name>Box 12 (EP3174-0002)</Name>
+					<Name>XRT IDNO 13 EB1 XCS:PBT:GCC/GPI:02 (EP3174-0002)</Name>
 					<ImageId>1005</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0605" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c664052" RevisionNo="#x00160002" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP3174-0002 4Ch. Ana. Input +/-10V, 0-10V, 0/4-20mA configurable" Desc="EP3174-0002" PortABoxInfo="#x0100001f">
 						<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
@@ -2581,7 +2581,7 @@ Bit1: Value smaller than Limit2]]>
 					</EtherCAT>
 				</Box>
 				<Box BoxType="9099" Id="33">
-					<Name>Box 13 (EP2624-0002)</Name>
+					<Name>XRT IDNO 13 EB2 XCS:PBT:GCC:02(EP2624-0002)</Name>
 					<ImageId>1006</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0304" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0a404052" RevisionNo="#x00120002" RepeatSupport="true" PortPhys="17" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP2624-0002 4Ch. Relay Output, NO (125V AC / 30V DC)" Desc="EP2624-0002" PortABoxInfo="#x01000020">
 						<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
@@ -2635,39 +2635,58 @@ Bit1: Value smaller than Limit2]]>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-0011-0101-1000-010110000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^XCS_PER_PLC^XCS_PER_PLC Instance">
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 1 (EP2338-1002)">
-				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c01" VarB="Channel 1^Input"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c02" VarB="Channel 2^Input"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.q_xS63_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB1 XCS:PBT:GCC/GPI:02 (EP3174-0002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 2 (EP3174-0002)">
-				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB2 XCS:PBT:GCC:02(EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS13_EB2_ep2624c01" VarB="Channel 1^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 3 (EP2624-0002)">
-				<Link VarA="PlcTask Outputs^GVL_IO.q_xS83_EB2_ep2624c01" VarB="Channel 1^Output"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 14 EB1 XCS:PBT:VGC:01 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS14_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS14_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS14_EB1_ep2338c03" VarB="Channel 11^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 4 (EP2338-1002)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB1 XCS:PBT:GCC/GPI:04 (EP3174-0002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS20_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS20_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB2 XCS:PBT:GCC:04 (EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS20_EB2_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 26 EB1 XCS:PBT:VGC:04 (EP2338-1002)">
 				<Link VarA="PlcTask Inputs^GVL_IO.i_xs26_EB1_ep2338c01" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_xs26_EB1_ep2338c02" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.q_xs26_EB1_ep2338c03" VarB="Channel 11^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 5 (EP2338-1002)">
-				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c01" VarB="Channel 1^Input"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c02" VarB="Channel 2^Input"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.q_xs80_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 63 EB1 XCS:PBT:VGC:05 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS63_EB1_ep2338c03" VarB="Channel 11^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 6 (EP2338-1002)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB1 XCS:PBT:VGC:02 (EP2338-1002)">
 				<Link VarA="PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c01" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c02" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.q_xs78_EB1_ep2338c03" VarB="Channel 11^Output"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 7 (EP3174-0002)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06 (EP3174-0002)">
 				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c01" VarB="AI Standard Channel 1^Value"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c02" VarB="AI Standard Channel 2^Value"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 8 (EP2624-0002)">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB3 XCS:PBT:GCC:06 (EP2624-0002)">
 				<Link VarA="PlcTask Outputs^GVL_IO.q_xs78_EB3_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 80 EB1 XCS:PBT:VGC:03 (EP2338-1002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c01" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c02" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs80_EB1_ep2338c03" VarB="Channel 11^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 83 EB1 XCS:PBT:GCC/GPI:08 (EP3174-0002)">
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 83 EB2 XCS:PBT:GCC:08 (EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xS83_EB2_ep2624c01" VarB="Channel 1^Output"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
