@@ -13,6 +13,10 @@
     <Implicit_KindOfTask>{d76ceb27-4b8f-4ad2-ab16-4cfbc62b2fcb}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{bdcfbc7d-b95e-443c-9f7c-1a304f43bca2}</Implicit_Jitter_Distribution>
     <LibraryReferences>{cb9ab5f4-a3f7-422c-960c-d4641ca43fac}</LibraryReferences>
+    <SccProjectName>Svn</SccProjectName>
+    <SccProvider>SubversionScc</SccProvider>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GVLs\GVL.TcGVL">
