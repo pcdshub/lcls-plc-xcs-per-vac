@@ -2666,6 +2666,9 @@ Bit1: Value smaller than Limit2]]>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c01" VarB="AI Standard Channel 1^Value"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c02" VarB="AI Standard Channel 2^Value"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Box 8 (EP2624-0002)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs78_EB3_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
 		</OwnerA>
 	</Mappings>
 </TcSmProject>
