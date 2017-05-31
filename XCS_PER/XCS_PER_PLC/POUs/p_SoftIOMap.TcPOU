@@ -43,8 +43,8 @@ END_VAR
 	
 
 		(* XRT Stand IDNO 13 *)
-	vgPBT_GCC_02.iPRESS_R := i_iS13_EB1_ep3174c01;
-	vgPBT_GPI_02.iPRESS_R := i_iS13_EB1_ep3174c02;
+	vgPBT_GPI_02.iPRESS_R := i_iS13_EB1_ep3174c01;
+	vgPBT_GCC_02.iPRESS_R := i_iS13_EB1_ep3174c02;
 //	i_iS13_EB1_ep3174c03 AT %I* : INT;
 //	i_iS13_EB1_ep3174c04 AT %I* : INT;
 
@@ -65,8 +65,8 @@ END_VAR
 	
 
 	(* XRT stand IDNO 20 *)
-	vgPBT_GCC_04.iPRESS_R := i_iS20_EB1_ep3174c01;
-	vgPBT_GPI_04.iPRESS_R := i_iS20_EB1_ep3174c02;
+	vgPBT_GPI_04.iPRESS_R := i_iS20_EB1_ep3174c01;
+	vgPBT_GCC_04.iPRESS_R := i_iS20_EB1_ep3174c02;
 //	i_iS20_EB1_ep3174c03 AT %I* : INT;
 //	i_iS20_EB1_ep3174c04 AT %I* : INT;
 
@@ -86,10 +86,10 @@ END_VAR
 	q_xS78_EB1_ep2338c07 := FALSE;
 	q_xS78_EB1_ep2338c08 := FALSE;
 	
-	vgPBT_GCC_06.iPRESS_R := i_iS78_EB2_ep3174c01;
-	vgPBT_GPI_06.iPRESS_R := i_iS78_EB2_ep3174c02;
-	vgPBT_GCC_07.iPRESS_R := i_iS78_EB2_ep3174c03; 
-	vgPBT_GPI_07.iPRESS_R := i_iS78_EB2_ep3174c04; 
+	vgPBT_GPI_06.iPRESS_R := i_iS78_EB2_ep3174c01;
+	vgPBT_GCC_06.iPRESS_R := i_iS78_EB2_ep3174c02;
+	vgPBT_GPI_07.iPRESS_R := i_iS78_EB2_ep3174c03; 
+	vgPBT_GCC_07.iPRESS_R := i_iS78_EB2_ep3174c04; 
 	
 	q_xS78_EB3_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
 	q_xS78_EB3_ep2624c02 := vgPBT_GCC_07.xHV_DIS;
@@ -109,9 +109,9 @@ END_VAR
 	
 		
 	(* XRT stand IDNO 26 *)
-	vgcPBT_VGC_04.i_xOpnLS := i_xS26_EB1_ep2338c01;
-	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
-	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
+//	vgcPBT_VGC_04.i_xOpnLS := i_xS26_EB1_ep2338c01;
+//	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
+//	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
 	q_xS26_EB1_ep2338c04 := FALSE;
 	i_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
@@ -121,8 +121,8 @@ END_VAR
 	
 
 	(* XRT stand IDNO 83 *)
-	vgPBT_GCC_08.iPRESS_R := i_iS83_EB1_ep3174c01;
-	vgPBT_GPI_08.iPRESS_R := i_iS83_EB1_ep3174c02;
+	vgPBT_GPI_08.iPRESS_R := i_iS83_EB1_ep3174c01;
+	vgPBT_GCC_08.iPRESS_R := i_iS83_EB1_ep3174c02;
 //	i_iS83_EB1_ep3174c03 AT %I* : INT;
 //	i_iS83_EB1_ep3174c04 AT %I* : INT;
 	
@@ -134,8 +134,8 @@ END_VAR
 	
 
 	(* XRT stand IDNO 63 *)
-	vgcPBT_VGC_05.i_xOpnLS := i_xS63_EB1_ep2338c01;
-	vgcPBT_VGC_05.i_xClsLS := i_xS63_EB1_ep2338c02;
+	vgcPBT_VGC_04.i_xOpnLS := i_xS63_EB1_ep2338c01;
+	vgcPBT_VGC_04.i_xClsLS := i_xS63_EB1_ep2338c02;
 	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_05.xOPN_DO;
 	q_xS63_EB1_ep2338c04 := FALSE;
 	i_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
