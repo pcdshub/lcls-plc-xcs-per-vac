@@ -20,7 +20,7 @@ vgcPBT_VGC_01.xOPN_SW:=mb_Output_Coils[10];  //Valve switch controls
 vgcPBT_VGC_02.xOPN_SW:=mb_Output_Coils[11];  //Valve switch controls
 vgcPBT_VGC_03.xOPN_SW:=mb_Output_Coils[12];  //Valve switch controls
 vgcPBT_VGC_04.xOPN_SW:=mb_Output_Coils[13];  //Valve switch controls
-vgcPBT_VGC_05.xOPN_SW:=mb_Output_Coils[14];  //Valve switch controls
+//mb_Output_Coils[14];  //Valve switch controls
 //mb_Output_Coils[15];  //Valve switch controls
 //mb_Output_Coils[16];  //Valve switch controls
 //mb_Output_Coils[17];  //Valve switch controls
