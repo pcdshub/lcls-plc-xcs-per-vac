@@ -137,6 +137,13 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.g_aEcatMaster1</Name>
+							<Comment>
+								<![CDATA[ AMS NetID]]>
+							</Comment>
+							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.i_iR32_31el3064s01c01</Name>
 							<Comment>
 								<![CDATA[ Generic PLC Rail ]]>
@@ -146,13 +153,6 @@
 						<Var>
 							<Name>GVL_IO.i_iR32_31el3064s01c02</Name>
 							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.g_aEcatMaster1</Name>
-							<Comment>
-								<![CDATA[ AMS NetID]]>
-							</Comment>
-							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.i_iR32_31el3064s01c03</Name>

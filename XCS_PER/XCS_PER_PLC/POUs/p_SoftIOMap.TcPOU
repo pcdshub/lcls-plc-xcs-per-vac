@@ -136,7 +136,7 @@ END_VAR
 	(* XRT stand IDNO 63 *)
 	vgcPBT_VGC_04.i_xOpnLS := i_xS63_EB1_ep2338c01;
 	vgcPBT_VGC_04.i_xClsLS := i_xS63_EB1_ep2338c02;
-	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_05.xOPN_DO;
+	q_xS63_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
 	q_xS63_EB1_ep2338c04 := FALSE;
 	i_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS63_EB1_ep2338c06 AT %I* : BOOL;
