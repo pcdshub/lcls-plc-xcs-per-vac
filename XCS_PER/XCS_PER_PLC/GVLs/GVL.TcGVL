@@ -10,13 +10,10 @@
 //	i_xDSVacOK	 :	BOOL; //downstream vacuum OK should this be XCSVacOK?
 	g_xDSVacOK	 :	BOOL;	// downstream vacuum OK
 	q_xXCS_MPSOK :  BOOL; //XCS gate valves all at open position
-	//i_xDG1_MMS01_IN  : BOOL;  //RefLaser position
-	//i_xDG1_MMS01_OUT : BOOL;  //RefLaser position
 	//i_xXCS_ppsStopperPos_Out : BOOL; 
 	//i_xXCS_ppsStopperPos_In  : BOOL;
-	//i_xXCS_TFSmpsStatus_OK   : BOOL; 
 	//q_xXCS_preS45_MPSOK      : BOOL;
-	//q_xDG1_MMS01_MPSOK       : BOOL;
+	
 	q_xXCS_VGC_OK : BOOL;
 	g_xFirstPass  : BOOL :=TRUE;
 	g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus

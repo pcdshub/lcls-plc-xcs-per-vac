@@ -9,7 +9,6 @@ vgcPBT_VGC_01 : ST_VGC;
 vgcPBT_VGC_02 : ST_VGC;
 vgcPBT_VGC_03 : ST_VGC;
 vgcPBT_VGC_04 : ST_VGC;
-vgcPBT_VGC_05 : ST_VGC;
 
 
 //Vacuum Gauges

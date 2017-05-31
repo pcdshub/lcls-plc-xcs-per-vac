@@ -6,21 +6,13 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//currently only check the VGC before stopper 4.5, make sure to include the g_xIOState variable to ensure MPS is valid only when the bus is working
-//q_xDG1_MMS01_MPSOK := i_xDG1_MMS01_OUT XOR i_xDG1_MMS01_IN;
-//q_xMFX_MPSOK := g_xIOState AND vgcMXT_VGC_04.i_xOpnLS AND vgcDVD_VGC_01.i_xOpnLS AND 
-//( i_xMFX_ppsStopperPos_In OR ( NOT(i_xMFX_ppsStopperPos_Out AND i_xMFX_ppsStopperPos_In) AND vgcDIA_VGC_01.i_xOpnLS AND vgcDIA_VGC_02.i_xOpnLS AND 
-//									vgcDG1_VGC_01.i_xOpnLS AND vgcDG1_VGC_02.i_xOpnLS AND q_xDG1_MMS01_MPSOK AND i_xMFX_TFSmpsStatus_OK));
-									
-(* q_xMFX_preS45_MPSOK:= g_xIOState AND vgcMXT_VGC_04.i_xOpnLS AND vgcDVD_VGC_01.i_xOpnLS; 								
-q_xDG1_MMS01_MPSOK := i_xDG1_MMS01_OUT AND NOT i_xDG1_MMS01_IN;
-q_xMFX_VGC_OK      := vgcDIA_VGC_01.i_xOpnLS AND vgcDIA_VGC_02.i_xOpnLS
-                       AND  vgcDG1_VGC_01.i_xOpnLS AND vgcDG1_VGC_02.i_xOpnLS;  								
-
-q_xMFX_MPSOK := q_xMFX_VGC_OK AND q_xDG1_MMS01_MPSOK; *)]]></ST>
+      <ST><![CDATA[
+q_xXCS_MPSOK := g_xIOState AND vgcPBT_VGC_01.i_xOpnLS AND vgcPBT_VGC_02.i_xOpnLS AND vgcPBT_VGC_03.i_xOpnLS AND vgcPBT_VGC_04.i_xOpnLS; 
+//									]]></ST>
     </Implementation>
     <LineIds Name="p_MPSSup">
-      <LineId Id="6" Count="10" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
