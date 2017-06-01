@@ -100,8 +100,14 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="LCLSVacuumLib,newest,SLAC">
+    <LibraryReference Include="LCLS General,0.1.0,SLAC">
+      <Namespace>LCLS_General</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="LCLSVacuumLib,1.8.10,SLAC">
       <Namespace>LCLSVacuumLib</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="LCLSVacuumSerialDriverLib,1.1.1,SLAC">
+      <Namespace>LCLSVacuumSerialDriverLib</Namespace>
     </LibraryReference>
     <LibraryReference Include="Tc2_ModbusSrv,3.3.1.0,Beckhoff Automation GmbH">
       <Namespace>Tc2_ModbusSrv</Namespace>
