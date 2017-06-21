@@ -61,7 +61,7 @@
 	q_xS83_EB2_ep2624c04 AT %Q* : BOOL;
 	
 		(* XRT Stand IDNO 26 *)
-	i_xs26_EB1_ep2338c01 AT %I* : BOOL;
+	q_xs26_EB1_ep2338c01 AT %Q* : BOOL;
 	i_xs26_EB1_ep2338c02 AT %I* : BOOL;
 	q_xs26_EB1_ep2338c03 AT %Q* : BOOL;
 	q_xs26_EB1_ep2338c04 AT %Q* : BOOL;

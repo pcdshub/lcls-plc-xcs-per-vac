@@ -121,12 +121,12 @@ END_VAR
 	
 
 	(* XRT stand IDNO 83 *)
-	vgPBT_GPI_08.iPRESS_R := i_iS83_EB1_ep3174c01;
-	vgPBT_GCC_08.iPRESS_R := i_iS83_EB1_ep3174c02;
+	vgPBT_GPI_09.iPRESS_R := i_iS83_EB1_ep3174c01;
+	vgPBT_GCC_09.iPRESS_R := i_iS83_EB1_ep3174c02;
 //	i_iS83_EB1_ep3174c03 AT %I* : INT;
 //	i_iS83_EB1_ep3174c04 AT %I* : INT;
 	
-	q_xS83_EB2_ep2624c01 := vgPBT_GCC_08.xHV_DIS;
+	q_xS83_EB2_ep2624c01 := vgPBT_GCC_09.xHV_DIS;
 	q_xS83_EB2_ep2624c02 := FALSE;
 	q_xS83_EB2_ep2624c03 := FALSE;
 	q_xS83_EB2_ep2624c04 := FALSE;

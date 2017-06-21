@@ -229,13 +229,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.i_xs26_EB1_ep2338c01</Name>
-							<Comment>
-								<![CDATA[ XRT Stand IDNO 26 ]]>
-							</Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.i_xs26_EB1_ep2338c02</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -451,6 +444,13 @@
 						</Var>
 						<Var>
 							<Name>GVL_IO.q_xS83_EB2_ep2624c04</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.q_xs26_EB1_ep2338c01</Name>
+							<Comment>
+								<![CDATA[ XRT Stand IDNO 26 ]]>
+							</Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>

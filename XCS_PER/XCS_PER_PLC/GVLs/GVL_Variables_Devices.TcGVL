@@ -18,7 +18,7 @@ vgPBT_GPI_02 : ST_VG; // real Pirani Gauge
 vgPBT_GPI_04 : ST_VG;
 vgPBT_GPI_06 : ST_VG;
 vgPBT_GPI_07 : ST_VG;
-vgPBT_GPI_08 : ST_VG;
+vgPBT_GPI_09 : ST_VG;
 
 
 //GCC
@@ -26,7 +26,7 @@ vgPBT_GCC_02 : ST_VG;
 vgPBT_GCC_04 : ST_VG;
 vgPBT_GCC_06 : ST_VG;
 vgPBT_GCC_07 : ST_VG;
-vgPBT_GCC_08 : ST_VG;
+vgPBT_GCC_09 : ST_VG;
 
 
 
