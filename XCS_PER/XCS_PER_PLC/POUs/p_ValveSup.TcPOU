@@ -14,13 +14,13 @@ END_VAR
     <Implementation>
       <ST><![CDATA[
 vgcPBT_VGC_01.xEXT_OK := TRUE;
-fbPBT_VGC_01(iq_stValve:=vgcPBT_VGC_01, i_stDSG:=vgPBT_GCC_04, i_stUSG:=vgPBT_GCC_02, i_xDis_DPIlk:=FALSE);
+fbPBT_VGC_01(iq_stValve:=vgcPBT_VGC_01, i_stDSG:=vgPBT_GCC_04, i_stUSG:=vgPBT_GCC_02, i_xDis_DPIlk:=TRUE);
 
 vgcPBT_VGC_02.xEXT_OK := TRUE;
-fbPBT_VGC_02(iq_stValve:=vgcPBT_VGC_02, i_stDSG:=vgPBT_GCC_06, i_stUSG:=vgPBT_GCC_04, i_xDis_DPIlk:=FALSE);
+fbPBT_VGC_02(iq_stValve:=vgcPBT_VGC_02, i_stDSG:=vgPBT_GCC_06, i_stUSG:=vgPBT_GCC_04, i_xDis_DPIlk:=TRUE);
 
 vgcPBT_VGC_03.xEXT_OK := TRUE;
-fbPBT_VGC_03(iq_stValve:=vgcPBT_VGC_03, i_stDSG:=vgPBT_GCC_09, i_stUSG:=vgPBT_GCC_07, i_xDis_DPIlk:=FALSE);
+fbPBT_VGC_03(iq_stValve:=vgcPBT_VGC_03, i_stDSG:=vgPBT_GCC_09, i_stUSG:=vgPBT_GCC_07, i_xDis_DPIlk:=TRUE);
 
 vgcPBT_VGC_04.xEXT_OK := TRUE;
 //fbPBT_VGC_05(iq_stValve:=vgcPBT_VGC_05, i_stDSG:=vgMON_GCC_04, i_stUSG:=vgPBT_GCC_08, i_xDis_DPIlk:=FALSE);
