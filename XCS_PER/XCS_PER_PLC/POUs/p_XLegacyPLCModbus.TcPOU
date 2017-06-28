@@ -3,9 +3,11 @@
   <POU Name="p_XLegacyPLCModbus" Id="{a477c376-dd06-40c3-b569-438369655d9b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_XLegacyPLCModbus
 VAR
-	fbLegacyPLCInputCoilsRx	:	FB_MBReadCoils;
+	fbHXX_PLCInputCoilsRx	:	FB_MBReadCoils;
+	fbXCS_PLCInputCoilsRx	:	FB_MBReadCoils;
 	
-	i_xLegacyPLC_CnBits	:	ARRAY [0..20] OF BYTE;
+	i_xHXX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
+	i_xXCS_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
 	
 	ftReset	: F_TRIG; 
 END_VAR
@@ -25,39 +27,78 @@ Counter Contacts (CT) 6400 (014400)							1, 5, 15
 Stage Status Bits (S) 6144 (012000)							1, 5, 15
 *)
 
-ftReset(CLK:=fbLegacyPLCInputCoilsRx.bBusy);
+ftReset(CLK:=fbHXX_PLCInputCoilsRx.bBusy);
 
-fbLegacyPLCInputCoilsRx.bExecute := TRUE;
+fbHXX_PLCInputCoilsRx.bExecute := TRUE;
 
-fbLegacyPLCInputCoilsRx(sIPAddr:='172.21.36.66', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xLegacyPLC_CnBits),  pDestAddr:=ADR(i_xLegacyPLC_CnBits), tTimeout:=T#10S);
+fbHXX_PLCInputCoilsRx(sIPAddr:='172.21.36.66', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHXX_PLC_CnBits),  pDestAddr:=ADR(i_xHXX_PLC_CnBits), tTimeout:=T#10S);
+//172.21.43.73
 
-IF fbLegacyPLCInputCoilsRx.bError THEN
+IF fbHXX_PLCInputCoilsRx.bError THEN
 	//run some error code for modbus
 	//if there's a modbus error, set all incoming bits to zero, set 
 	// HXX PLC Relay coil C[10] is used for MXT:GCC:06.VacOK
-	i_xLegacyPLC_CnBits[0].0 := 0;
-	i_xLegacyPLC_CnBits[0].1 := 0;
-	i_xLegacyPLC_CnBits[0].2 := 0;
-	i_xLegacyPLC_CnBits[0].3 := 0;
-	i_xLegacyPLC_CnBits[0].4 := 0;
-	i_xLegacyPLC_CnBits[1].0 := 0;
-	i_xLegacyPLC_CnBits[1].1 := 0;
-	i_xLegacyPLC_CnBits[1].2 := 0;
+	i_xHXX_PLC_CnBits[0].0 := 0;
+	i_xHXX_PLC_CnBits[0].1 := 0;
+	i_xHXX_PLC_CnBits[0].2 := 0;
+	i_xHXX_PLC_CnBits[0].3 := 0;
+	i_xHXX_PLC_CnBits[0].4 := 0;
+	i_xHXX_PLC_CnBits[1].0 := 0;
+	i_xHXX_PLC_CnBits[1].1 := 0;
+	i_xHXX_PLC_CnBits[1].2 := 0;
 	
 	
 	
-ELSIF ftReset.Q AND fbLegacyPLCInputCoilsRx.cbRead > 0 THEN
-	fbLegacyPLCInputCoilsRx.bExecute := FALSE;
+ELSIF ftReset.Q AND fbHXX_PLCInputCoilsRx.cbRead > 0 THEN
+	fbHXX_PLCInputCoilsRx.bExecute := FALSE;
 	
-	//i_xUSVacOK := i_xLegacyPLC_CnBits[1].0;
+	//i_xUSVacOK := i_xHXX_PLC_CnBits[1].0;
 	
 ELSE
 	//more error code cause we didn't manage to read anything
 END_IF
- ]]></ST>
+ 
+(* // Retry after some time
+	tonRetry.IN := NOT fbSXRPLCInputCoilsRx.bBusy;
+	tonRetry.PT := T#10S;
+	tonRetry();
+	
+	ftReset.CLK:=fbSXRPLCInputCoilsRx.bBusy;
+	ftReset();
+	
+	fbSXRPLCInputCoilsRx.bExecute := ftReset.Q OR tonRetry.Q;
+	
+	IF fbSXRPLCInputCoilsRx.bError THEN
+		//run some error code for modbus
+		//if there's a modbus error, set all incoming bits to zero
+		g_xUpstreamVacOK := FALSE;
+		g_xNoPLCResponse:= FALSE;
+	ELSIF ftReset.Q THEN
+		IF fbSXRPLCInputCoilsRx.cbRead > 0 THEN
+			g_xUpstreamVacOK := i_xSXRPLC_CnBits[1].0;
+			g_xNoPLCResponse:= FALSE;
+			
+		ELSIF fbSXRPLCInputCoilsRx.cbRead = 0 THEN
+			//more error code cause we didn't manage to read anything
+			g_xUpstreamVacOK := FALSE;
+			g_xNoPLCResponse:= TRUE;
+		END_IF
+	ELSE
+		;
+	END_IF
+	
+	fbSXRPLCInputCoilsRx(sIPAddr:='172.21.39.48', nTCPPort:=502, 
+						nQuantity:=10, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xSXRPLC_CnBits), pDestAddr:=ADR(i_xSXRPLC_CnBits), 
+						tTimeout:=T#10S);
+						
+	//reset lamp values
+	i_xLAMPPLC_InputCoils := 0; *)]]></ST>
     </Implementation>
     <LineIds Name="p_XLegacyPLCModbus">
-      <LineId Id="6" Count="42" />
+      <LineId Id="6" Count="18" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="25" Count="23" />
+      <LineId Id="59" Count="34" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
