@@ -17,6 +17,8 @@
 	q_xXCS_VGC_OK : BOOL;
 	g_xFirstPass  : BOOL :=TRUE;
 	g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus
+	g_xNoHXXPLCResponse : BOOL := TRUE;
+	g_xNoXCSPLCResponse : BOOL := TRUE;
 	
 	LOTO: BOOL := TRUE;
 	xLOTO_Override: BOOL := TRUE;
