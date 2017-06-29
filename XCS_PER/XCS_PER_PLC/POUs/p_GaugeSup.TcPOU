@@ -21,8 +21,8 @@ END_VAR
       <ST><![CDATA[(* Vacuum Gauge Supervisor *)
 
 (* Check the upstream PLC for the upstream vacuum OK signal -- p_XLegacyPLCModbus *)
-//vgMXT_GCC_03.xAT_VAC := i_xUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
-//vgMXT_GCC_03.xPRESS_OK := i_xUSVacOK;
+//vgMXT_GCC_03.xAT_VAC := g_ixUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
+//vgMXT_GCC_03.xPRESS_OK := g_ixUSVacOK;
 
 
 (* Check the downstream PLC for the downstream vacuum OK signal -- p_XLegacyPLCModbus *)

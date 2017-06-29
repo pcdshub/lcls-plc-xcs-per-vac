@@ -58,7 +58,7 @@ END_VAR
 	vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
 	q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
 	q_xS14_EB1_ep2338c04 := FALSE;
-	i_xUSVacOK := i_xS14_EB1_ep2338c05; //AT %I* : BOOL;
+	g_ixUSVacOK := i_xS14_EB1_ep2338c05; //AT %I* : BOOL;
 //	i_xS14_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS14_EB1_ep2338c07 := FALSE;
 	q_xS14_EB1_ep2338c08 := FALSE;
