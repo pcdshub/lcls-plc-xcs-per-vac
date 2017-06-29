@@ -6,7 +6,7 @@
 	/// User Memory Variables 
 	
 	// upstream vacuum ok
-	g_ixUSVacOK	 :	BOOL; //upstream vacuum OK
+//	g_ixUSVacOK	 :	BOOL; //upstream vacuum OK
 //	i_xDSVacOK	 :	BOOL; //downstream vacuum OK should this be XCSVacOK?
 	g_ixDSVacOK	 :	BOOL;	// downstream vacuum OK
 	q_xXCS_MPSOK :  BOOL; //XCS gate valves all at open position
@@ -17,8 +17,7 @@
 	q_xXCS_VGC_OK : BOOL;
 	g_xFirstPass  : BOOL :=TRUE;
 	g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus
-	g_xNoHXXPLCResponse : BOOL := TRUE;
-	g_xNoXCSPLCResponse : BOOL := TRUE;
+	g_xNoHFXPLCResponse : BOOL := TRUE;
 	
 	LOTO: BOOL := TRUE;
 	xLOTO_Override: BOOL := TRUE;

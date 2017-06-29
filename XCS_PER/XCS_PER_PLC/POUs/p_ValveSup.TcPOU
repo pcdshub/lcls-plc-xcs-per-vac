@@ -23,8 +23,8 @@ vgcPBT_VGC_03.xEXT_OK := TRUE;
 fbPBT_VGC_03(iq_stValve:=vgcPBT_VGC_03, i_stDSG:=vgPBT_GCC_09, i_stUSG:=vgPBT_GCC_07, i_xDis_DPIlk:=TRUE);
 
 vgcPBT_VGC_04.xEXT_OK := TRUE;
-fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_xDis_DPIlk:=FALSE);
-//i_stDSG:=vgMON_GCC_04]]></ST>
+fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_stDSG:=vgMON_DUMMY, i_xDis_DPIlk:=TRUE);
+]]></ST>
     </Implementation>
     <LineIds Name="p_ValveSup">
       <LineId Id="14" Count="8" />

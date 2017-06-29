@@ -3,16 +3,12 @@
   <POU Name="p_XLegacyPLCModbus" Id="{a477c376-dd06-40c3-b569-438369655d9b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_XLegacyPLCModbus
 VAR
-	fbHXX_PLCInputCoilsRx	:	FB_MBReadCoils;
-	fbXCS_PLCInputCoilsRx	:	FB_MBReadCoils;
+	fbHFX_PLCInputCoilsRx	:	FB_MBReadCoils;
 	
-	i_xHXX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
-	i_xXCS_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
+	i_xHFX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
 	
-	ftResetHXX	: F_TRIG; 
-	ftResetXCS	: F_TRIG; 
-	tonRetryHXX	: TON;
-	tonRetryXCS : TON;
+	ftResetHFX	: F_TRIG; 
+	tonRetryHFX : TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -30,164 +26,69 @@ Counter Contacts (CT) 6400 (014400)							1, 5, 15
 Stage Status Bits (S) 6144 (012000)							1, 5, 15
 *)
 
-(* HXX code *)
 
+(* HFX code *)
 // Retry after some time
-tonRetryHXX.IN := NOT fbHXX_PLCInputCoilsRx.bBusy;
-tonRetryHXX.PT := T#10S;
-tonRetryHXX();
+tonRetryHFX.IN := NOT fbHFX_PLCInputCoilsRx.bBusy;
+tonRetryHFX.PT := T#10S;
+tonRetryHFX();
 
-ftResetHXX(CLK:=fbHXX_PLCInputCoilsRx.bBusy);
-ftResetHXX();
+ftResetHFX(CLK:=fbHFX_PLCInputCoilsRx.bBusy);
+ftResetHFX();
 
-fbHXX_PLCInputCoilsRx.bExecute := ftResetHXX.Q OR tonRetryHXX.Q;
+fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
 
-fbHXX_PLCInputCoilsRx(sIPAddr:='172.21.36.66', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHXX_PLC_CnBits),  pDestAddr:=ADR(i_xHXX_PLC_CnBits), tTimeout:=T#10S);
+fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.36.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#10S);
 
-IF fbHXX_PLCInputCoilsRx.bError THEN
-	//run some error code for modbus
-	//if there's a modbus error, set all incoming bits to zero, set 
-	// HXX PLC Relay coil C[10] is used for MXT:GCC:06.VacOK
-	i_xHXX_PLC_CnBits[0].0 := 0;
-	i_xHXX_PLC_CnBits[0].1 := 0;
-	i_xHXX_PLC_CnBits[0].2 := 0;
-	i_xHXX_PLC_CnBits[0].3 := 0;
-	i_xHXX_PLC_CnBits[0].4 := 0;
-	i_xHXX_PLC_CnBits[1].0 := 0;
-	i_xHXX_PLC_CnBits[1].1 := 0;
-	i_xHXX_PLC_CnBits[1].2 := 0;
-	
-	g_ixUSVacOK := FALSE;
-	g_xNoHXXPLCResponse:= FALSE;
-	
-	
-ELSIF ftResetHXX.Q AND fbHXX_PLCInputCoilsRx.cbRead > 0 THEN
-	fbHXX_PLCInputCoilsRx.bExecute := FALSE;
-	
-	g_ixUSVacOK := i_xHXX_PLC_CnBits[1].0;
-	g_xNoHXXPLCResponse:= FALSE;
-	
-ELSIF fbHXX_PLCInputCoilsRx.cbRead = 0 THEN
-			//more error code cause we didn't manage to read anything
-			g_ixUSVacOK := FALSE;
-			g_xNoHXXPLCResponse:= TRUE;
-			
-END_IF
- 
-(* XCS code *)
-tonRetryXCS.IN := NOT fbXCS_PLCInputCoilsRx.bBusy;
-tonRetryXCS.PT := T#10S;
-tonRetryXCS();
-
-ftResetXCS(CLK:=fbXCS_PLCInputCoilsRx.bBusy);
-ftResetXCS();
-
-fbXCS_PLCInputCoilsRx.bExecute := ftResetXCS.Q OR tonRetryXCS.Q;
-
-fbXCS_PLCInputCoilsRx(sIPAddr:='172.21.43.73', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xXCS_PLC_CnBits),  pDestAddr:=ADR(i_xXCS_PLC_CnBits), tTimeout:=T#10S);
-
-IF fbXCS_PLCInputCoilsRx.bError THEN
+IF fbHFX_PLCInputCoilsRx.bError THEN
 	//run some error code for modbus
 	//if there's a modbus error, set all incoming bits to zero
-	// XCS PLC Relay coil?
-	i_xXCS_PLC_CnBits[0].0 := 0;
-	i_xXCS_PLC_CnBits[0].1 := 0;
-	i_xXCS_PLC_CnBits[0].2 := 0;
-	i_xXCS_PLC_CnBits[0].3 := 0;
-	i_xXCS_PLC_CnBits[0].4 := 0;
-	i_xXCS_PLC_CnBits[1].0 := 0;
-	i_xXCS_PLC_CnBits[1].1 := 0;
-	i_xXCS_PLC_CnBits[1].2 := 0;
-	//g_ixDSVacOK := FALSE;
-	g_xNoXCSPLCResponse:= FALSE;
+	// HFX PLC Relay coil C[3] is used for PBT downstream VacOK
+	i_xHFX_PLC_CnBits[0].0 := 0;
+	i_xHFX_PLC_CnBits[0].1 := 0;
+	i_xHFX_PLC_CnBits[0].2 := 0;
+	i_xHFX_PLC_CnBits[0].3 := 0;
+	i_xHFX_PLC_CnBits[0].4 := 0;
+	i_xHFX_PLC_CnBits[1].0 := 0;
+	i_xHFX_PLC_CnBits[1].1 := 0;
+	i_xHFX_PLC_CnBits[1].2 := 0;
+	g_ixDSVacOK := FALSE;
+	g_xNoHFXPLCResponse:= FALSE;
 	
 	
-ELSIF ftResetXCS.Q AND fbXCS_PLCInputCoilsRx.cbRead > 0 THEN
-	fbXCS_PLCInputCoilsRx.bExecute := FALSE;
-	g_xNoXCSPLCResponse:= FALSE;
-	//q_xDSVacOK := i_xXCS_PLC_CnBits[1].0;
+ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
+	fbHFX_PLCInputCoilsRx.bExecute := FALSE;
+	g_xNoHFXPLCResponse:= FALSE;
+	g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
 	
-ELSIF fbXCS_PLCInputCoilsRx.cbRead = 0 THEN
+ELSIF fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
 			//more error code cause we didn't manage to read anything
-			//g_ixDSVacOK := FALSE;
-			g_xNoXCSPLCResponse:= TRUE;
+			g_ixDSVacOK := FALSE;
+			g_xNoHFXPLCResponse:= TRUE;
 			
 END_IF
-
-
-(* // Retry after some time
-	tonRetry.IN := NOT fbSXRPLCInputCoilsRx.bBusy;
-	tonRetry.PT := T#10S;
-	tonRetry();
-	
-	ftResetHXX.CLK:=fbSXRPLCInputCoilsRx.bBusy;
-	ftResetHXX();
-	
-	fbSXRPLCInputCoilsRx.bExecute := ftResetHXX.Q OR tonRetry.Q;
-	
-	IF fbSXRPLCInputCoilsRx.bError THEN
-		//run some error code for modbus
-		//if there's a modbus error, set all incoming bits to zero
-		g_xUpstreamVacOK := FALSE;
-		g_xNoPLCResponse:= FALSE;
-	ELSIF ftResetHXX.Q THEN
-		IF fbSXRPLCInputCoilsRx.cbRead > 0 THEN
-			g_xUpstreamVacOK := i_xSXRPLC_CnBits[1].0;
-			g_xNoPLCResponse:= FALSE;
-			
-		ELSIF fbSXRPLCInputCoilsRx.cbRead = 0 THEN
-			//more error code cause we didn't manage to read anything
-			g_xUpstreamVacOK := FALSE;
-			g_xNoPLCResponse:= TRUE;
-		END_IF
-	ELSE
-		;
-	END_IF
-	
-	fbSXRPLCInputCoilsRx(sIPAddr:='172.21.39.48', nTCPPort:=502, 
-						nQuantity:=10, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xSXRPLC_CnBits), pDestAddr:=ADR(i_xSXRPLC_CnBits), 
-						tTimeout:=T#10S);
-						
-	//reset lamp values
-	i_xLAMPPLC_InputCoils := 0; *)]]></ST>
+]]></ST>
     </Implementation>
     <LineIds Name="p_XLegacyPLCModbus">
       <LineId Id="6" Count="12" />
-      <LineId Id="121" Count="1" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="98" Count="2" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="105" Count="0" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="21" Count="2" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="25" Count="12" />
-      <LineId Id="216" Count="0" />
-      <LineId Id="214" Count="0" />
-      <LineId Id="38" Count="5" />
-      <LineId Id="215" Count="0" />
-      <LineId Id="44" Count="1" />
-      <LineId Id="106" Count="2" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="47" Count="1" />
+      <LineId Id="121" Count="0" />
       <LineId Id="115" Count="0" />
+      <LineId Id="217" Count="0" />
       <LineId Id="118" Count="0" />
       <LineId Id="127" Count="0" />
       <LineId Id="120" Count="0" />
       <LineId Id="126" Count="0" />
       <LineId Id="129" Count="0" />
       <LineId Id="128" Count="0" />
-      <LineId Id="130" Count="17" />
+      <LineId Id="130" Count="7" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="139" Count="8" />
       <LineId Id="212" Count="0" />
       <LineId Id="148" Count="3" />
       <LineId Id="213" Count="0" />
       <LineId Id="163" Count="0" />
       <LineId Id="154" Count="6" />
       <LineId Id="125" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="177" Count="33" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

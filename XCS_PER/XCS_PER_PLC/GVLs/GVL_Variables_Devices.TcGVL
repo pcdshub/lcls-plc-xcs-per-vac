@@ -27,7 +27,7 @@ vgPBT_GCC_04 : ST_VG;
 vgPBT_GCC_06 : ST_VG;
 vgPBT_GCC_07 : ST_VG;
 vgPBT_GCC_09 : ST_VG;
-
+vgMON_DUMMY : ST_VG := (rPRESS := 1e-9, xAT_VAC := TRUE); //For downstream OK, comes from DG2
 
 
 END_VAR]]></Declaration>
