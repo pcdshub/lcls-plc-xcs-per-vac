@@ -58,10 +58,11 @@ END_VAR
 	vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
 	q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
 	q_xS14_EB1_ep2338c04 := FALSE;
-	g_ixUSVacOK := i_xS14_EB1_ep2338c05; //AT %I* : BOOL;
+//	i_xS14_EB1_ep2338c05 AT %I* : BOOL;
 //	i_xS14_EB1_ep2338c06 AT %I* : BOOL;
 	q_xS14_EB1_ep2338c07 := FALSE;
 	q_xS14_EB1_ep2338c08 := FALSE;
+//g_ixUSVacOK := 
 	
 
 	(* XRT stand IDNO 20 *)
@@ -155,6 +156,7 @@ END_VAR
       <LineId Id="202" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="209" Count="7" />
+      <LineId Id="285" Count="0" />
       <LineId Id="57" Count="0" />
       <LineId Id="63" Count="1" />
       <LineId Id="218" Count="8" />
