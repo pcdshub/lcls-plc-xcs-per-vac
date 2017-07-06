@@ -38,7 +38,7 @@ ftResetHFX();
 
 fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
 
-fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.36.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#10S);
+fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.36.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#5S);
 
 IF fbHFX_PLCInputCoilsRx.bError THEN
 	//run some error code for modbus
@@ -57,14 +57,13 @@ IF fbHFX_PLCInputCoilsRx.bError THEN
 	
 	
 ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
-	fbHFX_PLCInputCoilsRx.bExecute := FALSE;
 	g_xNoHFXPLCResponse:= FALSE;
 	g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
 	
-ELSIF fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
-			//more error code cause we didn't manage to read anything
-			g_ixDSVacOK := FALSE;
-			g_xNoHFXPLCResponse:= TRUE;
+ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
+	//more error code cause we didn't manage to read anything
+	g_ixDSVacOK := FALSE;
+	g_xNoHFXPLCResponse:= TRUE;
 			
 END_IF
 ]]></ST>
@@ -84,7 +83,7 @@ END_IF
       <LineId Id="218" Count="0" />
       <LineId Id="139" Count="8" />
       <LineId Id="212" Count="0" />
-      <LineId Id="148" Count="3" />
+      <LineId Id="148" Count="2" />
       <LineId Id="213" Count="0" />
       <LineId Id="163" Count="0" />
       <LineId Id="154" Count="6" />
