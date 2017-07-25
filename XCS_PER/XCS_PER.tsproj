@@ -119,6 +119,12 @@
 	</ImageDatas>
 	<Project SccProjectName="Svn" SccAuxPath="Svn" SccLocalPath="Svn" SccProvider="SubversionScc" ProjectGUID="{65ED6408-D8BE-4EA1-9264-C3B031BD8244}" TargetNetId="5.38.139.68.1.1" ShowHideConfigurations="#x106">
 		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{A1AF8A04-C08D-4853-A5A0-0E6C3A278A8C}</ManualSelect>
+					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="2" Priority="20" CycleTime="100000" AmsPort="350">
 					<Name>PlcTask</Name>
@@ -2620,6 +2626,9 @@ Bit1: Value smaller than Limit2]]>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-0011-0101-1000-010110000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^XCS_PER_PLC^XCS_PER_PLC Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)">
+				<Link VarA="PlcTask Inputs^GVL_IO.g_aEcatMaster1" VarB="InfoData^AmsNetId"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB1 XCS:PBT:GCC/GPI:02 (EP3174-0002)">
 				<Link VarA="PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c01" VarB="AI Standard Channel 1^Value"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c02" VarB="AI Standard Channel 2^Value"/>
