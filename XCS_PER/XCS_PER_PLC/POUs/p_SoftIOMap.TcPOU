@@ -110,9 +110,9 @@ END_VAR
 	
 		
 	(* XRT stand IDNO 26 *)
-//	vgcPBT_VGC_04.i_xOpnLS := i_xS26_EB1_ep2338c01;
+	q_xS26_EB1_ep2338c01 := q_xXCS_MPSOK;
 //	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
-//	q_xS26_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
+	q_xS26_EB1_ep2338c03 := ;
 	q_xS26_EB1_ep2338c04 := FALSE;
 	i_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
 //	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
