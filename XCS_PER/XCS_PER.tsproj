@@ -229,6 +229,13 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.i_xs26_EB1_ep2338c01</Name>
+							<Comment>
+								<![CDATA[ XRT Stand IDNO 26 ]]>
+							</Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.i_xs26_EB1_ep2338c02</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -444,13 +451,6 @@
 						</Var>
 						<Var>
 							<Name>GVL_IO.q_xS83_EB2_ep2624c04</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.q_xs26_EB1_ep2338c01</Name>
-							<Comment>
-								<![CDATA[ XRT Stand IDNO 26 ]]>
-							</Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2638,6 +2638,9 @@ Bit1: Value smaller than Limit2]]>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB2 XCS:PBT:GCC:04 (EP2624-0002)">
 				<Link VarA="PlcTask Outputs^GVL_IO.q_xS20_EB2_ep2624c01" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 26 EB1 XCS:PBT:MPS_OK  (EP2338-0001)">
+				<Link VarA="PlcTask Outputs^GVL_IO.q_xs26_EB1_ep2338c03" VarB="Channel 9^Output"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^XRT IDNO 63 EB1 XCS:PBT:VGC:04 (EP2338-1002)">
 				<Link VarA="PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c01" VarB="Channel 1^Input"/>
