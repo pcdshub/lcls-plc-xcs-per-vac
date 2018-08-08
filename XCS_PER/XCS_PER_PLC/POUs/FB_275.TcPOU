@@ -14,19 +14,25 @@ VAR
 	MinPressure: REAL := 1E-4;
 
 	V : REAL;
-
+	Vlowest: REAL := 10;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* This function block is used to provide protection and automatic turn on of ion gauges,
  it also manages the turn on of the AT_VAC boolean, and checks to make sure the pressure is good *)
 (* For MKS 275 mini-convectron *)
 
+//Default setpoint 50 mT
+IF PG.rVAC_SP = 0 THEN
+	PG.rVAC_SP := 5E-2;
+END_IF
 
 (* Real-value calculation *)
 
 V := 10*INT_TO_REAL(PG.iPRESS_R)/32767;	
 
-IF V > 0.36 AND V < 0.38 THEN
+Vlowest := MIN(V, Vlowest);
+
+IF V > 0.3 AND V < 0.38 THEN
 
 PG.rPRESS := MinPressure;
 PG.wState := 02;
@@ -49,11 +55,12 @@ PG.wState := 01;
 ELSIF V <= 0.36 THEN
 
 PG.wState := 04; //Most likely not connected
+PG.rPRESS := -1;
 
 ELSE
 	
 PG.wState := 03; //Larger voltage, probably out of range?
-
+PG.rPRESS := -1;
 END_IF
 
 (* Protection Functions *)
@@ -68,7 +75,16 @@ PG.xPRESS_OK := (PG.rPRESS >= MinPressure);
 PG.xAT_VAC := PG.xPRESS_OK AND (PG.rPRESS<PG.rVAC_SP);]]></ST>
     </Implementation>
     <LineIds Name="FB_275">
-      <LineId Id="3" Count="47" />
+      <LineId Id="3" Count="3" />
+      <LineId Id="66" Count="2" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="7" Count="2" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="11" Count="23" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="35" Count="15" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
