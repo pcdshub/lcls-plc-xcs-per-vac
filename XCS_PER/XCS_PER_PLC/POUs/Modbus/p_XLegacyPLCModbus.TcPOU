@@ -34,7 +34,7 @@ tonRetryHFX.PT := T#10S;
 tonRetryHFX();
 
 ftResetHFX(CLK:=fbHFX_PLCInputCoilsRx.bBusy);
-ftResetHFX();
+//ftResetHFX();
 
 fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
 
@@ -53,17 +53,17 @@ IF fbHFX_PLCInputCoilsRx.bError THEN
 	i_xHFX_PLC_CnBits[1].1 := 0;
 	i_xHFX_PLC_CnBits[1].2 := 0;
 	g_ixDSVacOK := FALSE;
-	g_xNoHFXPLCResponse:= FALSE;
+	g_xNoHFXPLCResponse:= TRUE;
 	
 	
 ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
 	g_xNoHFXPLCResponse:= FALSE;
 	g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
-	
+	fbHFX_PLCInputCoilsRx.bExecute :=False;
 ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
 	//more error code cause we didn't manage to read anything
-	g_ixDSVacOK := FALSE;
-	g_xNoHFXPLCResponse:= TRUE;
+	//g_ixDSVacOK := FALSE;
+	//g_xNoHFXPLCResponse:= TRUE;
 			
 END_IF
 ]]></ST>
