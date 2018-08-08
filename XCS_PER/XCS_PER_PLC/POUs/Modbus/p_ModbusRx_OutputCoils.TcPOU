@@ -205,10 +205,10 @@ vgPBT_GCC_09.xHV_SW:=mb_Output_Coils[124];  //CC HV Enable
 //mb_Output_Coils[197];  //
 //mb_Output_Coils[198];  //
 //mb_Output_Coils[199];  //
-//mb_Output_Coils[200];  //Valve overrides
-//mb_Output_Coils[201];  //Valve overrides
-//mb_Output_Coils[202];  //Valve overrides
-//mb_Output_Coils[203];  //Valve overrides
+vgcPBT_VGC_01.xOvrdOpn:=mb_Output_Coils[200];  //Valve overrides
+vgcPBT_VGC_02.xOvrdOpn:=mb_Output_Coils[201];  //Valve overrides
+vgcPBT_VGC_03.xOvrdOpn:=mb_Output_Coils[202];  //Valve overrides
+vgcPBT_VGC_04.xOvrdOpn:=mb_Output_Coils[203];  //Valve overrides
 //mb_Output_Coils[204];  //
 //mb_Output_Coils[205];  //
 //mb_Output_Coils[206];  //
