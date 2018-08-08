@@ -6,14 +6,29 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//MEMCPY(destAddr:=ADR(mb_PLC_Memory[70]), srcAddr:=ADR(vgMXT_GCC_06.rVAC_SP), n:=SIZEOF(vgMXT_GCC_06.wState));  //VG pressure sp readbacks
-//MEMCPY(destAddr:=ADR(mb_PLC_Memory[72]), srcAddr:=ADR(vgDVD_GCC_02.rVAC_SP), n:=SIZEOF(vgDVD_GCC_02.wState));  //VG pressure sp readbacks
-//MEMCPY(destAddr:=ADR(mb_PLC_Memory[74]), srcAddr:=ADR(vgDVD_GCC_04.rVAC_SP), n:=SIZEOF(vgDVD_GCC_04.wState));  //VG pressure sp readbacks
-//MEMCPY(destAddr:=ADR(mb_PLC_Memory[76]), srcAddr:=ADR(vgMON_GCC_01.rVAC_SP), n:=SIZEOF(vgMON_GCC_01.wState));  //VG pressure sp readbacks
-//MEMCPY(destAddr:=ADR(mb_PLC_Memory[78]), srcAddr:=ADR(vgDIA_GCC_01.rVAC_SP), n:=SIZEOF(vgDIA_GCC_01.wState));  //VG pressure sp readbacks]]></ST>
+      <ST><![CDATA[MEMCPY(destAddr:=ADR(mb_PLC_Memory[70]), srcAddr:=ADR(vgPBT_GCC_02.rVAC_SP), n:=SIZEOF(vgPBT_GCC_02.wState));  //VG pressure sp readbacks
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[72]), srcAddr:=ADR(vgPBT_GPI_02.rVAC_SP), n:=SIZEOF(vgPBT_GPI_02.wState));  //VG pressure sp readbacks
+
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[74]), srcAddr:=ADR(vgPBT_GCC_04.rVAC_SP), n:=SIZEOF(vgPBT_GCC_04.wState));  //VG pressure sp readbacks
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[76]), srcAddr:=ADR(vgPBT_GPI_04.rVAC_SP), n:=SIZEOF(vgPBT_GPI_04.wState));  //VG pressure sp readbacks
+
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[78]), srcAddr:=ADR(vgPBT_GCC_06.rVAC_SP), n:=SIZEOF(vgPBT_GCC_06.wState));  //VG pressure sp readbacks
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[80]), srcAddr:=ADR(vgPBT_GPI_06.rVAC_SP), n:=SIZEOF(vgPBT_GPI_06.wState));  //VG pressure sp readbacks
+
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[82]), srcAddr:=ADR(vgPBT_GCC_07.rVAC_SP), n:=SIZEOF(vgPBT_GCC_07.wState));  //VG pressure sp readbacks
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[84]), srcAddr:=ADR(vgPBT_GPI_07.rVAC_SP), n:=SIZEOF(vgPBT_GPI_07.wState));  //VG pressure sp readbacks
+
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[86]), srcAddr:=ADR(vgPBT_GCC_09.rVAC_SP), n:=SIZEOF(vgPBT_GCC_09.wState));  //VG pressure sp readbacks
+MEMCPY(destAddr:=ADR(mb_PLC_Memory[88]), srcAddr:=ADR(vgPBT_GPI_09.rVAC_SP), n:=SIZEOF(vgPBT_GPI_09.wState));  //VG pressure sp readbacks
+]]></ST>
     </Implementation>
     <LineIds Name="p_ModbusRx_PLCMemory">
-      <LineId Id="6" Count="3" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="6" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
