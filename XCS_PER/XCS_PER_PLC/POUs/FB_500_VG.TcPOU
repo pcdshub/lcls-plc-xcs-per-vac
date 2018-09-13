@@ -33,7 +33,7 @@ vSlope := 1.0;
 //IG.rPRESS := EXPT(10,((rV-vBase)/vSlope+LOG(pBase)));
 
 
-IF rV >= 0.49 AND rV < 0.55  THEN
+IF rV >= 0.49 AND rV < 0.52  THEN
 	IG.wState := 5;
 	IG.rPRESS := cDefaultPressure;
 ELSIF rV < 0.4 THEN

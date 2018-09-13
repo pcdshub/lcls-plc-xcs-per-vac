@@ -56,7 +56,7 @@ IF fbHFX_PLCInputCoilsRx.bError THEN
 	g_xNoHFXPLCResponse:= TRUE;
 	
 	
-ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
+ELSIF Not ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
 	g_xNoHFXPLCResponse:= FALSE;
 	g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
 	fbHFX_PLCInputCoilsRx.bExecute :=False;
