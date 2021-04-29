@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
   <POU Name="p_EtherCATDiag" Id="{19e5e726-066d-4fae-968d-98c55136430e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_EtherCATDiag
 VAR
-	fbEcatDiag1	:	FB_EcatDiag;
+	fbEcatDiag1	:	LCLS_General.FB_EcatDiag;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -32,7 +32,7 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_275.TcPOU">
+    <Compile Include="POUs\FB_275_t.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_500_VG.TcPOU">
@@ -112,19 +112,16 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="LCLS General,0.1.0,SLAC">
+    <LibraryReference Include="LCLS General,0.1.2,SLAC">
       <Namespace>LCLS_General</Namespace>
     </LibraryReference>
-    <LibraryReference Include="LCLSVacuumLib,1.8.10,SLAC">
+    <LibraryReference Include="LCLSVacuumLib,1.12.0,SLAC">
       <Namespace>LCLSVacuumLib</Namespace>
-    </LibraryReference>
-    <LibraryReference Include="LCLSVacuumSerialDriverLib,1.1.1,SLAC">
-      <Namespace>LCLSVacuumSerialDriverLib</Namespace>
     </LibraryReference>
     <LibraryReference Include="Tc2_ModbusSrv,3.3.1.0,Beckhoff Automation GmbH">
       <Namespace>Tc2_ModbusSrv</Namespace>
     </LibraryReference>
-    <LibraryReference Include="Tc3_Interfaces,3.4.2.0,Beckhoff Automation GmbH">
+    <LibraryReference Include="Tc3_Interfaces,3.4.3.0,Beckhoff Automation GmbH">
       <Namespace>Tc3_Interfaces</Namespace>
     </LibraryReference>
   </ItemGroup>
@@ -136,8 +133,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
@@ -195,13 +192,13 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

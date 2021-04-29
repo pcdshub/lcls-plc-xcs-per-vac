@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
   <POU Name="p_XLegacyPLCModbus" Id="{a477c376-dd06-40c3-b569-438369655d9b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_XLegacyPLCModbus
 VAR
-	fbHFX_PLCInputCoilsRx	:	FB_MBReadCoils;
+	fbHFX_PLCInputCoilsRx	:	FB_MBReadInputs;
 	
 	i_xHFX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
 	
@@ -38,7 +38,7 @@ ftResetHFX(CLK:=fbHFX_PLCInputCoilsRx.bBusy);
 
 fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
 
-fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.36.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#5S);
+fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.88.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#5S);
 
 IF fbHFX_PLCInputCoilsRx.bError THEN
 	//run some error code for modbus

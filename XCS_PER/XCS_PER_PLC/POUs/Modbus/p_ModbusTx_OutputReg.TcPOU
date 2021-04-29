@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
   <POU Name="p_ModbusTx_OutputReg" Id="{d3ca7175-e095-4f04-a829-de713f1c2447}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_ModbusTx_OutputReg
 VAR
@@ -16,7 +16,7 @@ mb_Output_Registers[6]:=0;  //System parameters
 mb_Output_Registers[7]:=0;  //System parameters
 mb_Output_Registers[8]:=0;  //System parameters
 mb_Output_Registers[9]:=0;  //System parameters
-mb_Output_Registers[10]:=vgPBT_GCC_02.iVacSp;  //VG setpoint
+(*mb_Output_Registers[10]:=vgPBT_GCC_02.iVacSp;  //VG setpoint
 mb_Output_Registers[11]:=vgPBT_GPI_02.iVacSp;  //VG setpoint
 mb_Output_Registers[12]:=vgPBT_GCC_04.iVacSp;  //VG setpoint
 mb_Output_Registers[13]:=vgPBT_GPI_04.iVacSp;  //VG setpoint
@@ -25,7 +25,7 @@ mb_Output_Registers[15]:=vgPBT_GPI_06.iVacSp;  //VG setpoint
 mb_Output_Registers[16]:=vgPBT_GCC_07.iVacSp;  //VG setpoint
 mb_Output_Registers[17]:=vgPBT_GPI_07.iVacSp;  //VG setpoint
 mb_Output_Registers[18]:=vgPBT_GCC_09.iVacSp;  //VG setpoint
-mb_Output_Registers[19]:=vgPBT_GPI_09.iVacSp;  //VG setpoint
+mb_Output_Registers[19]:=vgPBT_GPI_09.iVacSp;  //VG setpoint*)
 mb_Output_Registers[20]:=0;  //VG setpoint
 mb_Output_Registers[21]:=0;  //VG setpoint
 mb_Output_Registers[22]:=0;  //VG setpoint

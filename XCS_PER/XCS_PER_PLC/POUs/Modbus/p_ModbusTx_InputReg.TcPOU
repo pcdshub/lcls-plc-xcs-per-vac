@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <POU Name="p_ModbusTx_InputReg" Id="{c6b19855-c11c-42a3-be4c-1498104575e3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_ModbusTx_InputReg
 VAR
@@ -76,16 +76,16 @@ mb_Input_Registers[66]:=0;  //VG pressure readbacks
 mb_Input_Registers[67]:=0;  //VG pressure readbacks
 mb_Input_Registers[68]:=0;  //VG pressure readbacks
 mb_Input_Registers[69]:=0;  //VG pressure readbacks
-mb_Input_Registers[70]:=vgPBT_GPI_02.wState;  //VG state readbacks
-mb_Input_Registers[71]:=vgPBT_GPI_04.wState;  //VG state readbacks
-mb_Input_Registers[72]:=vgPBT_GPI_06.wState;  //VG state readbacks
-mb_Input_Registers[73]:=vgPBT_GPI_07.wState;  //VG state readbacks
-mb_Input_Registers[74]:=vgPBT_GPI_09.wState;  //VG state readbacks
-mb_Input_Registers[75]:=vgPBT_GCC_02.wState;  //VG state readbacks
-mb_Input_Registers[76]:=vgPBT_GCC_04.wState;  //VG state readbacks
-mb_Input_Registers[77]:=vgPBT_GCC_06.wState;  //VG state readbacks
-mb_Input_Registers[78]:=vgPBT_GCC_07.wState;  //VG state readbacks
-mb_Input_Registers[79]:=vgPBT_GCC_09.wState;  //VG state readbacks
+mb_Input_Registers[70]:=TO_WORD(vgPBT_GPI_02.eState);  //VG state readbacks
+mb_Input_Registers[71]:=TO_WORD(vgPBT_GPI_04.eState);  //VG state readbacks
+mb_Input_Registers[72]:=TO_WORD(vgPBT_GPI_06.eState);  //VG state readbacks
+mb_Input_Registers[73]:=TO_WORD(vgPBT_GPI_07.eState);  //VG state readbacks
+mb_Input_Registers[74]:=TO_WORD(vgPBT_GPI_09.eState);  //VG state readbacks
+mb_Input_Registers[75]:=TO_WORD(vgPBT_GCC_02.eState);  //VG state readbacks
+mb_Input_Registers[76]:=TO_WORD(vgPBT_GCC_04.eState);  //VG state readbacks
+mb_Input_Registers[77]:=TO_WORD(vgPBT_GCC_06.eState);  //VG state readbacks
+mb_Input_Registers[78]:=TO_WORD(vgPBT_GCC_07.eState);  //VG state readbacks
+mb_Input_Registers[79]:=TO_WORD(vgPBT_GCC_09.eState);  //VG state readbacks
 mb_Input_Registers[80]:=0;  //VG state readbacks
 mb_Input_Registers[81]:=0;  //VG state readbacks
 mb_Input_Registers[82]:=0;  //VG state readbacks
@@ -263,9 +263,5 @@ mb_Input_Registers[253]:=0;  //default
 mb_Input_Registers[254]:=0;  //default
 mb_Input_Registers[255]:=0;  //default]]></ST>
     </Implementation>
-    <LineIds Name="p_ModbusTx_InputReg">
-      <LineId Id="6" Count="254" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

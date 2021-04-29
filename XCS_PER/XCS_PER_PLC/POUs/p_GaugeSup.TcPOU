@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
   <POU Name="p_GaugeSup" Id="{78d5f85d-9799-4512-bee8-19c16f64f92a}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_GaugeSup
 VAR
-fbPBT_GCC_02 : FB_500_VG;	
-fbPBT_GCC_04 : FB_500_VG;
-fbPBT_GCC_06 : FB_500_VG;
-fbPBT_GCC_07 : FB_500_VG;
-fbPBT_GCC_09 : FB_500_VG;
+fbPBT_GCC_02 : FB_500;//_VG;	
+fbPBT_GCC_04 : FB_500;//_VG;
+fbPBT_GCC_06 : FB_500;//_VG;
+fbPBT_GCC_07 : FB_500;//_VG;
+fbPBT_GCC_09 : FB_500;//_VG;
 
 //fb_DUMB_GPI_D1 : FB_Dumb_Gauge;
 fbPBT_GPI_02 : FB_275;
@@ -48,15 +48,5 @@ fbPBT_GCC_07(PG:=vgPBT_GPI_07,IG:=vgPBT_GCC_07);
 fbPBT_GCC_09(PG:=vgPBT_GPI_09,IG:=vgPBT_GCC_09);
 ]]></ST>
     </Implementation>
-    <LineIds Name="p_GaugeSup">
-      <LineId Id="6" Count="3" />
-      <LineId Id="39" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="37" Count="1" />
-      <LineId Id="56" Count="2" />
-      <LineId Id="69" Count="4" />
-      <LineId Id="11" Count="10" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
