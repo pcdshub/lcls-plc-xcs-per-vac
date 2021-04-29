@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{C604572C-A9C4-24BF-AFAF-D90867A66AD8}" GeneratedBy="TwinCAT XAE Plc">
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{6D9789F1-74EB-430B-1E7C-912C78735CE7}" GeneratedBy="TwinCAT XAE Plc">
   <DataTypes>
     <DataType>
       <Name Namespace="Tc2_System">T_IPv4Addr</Name>
@@ -14,77 +14,90 @@
       <BaseType>STRING(255)</BaseType>
     </DataType>
     <DataType>
-      <Name Namespace="LCLS_General">E_MesgSevr</Name>
+      <Name GUID="{6F5942ED-BFA1-497D-8225-23C6DAAD0A09}" TcBaseType="true">ST_LibVersion</Name>
+      <BitSize>288</BitSize>
+      <SubItem>
+        <Name>iMajor</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iMinor</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iBuild</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iRevision</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>48</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>nFlags</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000007}">DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>sVersion</Name>
+        <Type GUID="{18071995-0000-0000-0000-000100000017}">STRING(23)</Type>
+        <BitSize>192</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="Tc2_System">E_WATCHDOG_TIME_CONFIG</Name>
       <BitSize>16</BitSize>
-      <BaseType>WORD</BaseType>
+      <BaseType>INT</BaseType>
       <EnumInfo>
-        <Text>Emergency</Text>
+        <Text>eWATCHDOG_TIME_DISABLED</Text>
         <Enum>0</Enum>
-        <Comment>system is unusable</Comment>
       </EnumInfo>
       <EnumInfo>
-        <Text>Alert</Text>
+        <Text>eWATCHDOG_TIME_SECONDS</Text>
         <Enum>1</Enum>
-        <Comment>action must be taken immediately</Comment>
       </EnumInfo>
       <EnumInfo>
-        <Text>Critical</Text>
+        <Text>eWATCHDOG_TIME_MINUTES</Text>
         <Enum>2</Enum>
-        <Comment>critical conditions</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Error</Text>
-        <Enum>3</Enum>
-        <Comment>error conditions</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Warning</Text>
-        <Enum>4</Enum>
-        <Comment>warning conditions</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Notice</Text>
-        <Enum>5</Enum>
-        <Comment>normal but significant condition</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Info</Text>
-        <Enum>6</Enum>
-        <Comment>informational messages</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Debug</Text>
-        <Enum>7</Enum>
-        <Comment>debug-level messages</Comment>
       </EnumInfo>
     </DataType>
     <DataType>
-      <Name Namespace="LCLS_General">E_Subsystem</Name>
+      <Name Namespace="LCLS_General.Tc2_Utilities">E_HashPrefixTypes</Name>
       <BitSize>16</BitSize>
-      <BaseType>WORD</BaseType>
+      <BaseType>INT</BaseType>
       <EnumInfo>
-        <Text>NILVALUE</Text>
+        <Text>HASHPREFIX_IEC</Text>
         <Enum>0</Enum>
+        <Comment> 2#, 8#, 16# </Comment>
       </EnumInfo>
       <EnumInfo>
-        <Text>VACUUM</Text>
+        <Text>HASHPREFIX_STDC</Text>
         <Enum>1</Enum>
+        <Comment> 0 for octal type, 0x, 0X for hex else none  </Comment>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc2_Utilities">E_SBCSType</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>eSBCS_WesternEuropean</Text>
+        <Enum>1</Enum>
+        <Comment> Windows 1252 (default) </Comment>
       </EnumInfo>
       <EnumInfo>
-        <Text>MPS</Text>
+        <Text>eSBCS_CentralEuropean</Text>
         <Enum>2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>MOTION</Text>
-        <Enum>3</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>FIELDBUS</Text>
-        <Enum>4</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>SDS</Text>
-        <Enum>5</Enum>
+        <Comment> Windows 1251 </Comment>
       </EnumInfo>
     </DataType>
     <DataType>
@@ -213,6 +226,1694 @@
           <Value>0</Value>
         </Default>
       </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc2_Utilities">T_ULARGE_INTEGER</Name>
+      <Comment> 64 bit unsigned integer </Comment>
+      <BitSize>64</BitSize>
+      <SubItem>
+        <Name>dwLowPart</Name>
+        <Type>DWORD</Type>
+        <Comment> Lower double word </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwHighPart</Name>
+        <Type>DWORD</Type>
+        <Comment> Higher double word </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Name>
+      <Comment> System Time Structure </Comment>
+      <BitSize>128</BitSize>
+      <SubItem>
+        <Name>wYear</Name>
+        <Type>WORD</Type>
+        <Comment> Year: 1970..2106 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wMonth</Name>
+        <Type>WORD</Type>
+        <Comment> Month: 1..12 (January = 1, February = 2 and so on) </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wDayOfWeek</Name>
+        <Type>WORD</Type>
+        <Comment> Day of the week: 0..6 (Sunday = 0, Monday = 1, .. , Saturday = 6 and so on) </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wDay</Name>
+        <Type>WORD</Type>
+        <Comment> Day of the month: 1..31 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>48</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wHour</Name>
+        <Type>WORD</Type>
+        <Comment> Hour: 0..23 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wMinute</Name>
+        <Type>WORD</Type>
+        <Comment> Minute: 0..59 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>80</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wSecond</Name>
+        <Type>WORD</Type>
+        <Comment> Second: 0..59 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wMilliseconds</Name>
+        <Type>WORD</Type>
+        <Comment> Milliseconds: 0..999 </Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>112</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc2_Utilities">ST_TimeZoneInformation</Name>
+      <BitSize>864</BitSize>
+      <SubItem>
+        <Name>bias</Name>
+        <Type>DINT</Type>
+        <Comment> Specifies the current bias, in minutes, for local time translation on this computer.
+						The bias is the difference, in minutes, between Coordinated Universal Time (UTC) and local time.
+						UTC = local time + bias </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>standardName</Name>
+        <Type>STRING(31)</Type>
+        <Comment> Specifies a null-terminated string associated with standard time
+								on this operating system. </Comment>
+        <BitSize>256</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>standardDate</Name>
+        <Type Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Type>
+        <Comment>Specifies a SYSTEMTIME structure that contains a date and local time when the
+								transition from daylight saving time to standard time occurs on this operating system.</Comment>
+        <BitSize>128</BitSize>
+        <BitOffs>288</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>standardBias</Name>
+        <Type>DINT</Type>
+        <Comment> Specifies a bias value to be used during local time translations that occur during standard time. </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>416</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>daylightName</Name>
+        <Type>STRING(31)</Type>
+        <Comment> Specifies a null-terminated string associated with daylight saving time on this operating system.
+								For example, this member could contain "PDT" to indicate Pacific Daylight Time.</Comment>
+        <BitSize>256</BitSize>
+        <BitOffs>448</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>daylightDate</Name>
+        <Type Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Type>
+        <Comment> Specifies a SYSTEMTIME structure that contains a date and local time when the transition
+								from standard time to daylight saving time occurs on this operating system. </Comment>
+        <BitSize>128</BitSize>
+        <BitOffs>704</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>daylightBias</Name>
+        <Type>DINT</Type>
+        <Comment> Specifies a bias value to be used during local time translations that occur during daylight saving time. </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>832</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General">System_Struct</Name>
+      <BitSize>40</BitSize>
+      <SubItem>
+        <Name>xswAlmRst</Name>
+        <Type>BOOL</Type>
+        <Comment> Global Alarm Reset - EPICS Command </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xAtVacuum</Name>
+        <Type>BOOL</Type>
+        <Comment> System At Vacuum </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>8</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xFirstScan</Name>
+        <Type>BOOL</Type>
+        <Comment> Bit set for one scan only during startup. Used for initialization. </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xOverrideMode</Name>
+        <Type>BOOL</Type>
+        <Comment>This bit is set when using the override features of the system</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>24</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xIOState</Name>
+        <Type>BOOL</Type>
+        <Comment> ECat Bus Health </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">E_PressureState</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>Valid</Text>
+        <Enum>0</Enum>
+        <Comment> gc_GaugeValidState set in "Global Variable Folder: Constants"</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>ValidHi</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>ValidLo</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>PressInvalid</Text>
+        <Enum>-1</Enum>
+        <Comment> Invalid states</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>GaugeDisconnected</Text>
+        <Enum>-2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>OoR</Text>
+        <Enum>-6</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Off</Text>
+        <Enum>-3</Enum>
+        <Comment> Ion gauges</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Starting</Text>
+        <Enum>-4</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">Gauge_Type</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>PG722B</Text>
+        <Enum>0</Enum>
+        <Comment>Baraton Gauge</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>IG903</Text>
+        <Enum>1</Enum>
+        <Comment>Cold Cathode</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>PG907</Text>
+        <Enum>2</Enum>
+        <Comment>Pirani Gauge</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>IG909</Text>
+        <Enum>3</Enum>
+        <Comment>Hot Cathode</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>PG925</Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">ST_VG</Name>
+      <BitSize>320</BitSize>
+      <SubItem>
+        <Name>rPRESS</Name>
+        <Type>REAL</Type>
+        <Comment> A general gauge structure is used to make the rest of the interlocking simpler. There are some parameters for cold cathodes that are not used by pirani.
+These features aren't disabled, they just aren't used, think child/parent classes. 
+ Readbacks </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iPRESS_R</Name>
+        <Type>INT</Type>
+        <Comment>input pressure in machine form</Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xAT_VAC</Name>
+        <Type>BOOL</Type>
+        <Comment>Pressure At Vacuum</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xPRESS_OK</Name>
+        <Type>BOOL</Type>
+        <Comment> Pressure Reading is trustworthy</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>56</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>eState</Name>
+        <Type Namespace="LCLSVacuumLib">E_PressureState</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xHV_DIS</Name>
+        <Type>BOOL</Type>
+        <Comment> Controls </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>80</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xHV_SW</Name>
+        <Type>BOOL</Type>
+        <Comment> High Voltage Switch</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>88</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wHV_RO</Name>
+        <Type>WORD</Type>
+        <Comment> Relay Output Location</Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xBAKEOUT</Name>
+        <Type>BOOL</Type>
+        <Comment> Bakeout bit </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>112</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>eTYPE</Name>
+        <Type Namespace="LCLSVacuumLib">Gauge_Type</Type>
+        <Comment>enum for gauge type - will replace iType</Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>128</BitOffs>
+        <Default>
+          <Value>2</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>iTYPE</Name>
+        <Type>INT</Type>
+        <Comment>Gauge type, deprecated (default to pirani)</Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>144</BitOffs>
+        <Default>
+          <Value>2</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>wPG</Name>
+        <Type>WORD</Type>
+        <Comment> Index location of the associated Pirani Gauge</Comment>
+        <BitSize>16</BitSize>
+        <BitOffs>160</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xTurnOnTime</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>176</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>rVAC_SP</Name>
+        <Type>REAL</Type>
+        <Comment> Turn on Timers for cold cathode warmup </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>192</BitOffs>
+        <Default>
+          <Value>0.5</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rPRO_SP</Name>
+        <Type>REAL</Type>
+        <Comment> Protection setpoint for ion gauges at which the gauge turns off, not used for pirani</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>224</BitOffs>
+        <Default>
+          <Value>0.01</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rHYS_PR</Name>
+        <Type>REAL</Type>
+        <Comment> Protection setpoint hysteresis </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>256</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>rFULL_SCALE</Name>
+        <Type>REAL</Type>
+        <Comment> Full scale pressure in Torr for baratron pressure conversion </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>288</BitOffs>
+        <Default>
+          <Value>1000</Value>
+        </Default>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="Tc2_Standard">F_TRIG</Name>
+      <Comment>
+	Falling Edge detection.
+</Comment>
+      <BitSize>64</BitSize>
+      <SubItem>
+        <Name>CLK</Name>
+        <Type>BOOL</Type>
+        <Comment> signal to detect </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>Q</Name>
+        <Type>BOOL</Type>
+        <Comment> falling edge at signal detected </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>40</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>M</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+        <Default>
+          <Value>1</Value>
+        </Default>
+        <Properties>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+        <Property>
+          <Name>conditionalshow_all_locals</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="Tc2_Standard">TON</Name>
+      <BitSize>224</BitSize>
+      <SubItem>
+        <Name>IN</Name>
+        <Type>BOOL</Type>
+        <Comment> starts timer with rising edge, resets timer with falling edge </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>PT</Name>
+        <Type>TIME</Type>
+        <Comment> time to pass, before Q is set </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>Q</Name>
+        <Type>BOOL</Type>
+        <Comment> gets TRUE, delay time (PT) after a rising edge at IN </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>96</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>ET</Name>
+        <Type>TIME</Type>
+        <Comment> elapsed time </Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>M</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>160</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>StartTime</Name>
+        <Type>TIME</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>192</BitOffs>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>FB_500_VG_1</Name>
+      <BitSize>864</BitSize>
+      <SubItem>
+        <Name>IG</Name>
+        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VG</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>InOut</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>PG</Name>
+        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
+        <BitSize>320</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>xHV_SW</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>384</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rPRESS</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>400</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rVAC_SP</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>416</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rV</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>448</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>GaugeTurnOnTmr</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>224</BitSize>
+        <BitOffs>480</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>MinPressure</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>704</BitOffs>
+        <Default>
+          <Value>1E-10</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>cDefaultPressure</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>736</BitOffs>
+        <Default>
+          <Value>750</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>vBase</Name>
+        <Type>REAL</Type>
+        <Comment>corresponding vbase 0V based on default curve.  See manual pg. 44</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>768</BitOffs>
+        <Default>
+          <Value>0</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>pBase</Name>
+        <Type>REAL</Type>
+        <Comment>default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>800</BitOffs>
+        <Default>
+          <Value>1E-10</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>vSlope</Name>
+        <Type>REAL</Type>
+        <Comment>looks correct for default curve</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>832</BitOffs>
+        <Default>
+          <Value>1</Value>
+        </Default>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">FB_275</Name>
+      <BitSize>224</BitSize>
+      <SubItem>
+        <Name>PG</Name>
+        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VG</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>InOut</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>MinPressure</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+        <Default>
+          <Value>0.0001</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>V</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>Vlowest</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+        <Default>
+          <Value>10</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rValidLoBoundary</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>160</BitOffs>
+        <Default>
+          <Value>0.38</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rDisconnectedBoundary</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>192</BitOffs>
+        <Default>
+          <Value>0.3</Value>
+        </Default>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">E_ValvePositionState</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>OPEN</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>CLOSED</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>MOVING</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>INVALID</Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">ST_VGC</Name>
+      <BitSize>288</BitSize>
+      <SubItem>
+        <Name>i_xOpnLS</Name>
+        <Type>BOOL</Type>
+        <Comment> Readbacks </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>i_xClsLS</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>8</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xOPN_SW</Name>
+        <Type>BOOL</Type>
+        <Comment> EPICS Controls </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xAlmRst</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>24</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xOvrdOpn</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xDP_OK</Name>
+        <Type>BOOL</Type>
+        <Comment> Indicates the valve can be opened because the differential pressure is low enough</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>40</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xEXT_OK</Name>
+        <Type>BOOL</Type>
+        <Comment> External interlock for custom interlocking in addition to regular DP ilk, this must be set true, or the interlock condition before calling the FB_VGC </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+        <Default>
+          <Value>0</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>xOPN_OK</Name>
+        <Type>BOOL</Type>
+        <Comment> Final SUM of DP_OK and EXT_OK, needed because it allows the DP ilk to be switched off, see FB_VGC.Dis_DPIlk </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>56</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>rAT_VAC_SP</Name>
+        <Type>REAL</Type>
+        <Comment> Interlock setpoint for gauges on both sides of valve</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+        <Default>
+          <Value>0.01</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rAT_VAC_SP_LAST</Name>
+        <Type>REAL</Type>
+        <Comment> Interlock setpoint for gauges on both sides of valve</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>96</BitOffs>
+        <Default>
+          <Value>0.01</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rAT_VAC_HYS</Name>
+        <Type>REAL</Type>
+        <Comment> Hysteresis of the vacuum sp</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+        <Default>
+          <Value>0.01</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>rHYST_PERC</Name>
+        <Type>REAL</Type>
+        <Comment> Hysteresis percentage</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>160</BitOffs>
+        <Default>
+          <Value>0.8</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>xAT_VAC</Name>
+        <Type>BOOL</Type>
+        <Comment>At vacuum setpoint</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>192</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>eState</Name>
+        <Type Namespace="LCLSVacuumLib">E_ValvePositionState</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>208</BitOffs>
+        <Default>
+          <Value>3</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>xOPN_DO</Name>
+        <Type>BOOL</Type>
+        <Comment> Controls </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>224</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xERR_DifPres</Name>
+        <Type>BOOL</Type>
+        <Comment> Alarm Outpus </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>232</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xERR_LstVac</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>240</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xERR_SM</Name>
+        <Type>BOOL</Type>
+        <Comment>Issue with the valve state-machine. This state should be excluded, if this boolean is true, something dramatic in the PLC software has happened.</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>248</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xAlmSum</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>256</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">E_VGC</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>Vented</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>AtVacuum</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>ERR_DiffPress</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>ERR_LostVac</Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="Tc2_Standard">R_TRIG</Name>
+      <Comment>
+	Rising Edge detection.
+</Comment>
+      <BitSize>64</BitSize>
+      <SubItem>
+        <Name>CLK</Name>
+        <Type>BOOL</Type>
+        <Comment> Signal to detect </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>Q</Name>
+        <Type>BOOL</Type>
+        <Comment> rising edge at signal detected </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>40</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>M</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+        <Properties>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+        <Property>
+          <Name>conditionalshow_all_locals</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLSVacuumLib">FB_VGC</Name>
+      <BitSize>1504</BitSize>
+      <SubItem>
+        <Name>iq_stValve</Name>
+        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VGC</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>InOut</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>i_stUSG</Name>
+        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
+        <BitSize>320</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>i_stDSG</Name>
+        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
+        <BitSize>320</BitSize>
+        <BitOffs>384</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>i_xDis_DPIlk</Name>
+        <Type>BOOL</Type>
+        <Comment> Set to true when calling the function to disable the differential pressure interlock </Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>704</BitOffs>
+        <Default>
+          <Value>0</Value>
+        </Default>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rDiffPressAllowed</Name>
+        <Type>REAL</Type>
+        <Comment> Torr, Default value comes from Vat Valve Manual</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>736</BitOffs>
+        <Default>
+          <Value>22.5</Value>
+        </Default>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rDiffPress</Name>
+        <Type>REAL</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>768</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>set</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>800</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>reset</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>808</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>VGC_State</Name>
+        <Type Namespace="LCLSVacuumLib">E_VGC</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>816</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>xFirstPass</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>832</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fbFSInit</Name>
+        <Type Namespace="Tc2_Standard">R_TRIG</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>864</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>tonDelOK</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>224</BitSize>
+        <BitOffs>928</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>rtOK</Name>
+        <Type Namespace="Tc2_Standard">R_TRIG</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1152</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>tonOvrd</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>224</BitSize>
+        <BitOffs>1216</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>tDelOK</Name>
+        <Type>TIME</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>1440</BitOffs>
+        <Default>
+          <Value>10000</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>tOvrd</Name>
+        <Type>TIME</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>1472</BitOffs>
+        <Default>
+          <Value>10000</Value>
+        </Default>
+      </SubItem>
+      <Action>
+        <Name>ACT_ResetAlarms</Name>
+      </Action>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+      <BitSize>48</BitSize>
+      <BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+      <ArrayInfo>
+        <LBound>0</LBound>
+        <Elements>6</Elements>
+      </ArrayInfo>
+      <Format>
+        <Printf>%d.%d.%d.%d.%d.%d</Printf>
+        <Parameter>[0]</Parameter>
+        <Parameter>[1]</Parameter>
+        <Parameter>[2]</Parameter>
+        <Parameter>[3]</Parameter>
+        <Parameter>[4]</Parameter>
+        <Parameter>[5]</Parameter>
+      </Format>
+    </DataType>
+    <DataType>
+      <Name>VERSION</Name>
+      <BitSize>64</BitSize>
+      <SubItem>
+        <Name>uiMajor</Name>
+        <Type>UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>uiMinor</Name>
+        <Type>UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>uiServicePack</Name>
+        <Type>UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>uiPatch</Name>
+        <Type>UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>48</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name GUID="{5456DAC5-9FA5-4A6B-B497-840FCC690FDD}" Namespace="PLC" TcBaseType="true">PlcLicenseInfo</Name>
+      <BitSize>1024</BitSize>
+      <SubItem>
+        <Name>LicenseId</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+        <BitSize>128</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>Instances</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>LicenseName</Name>
+        <Type GUID="{18071995-0000-0000-0000-00010000005F}">STRING(95)</Type>
+        <BitSize>768</BitSize>
+        <BitOffs>256</BitOffs>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name GUID="{4591E628-DBCE-4E33-AE0B-7EB853AA256E}" Namespace="PLC" TcBaseType="true">EPlcPersistentStatus</Name>
+      <BitSize>8</BitSize>
+      <BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+      <EnumInfo>
+        <Text>PS_None</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>PS_All</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>PS_Partial</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name GUID="{941FDF6E-37CE-4C30-AA23-3236AFA461E2}" Namespace="PLC" TcBaseType="true">PlcAppSystemInfo</Name>
+      <BitSize>2048</BitSize>
+      <SubItem>
+        <Name>ObjId</Name>
+        <Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>TaskCnt</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>OnlineChangeCnt</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>Flags</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000007}">DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>AdsPort</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>BootDataLoaded</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>144</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>OldBootData</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>152</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>AppTimestamp</Name>
+        <Type GUID="{18071995-0000-0000-0000-00000000004C}">DT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>160</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>KeepOutputsOnBP</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>192</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>ShutdownInProgress</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>200</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>LicensesPending</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>208</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>BSODOccured</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>216</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>LoggedIn</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>224</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>PersistentStatus</Name>
+        <Type GUID="{4591E628-DBCE-4E33-AE0B-7EB853AA256E}" Namespace="PLC">EPlcPersistentStatus</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>232</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>TComSrvPtr</Name>
+        <Type GUID="{00000030-0000-0000-E000-000000000064}">ITComObjectServer</Type>
+        <BitSize X64="64">32</BitSize>
+        <BitOffs>256</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcComInterface</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>AppName</Name>
+        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
+        <BitSize>512</BitSize>
+        <BitOffs>512</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>ProjectName</Name>
+        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
+        <BitSize>512</BitSize>
+        <BitOffs>1024</BitOffs>
+      </SubItem>
+      <Hides>
+        <Hide GUID="{D91E046A-A488-4D27-8D43-0F3C40ED5081}"/>
+        <Hide GUID="{5DCEB2BC-E196-43AD-80B7-EBACF31A430B}"/>
+        <Hide GUID="{1B9FDDE4-B3B7-4F0F-AB14-24EDC2F643E7}"/>
+        <Hide GUID="{C1C52E30-BC0B-44CA-BF39-E2FE7F2D145C}"/>
+        <Hide GUID="{5C8FF47F-7F83-4493-8D21-F1FF8A08F75A}"/>
+      </Hides>
+    </DataType>
+    <DataType>
+      <Name GUID="{56294066-FFF7-46F3-8206-FA06A30B13BA}" Namespace="PLC" TcBaseType="true">PlcTaskSystemInfo</Name>
+      <BitSize>1024</BitSize>
+      <SubItem>
+        <Name>ObjId</Name>
+        <Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>CycleTime</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>Priority</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>AdsPort</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>80</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>CycleCount</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>DcTaskTime</Name>
+        <Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>LastExecTime</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>192</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>FirstCycle</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>224</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>CycleTimeExceeded</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>232</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>InCallAfterOutputUpdate</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>240</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>RTViolation</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>248</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>TaskName</Name>
+        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
+        <BitSize>512</BitSize>
+        <BitOffs>512</BitOffs>
+      </SubItem>
+      <Hides>
+        <Hide GUID="{6A76D020-03A2-465C-A678-C341951E9EF3}"/>
+        <Hide GUID="{6F7D679F-72A0-4831-A7F1-085F839743ED}"/>
+      </Hides>
+    </DataType>
+    <DataType>
+      <Name>_Implicit_KindOfTask</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>_implicit_cyclic</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>_implicit_event</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>_implicit_external</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>_implicit_freewheeling</Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name>_Implicit_Jitter_Distribution</Name>
+      <BitSize>48</BitSize>
+      <SubItem>
+        <Name>wRangeMax</Name>
+        <Type>WORD</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wCountJitterNeg</Name>
+        <Type>WORD</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>16</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wCountJitterPos</Name>
+        <Type>WORD</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>hide</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>_Implicit_Task_Info</Name>
+      <BitSize>704</BitSize>
+      <SubItem>
+        <Name>dwVersion</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>pszName</Name>
+        <Type PointerTo="1">STRING(80)</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>32</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>nPriority</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>KindOf</Name>
+        <Type>_Implicit_KindOfTask</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>80</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bWatchdog</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>96</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bProfilingTask</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>104</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwEventFunctionPointer</Name>
+        <Type PointerTo="1">BYTE</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>pszExternalEvent</Name>
+        <Type PointerTo="1">STRING(80)</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>160</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwTaskEntryFunctionPointer</Name>
+        <Type PointerTo="1">BYTE</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>192</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwWatchdogSensitivity</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>224</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwInterval</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>256</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwWatchdogTime</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>288</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwLastCycleTime</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>320</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwAverageCycleTime</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>352</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwMaxCycleTime</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>384</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwMinCycleTime</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>416</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>diJitter</Name>
+        <Type>DINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>448</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>diJitterMin</Name>
+        <Type>DINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>480</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>diJitterMax</Name>
+        <Type>DINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>512</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwCycleCount</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>544</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wTaskStatus</Name>
+        <Type>WORD</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>576</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>wNumOfJitterDistributions</Name>
+        <Type>WORD</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>592</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>pJitterDistribution</Name>
+        <Type PointerTo="1">_Implicit_Jitter_Distribution</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>608</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bWithinSPSTimeSlicing</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>640</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>byDummy</Name>
+        <Type>BYTE</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>648</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bShouldBlock</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>656</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bActive</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>664</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>dwIECCycleCount</Name>
+        <Type>DWORD</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>672</BitOffs>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>hide</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General">E_MesgSevr</Name>
+      <BitSize>16</BitSize>
+      <BaseType>WORD</BaseType>
+      <EnumInfo>
+        <Text>Emergency</Text>
+        <Enum>0</Enum>
+        <Comment>system is unusable</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Alert</Text>
+        <Enum>1</Enum>
+        <Comment>action must be taken immediately</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Critical</Text>
+        <Enum>2</Enum>
+        <Comment>critical conditions</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Error</Text>
+        <Enum>3</Enum>
+        <Comment>error conditions</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Warning</Text>
+        <Enum>4</Enum>
+        <Comment>warning conditions</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Notice</Text>
+        <Enum>5</Enum>
+        <Comment>normal but significant condition</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Info</Text>
+        <Enum>6</Enum>
+        <Comment>informational messages</Comment>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>Debug</Text>
+        <Enum>7</Enum>
+        <Comment>debug-level messages</Comment>
+      </EnumInfo>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General">E_Subsystem</Name>
+      <BitSize>16</BitSize>
+      <BaseType>WORD</BaseType>
+      <EnumInfo>
+        <Text>NILVALUE</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>VACUUM</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>MPS</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>MOTION</Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>FIELDBUS</Text>
+        <Enum>4</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>SDS</Text>
+        <Enum>5</Enum>
+      </EnumInfo>
     </DataType>
     <DataType>
       <Name Namespace="LCLS_General.Tc2_Utilities">E_TypeFieldParam</Name>
@@ -1239,93 +2940,6 @@
       </Properties>
     </DataType>
     <DataType>
-      <Name GUID="{6F5942ED-BFA1-497D-8225-23C6DAAD0A09}" TcBaseType="true">ST_LibVersion</Name>
-      <BitSize>288</BitSize>
-      <SubItem>
-        <Name>iMajor</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>iMinor</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>iBuild</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>iRevision</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>48</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>nFlags</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000007}">DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>sVersion</Name>
-        <Type GUID="{18071995-0000-0000-0000-000100000017}">STRING(23)</Type>
-        <BitSize>192</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="Tc2_System">E_WATCHDOG_TIME_CONFIG</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>eWATCHDOG_TIME_DISABLED</Text>
-        <Enum>0</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>eWATCHDOG_TIME_SECONDS</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>eWATCHDOG_TIME_MINUTES</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General.Tc2_Utilities">E_HashPrefixTypes</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>HASHPREFIX_IEC</Text>
-        <Enum>0</Enum>
-        <Comment> 2#, 8#, 16# </Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>HASHPREFIX_STDC</Text>
-        <Enum>1</Enum>
-        <Comment> 0 for octal type, 0x, 0X for hex else none  </Comment>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General.Tc2_Utilities">E_SBCSType</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>eSBCS_WesternEuropean</Text>
-        <Enum>1</Enum>
-        <Comment> Windows 1252 (default) </Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>eSBCS_CentralEuropean</Text>
-        <Enum>2</Enum>
-        <Comment> Windows 1251 </Comment>
-      </EnumInfo>
-    </DataType>
-    <DataType>
       <Name Namespace="Tc2_System">T_AmsNetID</Name>
       <Comment> TwinCAT AMS netID address string. </Comment>
       <BitSize>192</BitSize>
@@ -1433,391 +3047,6 @@
         <Comment> Additional flags </Comment>
         <BitSize>32</BitSize>
         <BitOffs>1152</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General.Tc2_Utilities">T_ULARGE_INTEGER</Name>
-      <Comment> 64 bit unsigned integer </Comment>
-      <BitSize>64</BitSize>
-      <SubItem>
-        <Name>dwLowPart</Name>
-        <Type>DWORD</Type>
-        <Comment> Lower double word </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwHighPart</Name>
-        <Type>DWORD</Type>
-        <Comment> Higher double word </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Name>
-      <Comment> System Time Structure </Comment>
-      <BitSize>128</BitSize>
-      <SubItem>
-        <Name>wYear</Name>
-        <Type>WORD</Type>
-        <Comment> Year: 1970..2106 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wMonth</Name>
-        <Type>WORD</Type>
-        <Comment> Month: 1..12 (January = 1, February = 2 and so on )</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wDayOfWeek</Name>
-        <Type>WORD</Type>
-        <Comment> Day of the week: 0..6 (Sunday = 0, Monday = 1, .. , Saturday = 6 and so on) </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wDay</Name>
-        <Type>WORD</Type>
-        <Comment> Day of the month: 1..31 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>48</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wHour</Name>
-        <Type>WORD</Type>
-        <Comment> Hour: 0..23 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wMinute</Name>
-        <Type>WORD</Type>
-        <Comment> Munute: 0..59 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>80</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wSecond</Name>
-        <Type>WORD</Type>
-        <Comment> Second: 0..59 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wMilliseconds</Name>
-        <Type>WORD</Type>
-        <Comment> Milliseconds: 0..999 </Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>112</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General.Tc2_Utilities">ST_TimeZoneInformation</Name>
-      <BitSize>864</BitSize>
-      <SubItem>
-        <Name>bias</Name>
-        <Type>DINT</Type>
-        <Comment> Specifies the current bias, in minutes, for local time translation on this computer.
-						The bias is the difference, in minutes, between Coordinated Universal Time (UTC) and local time.
-						UTC = local time + bias </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>standardName</Name>
-        <Type>STRING(31)</Type>
-        <Comment> Specifies a null-terminated string associated with standard time
-								on this operating system. </Comment>
-        <BitSize>256</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>standardDate</Name>
-        <Type Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Type>
-        <Comment>Specifies a SYSTEMTIME structure that contains a date and local time when the
-								transition from daylight saving time to standard time occurs on this operating system.</Comment>
-        <BitSize>128</BitSize>
-        <BitOffs>288</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>standardBias</Name>
-        <Type>DINT</Type>
-        <Comment> Specifies a bias value to be used during local time translations that occur during standard time. </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>416</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>daylightName</Name>
-        <Type>STRING(31)</Type>
-        <Comment> Specifies a null-terminated string associated with daylight saving time on this operating system.
-								For example, this member could contain "PDT" to indicate Pacific Daylight Time.</Comment>
-        <BitSize>256</BitSize>
-        <BitOffs>448</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>daylightDate</Name>
-        <Type Namespace="LCLS_General.Tc2_Utilities">TIMESTRUCT</Type>
-        <Comment> Specifies a SYSTEMTIME structure that contains a date and local time when the transition
-								from standard time to daylight saving time occurs on this operating system. </Comment>
-        <BitSize>128</BitSize>
-        <BitOffs>704</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>daylightBias</Name>
-        <Type>DINT</Type>
-        <Comment> Specifies a bias value to be used during local time translations that occur during daylight saving time. </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>832</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLS_General">System_Struct</Name>
-      <BitSize>40</BitSize>
-      <SubItem>
-        <Name>xswAlmRst</Name>
-        <Type>BOOL</Type>
-        <Comment> Global Alarm Reset - EPICS Command </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xAtVacuum</Name>
-        <Type>BOOL</Type>
-        <Comment> System At Vacuum </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>8</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xFirstScan</Name>
-        <Type>BOOL</Type>
-        <Comment> Bit set for one scan only during startup. Used for initialization. </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xOverrideMode</Name>
-        <Type>BOOL</Type>
-        <Comment>This bit is set when using the override features of the system</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>24</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xIOState</Name>
-        <Type>BOOL</Type>
-        <Comment> ECat Bus Health </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">E_PressureState</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>Valid</Text>
-        <Enum>0</Enum>
-        <Comment> gc_GaugeValidState set in "Global Variable Folder: Constants"</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>ValidHi</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>ValidLo</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>PressInvalid</Text>
-        <Enum>-1</Enum>
-        <Comment> Invalid states</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>GaugeDisconnected</Text>
-        <Enum>-2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>OoR</Text>
-        <Enum>-6</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Off</Text>
-        <Enum>-3</Enum>
-        <Comment> Ion gauges</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>Starting</Text>
-        <Enum>-4</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">Gauge_Type</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>PG722B</Text>
-        <Enum>0</Enum>
-        <Comment>Baraton Gauge</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>IG903</Text>
-        <Enum>1</Enum>
-        <Comment>Cold Cathode</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>PG907</Text>
-        <Enum>2</Enum>
-        <Comment>Pirani Gauge</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>IG909</Text>
-        <Enum>3</Enum>
-        <Comment>Hot Cathode</Comment>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>PG925</Text>
-        <Enum>4</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">ST_VG</Name>
-      <BitSize>320</BitSize>
-      <SubItem>
-        <Name>rPRESS</Name>
-        <Type>REAL</Type>
-        <Comment> A general gauge structure is used to make the rest of the interlocking simpler. There are some parameters for cold cathodes that are not used by pirani.
-These features aren't disabled, they just aren't used, think child/parent classes. 
- Readbacks </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>iPRESS_R</Name>
-        <Type>INT</Type>
-        <Comment>input pressure in machine form</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xAT_VAC</Name>
-        <Type>BOOL</Type>
-        <Comment>Pressure At Vacuum</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>48</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xPRESS_OK</Name>
-        <Type>BOOL</Type>
-        <Comment> Pressure Reading is trustworthy</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>56</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>eState</Name>
-        <Type Namespace="LCLSVacuumLib">E_PressureState</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xHV_DIS</Name>
-        <Type>BOOL</Type>
-        <Comment> Controls </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>80</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xHV_SW</Name>
-        <Type>BOOL</Type>
-        <Comment> High Voltage Switch</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>88</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wHV_RO</Name>
-        <Type>WORD</Type>
-        <Comment> Relay Output Location</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xBAKEOUT</Name>
-        <Type>BOOL</Type>
-        <Comment> Bakeout bit </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>112</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>eTYPE</Name>
-        <Type Namespace="LCLSVacuumLib">Gauge_Type</Type>
-        <Comment>enum for gauge type - will replace iType</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>128</BitOffs>
-        <Default>
-          <Value>2</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>iTYPE</Name>
-        <Type>INT</Type>
-        <Comment>Gauge type, deprecated (default to pirani)</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>144</BitOffs>
-        <Default>
-          <Value>2</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>wPG</Name>
-        <Type>WORD</Type>
-        <Comment> Index location of the associated Pirani Gauge</Comment>
-        <BitSize>16</BitSize>
-        <BitOffs>160</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xTurnOnTime</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>176</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>rVAC_SP</Name>
-        <Type>REAL</Type>
-        <Comment> Turn on Timers for cold cathode warmup </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>192</BitOffs>
-        <Default>
-          <Value>0.5</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rPRO_SP</Name>
-        <Type>REAL</Type>
-        <Comment> Protection setpoint for ion gauges at which the gauge turns off, not used for pirani</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>224</BitOffs>
-        <Default>
-          <Value>0.01</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rHYS_PR</Name>
-        <Type>REAL</Type>
-        <Comment> Protection setpoint hysteresis </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>256</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>rFULL_SCALE</Name>
-        <Type>REAL</Type>
-        <Comment> Full scale pressure in Torr for baratron pressure conversion </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>288</BitOffs>
-        <Default>
-          <Value>1000</Value>
-        </Default>
       </SubItem>
     </DataType>
     <DataType>
@@ -2008,745 +3237,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
       </Properties>
     </DataType>
     <DataType>
-      <Name Namespace="Tc2_Standard">F_TRIG</Name>
-      <Comment>
-	Falling Edge detection.
-</Comment>
-      <BitSize>64</BitSize>
-      <SubItem>
-        <Name>CLK</Name>
-        <Type>BOOL</Type>
-        <Comment> signal to detect </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>Q</Name>
-        <Type>BOOL</Type>
-        <Comment> falling edge at signal detected </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>40</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>M</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>48</BitOffs>
-        <Default>
-          <Value>1</Value>
-        </Default>
-        <Properties>
-          <Property>
-            <Name>conditionalshow</Name>
-          </Property>
-        </Properties>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-        <Property>
-          <Name>conditionalshow_all_locals</Name>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name Namespace="Tc2_Standard">TON</Name>
-      <BitSize>224</BitSize>
-      <SubItem>
-        <Name>IN</Name>
-        <Type>BOOL</Type>
-        <Comment> starts timer with rising edge, resets timer with falling edge </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>PT</Name>
-        <Type>TIME</Type>
-        <Comment> time to pass, before Q is set </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>64</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>Q</Name>
-        <Type>BOOL</Type>
-        <Comment> gets TRUE, delay time (PT) after a rising edge at IN </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>96</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>ET</Name>
-        <Type>TIME</Type>
-        <Comment> elapsed time </Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>128</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>M</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>160</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>StartTime</Name>
-        <Type>TIME</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>192</BitOffs>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">FB_500</Name>
-      <BitSize>864</BitSize>
-      <SubItem>
-        <Name>IG</Name>
-        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VG</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>InOut</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>PG</Name>
-        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
-        <BitSize>320</BitSize>
-        <BitOffs>64</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>xHV_SW</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>384</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>rPRESS</Name>
-        <Type>INT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>400</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>rVAC_SP</Name>
-        <Type>INT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>416</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>rV</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>448</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>GaugeTurnOnTmr</Name>
-        <Type Namespace="Tc2_Standard">TON</Type>
-        <BitSize>224</BitSize>
-        <BitOffs>480</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>MinPressure</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>704</BitOffs>
-        <Default>
-          <Value>1E-10</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>cDefaultPressure</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>736</BitOffs>
-        <Default>
-          <Value>750</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>vBase</Name>
-        <Type>REAL</Type>
-        <Comment>corresponding vbase 0V based on default curve.  See manual pg. 44</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>768</BitOffs>
-        <Default>
-          <Value>0</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>pBase</Name>
-        <Type>REAL</Type>
-        <Comment>default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>800</BitOffs>
-        <Default>
-          <Value>1E-10</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>vSlope</Name>
-        <Type>REAL</Type>
-        <Comment>looks correct for default curve</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>832</BitOffs>
-        <Default>
-          <Value>1</Value>
-        </Default>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">FB_275</Name>
-      <BitSize>224</BitSize>
-      <SubItem>
-        <Name>PG</Name>
-        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VG</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>InOut</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>MinPressure</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>64</BitOffs>
-        <Default>
-          <Value>0.0001</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>V</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>Vlowest</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>128</BitOffs>
-        <Default>
-          <Value>10</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rValidLoBoundary</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>160</BitOffs>
-        <Default>
-          <Value>0.38</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rDisconnectedBoundary</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>192</BitOffs>
-        <Default>
-          <Value>0.3</Value>
-        </Default>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">E_ValvePositionState</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>OPEN</Text>
-        <Enum>0</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>CLOSED</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>MOVING</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>INVALID</Text>
-        <Enum>3</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">ST_VGC</Name>
-      <BitSize>288</BitSize>
-      <SubItem>
-        <Name>i_xOpnLS</Name>
-        <Type>BOOL</Type>
-        <Comment> Readbacks </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>i_xClsLS</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>8</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xOPN_SW</Name>
-        <Type>BOOL</Type>
-        <Comment> EPICS Controls </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xAlmRst</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>24</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xOvrdOpn</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xDP_OK</Name>
-        <Type>BOOL</Type>
-        <Comment> Indicates the valve can be opened because the differential pressure is low enough</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>40</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xEXT_OK</Name>
-        <Type>BOOL</Type>
-        <Comment> External interlock for custom interlocking in addition to regular DP ilk, this must be set true, or the interlock condition before calling the FB_VGC </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>48</BitOffs>
-        <Default>
-          <Value>0</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>xOPN_OK</Name>
-        <Type>BOOL</Type>
-        <Comment> Final SUM of DP_OK and EXT_OK, needed because it allows the DP ilk to be switched off, see FB_VGC.Dis_DPIlk </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>56</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>rAT_VAC_SP</Name>
-        <Type>REAL</Type>
-        <Comment> Interlock setpoint for gauges on both sides of valve</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>64</BitOffs>
-        <Default>
-          <Value>0.01</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rAT_VAC_SP_LAST</Name>
-        <Type>REAL</Type>
-        <Comment> Interlock setpoint for gauges on both sides of valve</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>96</BitOffs>
-        <Default>
-          <Value>0.01</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rAT_VAC_HYS</Name>
-        <Type>REAL</Type>
-        <Comment> Hysteresis of the vacuum sp</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>128</BitOffs>
-        <Default>
-          <Value>0.01</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>rHYST_PERC</Name>
-        <Type>REAL</Type>
-        <Comment> Hysteresis percentage</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>160</BitOffs>
-        <Default>
-          <Value>0.8</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>xAT_VAC</Name>
-        <Type>BOOL</Type>
-        <Comment>At vacuum setpoint</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>192</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>eState</Name>
-        <Type Namespace="LCLSVacuumLib">E_ValvePositionState</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>208</BitOffs>
-        <Default>
-          <Value>3</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>xOPN_DO</Name>
-        <Type>BOOL</Type>
-        <Comment> Controls </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>224</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xERR_DifPres</Name>
-        <Type>BOOL</Type>
-        <Comment> Alarm Outpus </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>232</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xERR_LstVac</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>240</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xERR_SM</Name>
-        <Type>BOOL</Type>
-        <Comment>Issue with the valve state-machine. This state should be excluded, if this boolean is true, something dramatic in the PLC software has happened.</Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>248</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xAlmSum</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>256</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">E_VGC</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>Vented</Text>
-        <Enum>0</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>AtVacuum</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>ERR_DiffPress</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>ERR_LostVac</Text>
-        <Enum>3</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name Namespace="Tc2_Standard">R_TRIG</Name>
-      <Comment>
-	Rising Edge detection.
-</Comment>
-      <BitSize>64</BitSize>
-      <SubItem>
-        <Name>CLK</Name>
-        <Type>BOOL</Type>
-        <Comment> Signal to detect </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>Q</Name>
-        <Type>BOOL</Type>
-        <Comment> rising edge at signal detected </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>40</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Output</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>M</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>48</BitOffs>
-        <Properties>
-          <Property>
-            <Name>conditionalshow</Name>
-          </Property>
-        </Properties>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-        <Property>
-          <Name>conditionalshow_all_locals</Name>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name Namespace="LCLSVacuumLib">FB_VGC</Name>
-      <BitSize>1504</BitSize>
-      <SubItem>
-        <Name>iq_stValve</Name>
-        <Type ReferenceTo="true" Namespace="LCLSVacuumLib">ST_VGC</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>InOut</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>i_stUSG</Name>
-        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
-        <BitSize>320</BitSize>
-        <BitOffs>64</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>i_stDSG</Name>
-        <Type Namespace="LCLSVacuumLib">ST_VG</Type>
-        <BitSize>320</BitSize>
-        <BitOffs>384</BitOffs>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>i_xDis_DPIlk</Name>
-        <Type>BOOL</Type>
-        <Comment> Set to true when calling the function to disable the differential pressure interlock </Comment>
-        <BitSize>8</BitSize>
-        <BitOffs>704</BitOffs>
-        <Default>
-          <Value>0</Value>
-        </Default>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>rDiffPressAllowed</Name>
-        <Type>REAL</Type>
-        <Comment> Torr, Default value comes from Vat Valve Manual</Comment>
-        <BitSize>32</BitSize>
-        <BitOffs>736</BitOffs>
-        <Default>
-          <Value>22.5</Value>
-        </Default>
-        <Properties>
-          <Property>
-            <Name>ItemType</Name>
-            <Value>Input</Value>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>rDiffPress</Name>
-        <Type>REAL</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>768</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>set</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>800</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>reset</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>808</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>VGC_State</Name>
-        <Type Namespace="LCLSVacuumLib">E_VGC</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>816</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>xFirstPass</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>832</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>fbFSInit</Name>
-        <Type Namespace="Tc2_Standard">R_TRIG</Type>
-        <BitSize>64</BitSize>
-        <BitOffs>864</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>tonDelOK</Name>
-        <Type Namespace="Tc2_Standard">TON</Type>
-        <BitSize>224</BitSize>
-        <BitOffs>928</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>rtOK</Name>
-        <Type Namespace="Tc2_Standard">R_TRIG</Type>
-        <BitSize>64</BitSize>
-        <BitOffs>1152</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>tonOvrd</Name>
-        <Type Namespace="Tc2_Standard">TON</Type>
-        <BitSize>224</BitSize>
-        <BitOffs>1216</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>tDelOK</Name>
-        <Type>TIME</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>1440</BitOffs>
-        <Default>
-          <Value>10000</Value>
-        </Default>
-      </SubItem>
-      <SubItem>
-        <Name>tOvrd</Name>
-        <Type>TIME</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>1472</BitOffs>
-        <Default>
-          <Value>10000</Value>
-        </Default>
-      </SubItem>
-      <Action>
-        <Name>ACT_ResetAlarms</Name>
-      </Action>
-      <Properties>
-        <Property>
-          <Name>PouType</Name>
-          <Value>FunctionBlock</Value>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
-      <BitSize>48</BitSize>
-      <BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-      <ArrayInfo>
-        <LBound>0</LBound>
-        <Elements>6</Elements>
-      </ArrayInfo>
-      <Format>
-        <Printf>%d.%d.%d.%d.%d.%d</Printf>
-        <Parameter>[0]</Parameter>
-        <Parameter>[1]</Parameter>
-        <Parameter>[2]</Parameter>
-        <Parameter>[3]</Parameter>
-        <Parameter>[4]</Parameter>
-        <Parameter>[5]</Parameter>
-      </Format>
-    </DataType>
-    <DataType>
       <Name Namespace="LCLS_General.Tc2_EtherCAT">ST_EcSlaveState</Name>
       <BitSize>16</BitSize>
       <SubItem>
@@ -2847,6 +3337,9 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <Property>
             <Name>ItemType</Name>
             <Value>Input</Value>
+          </Property>
+          <Property>
+            <Name>TcIgnorePersistent</Name>
           </Property>
         </Properties>
       </SubItem>
@@ -3327,496 +3820,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
         </Property>
       </Properties>
     </DataType>
-    <DataType>
-      <Name>VERSION</Name>
-      <BitSize>64</BitSize>
-      <SubItem>
-        <Name>uiMajor</Name>
-        <Type>UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>uiMinor</Name>
-        <Type>UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>uiServicePack</Name>
-        <Type>UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>uiPatch</Name>
-        <Type>UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>48</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name GUID="{5456DAC5-9FA5-4A6B-B497-840FCC690FDD}" Namespace="PLC" TcBaseType="true">PlcLicenseInfo</Name>
-      <BitSize>1024</BitSize>
-      <SubItem>
-        <Name>LicenseId</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
-        <BitSize>128</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>Instances</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>128</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>LicenseName</Name>
-        <Type GUID="{18071995-0000-0000-0000-00010000005F}">STRING(95)</Type>
-        <BitSize>768</BitSize>
-        <BitOffs>256</BitOffs>
-      </SubItem>
-    </DataType>
-    <DataType>
-      <Name GUID="{4591E628-DBCE-4E33-AE0B-7EB853AA256E}" Namespace="PLC" TcBaseType="true">EPlcPersistentStatus</Name>
-      <BitSize>8</BitSize>
-      <BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
-      <EnumInfo>
-        <Text>PS_None</Text>
-        <Enum>0</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>PS_All</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>PS_Partial</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name GUID="{941FDF6E-37CE-4C30-AA23-3236AFA461E2}" Namespace="PLC" TcBaseType="true">PlcAppSystemInfo</Name>
-      <BitSize>2048</BitSize>
-      <SubItem>
-        <Name>ObjId</Name>
-        <Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>TaskCnt</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>OnlineChangeCnt</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>Flags</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000007}">DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>AdsPort</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>128</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>BootDataLoaded</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>144</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>OldBootData</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>152</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>AppTimestamp</Name>
-        <Type GUID="{18071995-0000-0000-0000-00000000004C}">DT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>160</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>KeepOutputsOnBP</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>192</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>ShutdownInProgress</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>200</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>LicensesPending</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>208</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>BSODOccured</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>216</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>LoggedIn</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>224</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>PersistentStatus</Name>
-        <Type GUID="{4591E628-DBCE-4E33-AE0B-7EB853AA256E}" Namespace="PLC">EPlcPersistentStatus</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>232</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>TComSrvPtr</Name>
-        <Type GUID="{00000030-0000-0000-E000-000000000064}">ITComObjectServer</Type>
-        <BitSize X64="64">32</BitSize>
-        <BitOffs>256</BitOffs>
-        <Properties>
-          <Property>
-            <Name>TcComInterface</Name>
-          </Property>
-        </Properties>
-      </SubItem>
-      <SubItem>
-        <Name>AppName</Name>
-        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
-        <BitSize>512</BitSize>
-        <BitOffs>512</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>ProjectName</Name>
-        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
-        <BitSize>512</BitSize>
-        <BitOffs>1024</BitOffs>
-      </SubItem>
-      <Hides>
-        <Hide GUID="{D91E046A-A488-4D27-8D43-0F3C40ED5081}"/>
-        <Hide GUID="{5DCEB2BC-E196-43AD-80B7-EBACF31A430B}"/>
-        <Hide GUID="{1B9FDDE4-B3B7-4F0F-AB14-24EDC2F643E7}"/>
-        <Hide GUID="{C1C52E30-BC0B-44CA-BF39-E2FE7F2D145C}"/>
-        <Hide GUID="{5C8FF47F-7F83-4493-8D21-F1FF8A08F75A}"/>
-      </Hides>
-    </DataType>
-    <DataType>
-      <Name GUID="{56294066-FFF7-46F3-8206-FA06A30B13BA}" Namespace="PLC" TcBaseType="true">PlcTaskSystemInfo</Name>
-      <BitSize>1024</BitSize>
-      <SubItem>
-        <Name>ObjId</Name>
-        <Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>CycleTime</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>Priority</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>AdsPort</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>80</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>CycleCount</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>DcTaskTime</Name>
-        <Type GUID="{18071995-0000-0000-0000-00000000000C}">LINT</Type>
-        <BitSize>64</BitSize>
-        <BitOffs>128</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>LastExecTime</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>192</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>FirstCycle</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>224</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>CycleTimeExceeded</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>232</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>InCallAfterOutputUpdate</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>240</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>RTViolation</Name>
-        <Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>248</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>TaskName</Name>
-        <Type GUID="{18071995-0000-0000-0000-00010000003F}">STRING(63)</Type>
-        <BitSize>512</BitSize>
-        <BitOffs>512</BitOffs>
-      </SubItem>
-      <Hides>
-        <Hide GUID="{6A76D020-03A2-465C-A678-C341951E9EF3}"/>
-        <Hide GUID="{6F7D679F-72A0-4831-A7F1-085F839743ED}"/>
-      </Hides>
-    </DataType>
-    <DataType>
-      <Name>_Implicit_KindOfTask</Name>
-      <BitSize>16</BitSize>
-      <BaseType>INT</BaseType>
-      <EnumInfo>
-        <Text>_implicit_cyclic</Text>
-        <Enum>0</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>_implicit_event</Text>
-        <Enum>1</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>_implicit_external</Text>
-        <Enum>2</Enum>
-      </EnumInfo>
-      <EnumInfo>
-        <Text>_implicit_freewheeling</Text>
-        <Enum>3</Enum>
-      </EnumInfo>
-    </DataType>
-    <DataType>
-      <Name>_Implicit_Jitter_Distribution</Name>
-      <BitSize>48</BitSize>
-      <SubItem>
-        <Name>wRangeMax</Name>
-        <Type>WORD</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wCountJitterNeg</Name>
-        <Type>WORD</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>16</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wCountJitterPos</Name>
-        <Type>WORD</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>hide</Name>
-        </Property>
-      </Properties>
-    </DataType>
-    <DataType>
-      <Name>_Implicit_Task_Info</Name>
-      <BitSize>704</BitSize>
-      <SubItem>
-        <Name>dwVersion</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>0</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>pszName</Name>
-        <Type PointerTo="1">STRING(80)</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>32</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>nPriority</Name>
-        <Type>INT</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>64</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>KindOf</Name>
-        <Type>_Implicit_KindOfTask</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>80</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>bWatchdog</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>96</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>bProfilingTask</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>104</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwEventFunctionPointer</Name>
-        <Type PointerTo="1">BYTE</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>128</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>pszExternalEvent</Name>
-        <Type PointerTo="1">STRING(80)</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>160</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwTaskEntryFunctionPointer</Name>
-        <Type PointerTo="1">BYTE</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>192</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwWatchdogSensitivity</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>224</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwInterval</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>256</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwWatchdogTime</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>288</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwLastCycleTime</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>320</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwAverageCycleTime</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>352</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwMaxCycleTime</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>384</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwMinCycleTime</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>416</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>diJitter</Name>
-        <Type>DINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>448</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>diJitterMin</Name>
-        <Type>DINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>480</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>diJitterMax</Name>
-        <Type>DINT</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>512</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwCycleCount</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>544</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wTaskStatus</Name>
-        <Type>WORD</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>576</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>wNumOfJitterDistributions</Name>
-        <Type>WORD</Type>
-        <BitSize>16</BitSize>
-        <BitOffs>592</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>pJitterDistribution</Name>
-        <Type PointerTo="1">_Implicit_Jitter_Distribution</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>608</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>bWithinSPSTimeSlicing</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>640</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>byDummy</Name>
-        <Type>BYTE</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>648</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>bShouldBlock</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>656</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>bActive</Name>
-        <Type>BOOL</Type>
-        <BitSize>8</BitSize>
-        <BitOffs>664</BitOffs>
-      </SubItem>
-      <SubItem>
-        <Name>dwIECCycleCount</Name>
-        <Type>DWORD</Type>
-        <BitSize>32</BitSize>
-        <BitOffs>672</BitOffs>
-      </SubItem>
-      <Properties>
-        <Property>
-          <Name>hide</Name>
-        </Property>
-      </Properties>
-    </DataType>
   </DataTypes>
   <Modules>
     <Module GUID="{A5288E2B-F3F8-490D-97A4-213953B5370B}" TcSmClass="TComPlcObjDef">
@@ -3843,7 +3846,7 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <AreaNo AreaType="InputDst" CreateSymbols="true">0</AreaNo>
           <Name>PlcTask Inputs</Name>
           <ContextId>0</ContextId>
-          <ByteSize>786432</ByteSize>
+          <ByteSize>851968</ByteSize>
           <Symbol>
             <Name>GVL_IO.i_xR32_31el1008s02c01</Name>
             <BitSize>8</BitSize>
@@ -4386,7 +4389,7 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <AreaNo AreaType="OutputSrc" CreateSymbols="true">1</AreaNo>
           <Name>PlcTask Outputs</Name>
           <ContextId>0</ContextId>
-          <ByteSize>786432</ByteSize>
+          <ByteSize>851968</ByteSize>
           <Symbol>
             <Name>GVL_IO.q_xR32_31el2008s03c01</Name>
             <BitSize>8</BitSize>
@@ -4965,7 +4968,7 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <AreaNo AreaType="MArea" CreateSymbols="true">2</AreaNo>
           <Name>PlcTask MArea</Name>
           <ContextId>0</ContextId>
-          <ByteSize>786432</ByteSize>
+          <ByteSize>851968</ByteSize>
           <Symbol>
             <Name>GVL.mb_PLC_Memory</Name>
             <Comment> test mb_PLC_Memory[0] with "modpoll -r 12289 -t 4 127.0.0.1" </Comment>
@@ -4987,7 +4990,7 @@ These features aren't disabled, they just aren't used, think child/parent classe
           <AreaNo AreaType="Internal" CreateSymbols="true">3</AreaNo>
           <Name>PlcTask Internal</Name>
           <ContextId>0</ContextId>
-          <ByteSize>786432</ByteSize>
+          <ByteSize>851968</ByteSize>
           <Symbol>
             <Name>GVL_Logger.g_psLogHost</Name>
             <BitSize>128</BitSize>
@@ -5059,28 +5062,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
               </Property>
             </Properties>
             <BitOffs>4202656</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>GVL_Logger.fbLogMessage</Name>
-            <BitSize>20800</BitSize>
-            <BaseType Namespace="LCLS_General">FB_LogMessage</BaseType>
-            <Properties>
-              <Property>
-                <Name>TcVarGlobal</Name>
-              </Property>
-            </Properties>
-            <BitOffs>4204704</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>GVL_Logger.gfbBuffer</Name>
-            <BitSize>4864</BitSize>
-            <BaseType Namespace="LCLS_General.Tc2_Utilities">FB_StringRingBuffer</BaseType>
-            <Properties>
-              <Property>
-                <Name>TcVarGlobal</Name>
-              </Property>
-            </Properties>
-            <BitOffs>4225504</BitOffs>
           </Symbol>
           <Symbol>
             <Name>GVL_Logger.acsSubsystems</Name>
@@ -5211,15 +5192,19 @@ These features aren't disabled, they just aren't used, think child/parent classe
               </SubItem>
               <SubItem>
                 <Name>iBuild</Name>
-                <Value>22</Value>
+                <Value>24</Value>
               </SubItem>
               <SubItem>
                 <Name>iRevision</Name>
                 <Value>0</Value>
               </SubItem>
               <SubItem>
+                <Name>nFlags</Name>
+                <Value>0</Value>
+              </SubItem>
+              <SubItem>
                 <Name>sVersion</Name>
-                <String>3.4.22.0</String>
+                <String>3.4.24.0</String>
               </SubItem>
             </Default>
             <Properties>
@@ -7231,15 +7216,19 @@ These features aren't disabled, they just aren't used, think child/parent classe
               </SubItem>
               <SubItem>
                 <Name>iBuild</Name>
-                <Value>35</Value>
+                <Value>40</Value>
               </SubItem>
               <SubItem>
                 <Name>iRevision</Name>
+                <Value>1</Value>
+              </SubItem>
+              <SubItem>
+                <Name>nFlags</Name>
                 <Value>0</Value>
               </SubItem>
               <SubItem>
                 <Name>sVersion</Name>
-                <String>3.3.35.0</String>
+                <String>3.3.40.1</String>
               </SubItem>
             </Default>
             <Properties>
@@ -7611,40 +7600,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
               </Property>
             </Properties>
             <BitOffs>4301560</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>Global_Variables.EMPTY_ROUTE_ENTRY</Name>
-            <Comment>eTransport := eRouteTransport_None see Workitem 7547</Comment>
-            <BitSize>1184</BitSize>
-            <BaseType Namespace="LCLS_General.Tc2_Utilities">ST_AmsRouteEntry</BaseType>
-            <Default>
-              <SubItem>
-                <Name>sName</Name>
-                <String/>
-              </SubItem>
-              <SubItem>
-                <Name>sNetID</Name>
-                <String/>
-              </SubItem>
-              <SubItem>
-                <Name>sAddress</Name>
-                <String/>
-              </SubItem>
-              <SubItem>
-                <Name>tTimeout</Name>
-                <Value>0</Value>
-              </SubItem>
-              <SubItem>
-                <Name>dwFlags</Name>
-                <Value>0</Value>
-              </SubItem>
-            </Default>
-            <Properties>
-              <Property>
-                <Name>TcVarGlobal</Name>
-              </Property>
-            </Properties>
-            <BitOffs>4301568</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FFILEFIND</Name>
@@ -10940,12 +10895,6 @@ These features aren't disabled, they just aren't used, think child/parent classe
             <BitOffs>4445664</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>p_XLegacyPLCModbus.fbHFX_PLCInputCoilsRx</Name>
-            <BitSize>2080</BitSize>
-            <BaseType Namespace="Tc2_ModbusSrv">FB_MBReadInputs</BaseType>
-            <BitOffs>4455552</BitOffs>
-          </Symbol>
-          <Symbol>
             <Name>p_XLegacyPLCModbus.i_xHFX_PLC_CnBits</Name>
             <BitSize>168</BitSize>
             <BaseType>BYTE</BaseType>
@@ -11009,35 +10958,35 @@ q_xXCS_preS45_MPSOK      : BOOL;</Comment>
             <Name>p_GaugeSup.fbPBT_GCC_02</Name>
             <Comment>_VG;	</Comment>
             <BitSize>864</BitSize>
-            <BaseType Namespace="LCLSVacuumLib">FB_500</BaseType>
+            <BaseType>FB_500_VG_1</BaseType>
             <BitOffs>4458432</BitOffs>
           </Symbol>
           <Symbol>
             <Name>p_GaugeSup.fbPBT_GCC_04</Name>
             <Comment>_VG;</Comment>
             <BitSize>864</BitSize>
-            <BaseType Namespace="LCLSVacuumLib">FB_500</BaseType>
+            <BaseType>FB_500_VG_1</BaseType>
             <BitOffs>4459296</BitOffs>
           </Symbol>
           <Symbol>
             <Name>p_GaugeSup.fbPBT_GCC_06</Name>
             <Comment>_VG;</Comment>
             <BitSize>864</BitSize>
-            <BaseType Namespace="LCLSVacuumLib">FB_500</BaseType>
+            <BaseType>FB_500_VG_1</BaseType>
             <BitOffs>4460160</BitOffs>
           </Symbol>
           <Symbol>
             <Name>p_GaugeSup.fbPBT_GCC_07</Name>
             <Comment>_VG;</Comment>
             <BitSize>864</BitSize>
-            <BaseType Namespace="LCLSVacuumLib">FB_500</BaseType>
+            <BaseType>FB_500_VG_1</BaseType>
             <BitOffs>4461024</BitOffs>
           </Symbol>
           <Symbol>
             <Name>p_GaugeSup.fbPBT_GCC_09</Name>
             <Comment>_VG;</Comment>
             <BitSize>864</BitSize>
-            <BaseType Namespace="LCLSVacuumLib">FB_500</BaseType>
+            <BaseType>FB_500_VG_1</BaseType>
             <BitOffs>4461888</BitOffs>
           </Symbol>
           <Symbol>
@@ -11094,12 +11043,6 @@ q_xXCS_preS45_MPSOK      : BOOL;</Comment>
             <BitSize>1504</BitSize>
             <BaseType Namespace="LCLSVacuumLib">FB_VGC</BaseType>
             <BitOffs>4468384</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>p_EtherCATDiag.fbEcatDiag1</Name>
-            <BitSize>8032</BitSize>
-            <BaseType Namespace="LCLS_General">FB_EcatDiag</BaseType>
-            <BitOffs>4470688</BitOffs>
           </Symbol>
           <Symbol>
             <Name>GVL.g_xFirstPass</Name>
@@ -11697,6 +11640,150 @@ VGC</Comment>
             </Properties>
             <BitOffs>4501120</BitOffs>
           </Symbol>
+          <Symbol>
+            <Name>GVL_Logger.fbLogMessage</Name>
+            <BitSize>20800</BitSize>
+            <BaseType Namespace="LCLS_General">FB_LogMessage</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>5614528</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>GVL_Logger.gfbBuffer</Name>
+            <BitSize>4864</BitSize>
+            <BaseType Namespace="LCLS_General.Tc2_Utilities">FB_StringRingBuffer</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>5635328</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Global_Version.stLibVersion_Tc2_EtherCAT</Name>
+            <BitSize>288</BitSize>
+            <BaseType GUID="{6F5942ED-BFA1-497D-8225-23C6DAAD0A09}">ST_LibVersion</BaseType>
+            <Default>
+              <SubItem>
+                <Name>iMajor</Name>
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iMinor</Name>
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iBuild</Name>
+                <Value>15</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iRevision</Name>
+                <Value>0</Value>
+              </SubItem>
+              <SubItem>
+                <Name>sVersion</Name>
+                <String>3.3.15.0</String>
+              </SubItem>
+            </Default>
+            <Properties>
+              <Property>
+                <Name>const_non_replaced</Name>
+              </Property>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>5640192</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Global_Version.stLibVersion_Tc2_Standard</Name>
+            <BitSize>288</BitSize>
+            <BaseType GUID="{6F5942ED-BFA1-497D-8225-23C6DAAD0A09}">ST_LibVersion</BaseType>
+            <Default>
+              <SubItem>
+                <Name>iMajor</Name>
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iMinor</Name>
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iBuild</Name>
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>iRevision</Name>
+                <Value>0</Value>
+              </SubItem>
+              <SubItem>
+                <Name>nFlags</Name>
+                <Value>0</Value>
+              </SubItem>
+              <SubItem>
+                <Name>sVersion</Name>
+                <String>3.3.3.0</String>
+              </SubItem>
+            </Default>
+            <Properties>
+              <Property>
+                <Name>const_non_replaced</Name>
+              </Property>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>5640480</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Global_Variables.EMPTY_ROUTE_ENTRY</Name>
+            <Comment>eTransport := eRouteTransport_None see Workitem 7547</Comment>
+            <BitSize>1184</BitSize>
+            <BaseType Namespace="LCLS_General.Tc2_Utilities">ST_AmsRouteEntry</BaseType>
+            <Default>
+              <SubItem>
+                <Name>sName</Name>
+                <String/>
+              </SubItem>
+              <SubItem>
+                <Name>sNetID</Name>
+                <String/>
+              </SubItem>
+              <SubItem>
+                <Name>sAddress</Name>
+                <String/>
+              </SubItem>
+              <SubItem>
+                <Name>tTimeout</Name>
+                <Value>0</Value>
+              </SubItem>
+              <SubItem>
+                <Name>dwFlags</Name>
+                <Value>0</Value>
+              </SubItem>
+            </Default>
+            <Properties>
+              <Property>
+                <Name>TcVarGlobal</Name>
+              </Property>
+            </Properties>
+            <BitOffs>5640768</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>p_XLegacyPLCModbus.fbHFX_PLCInputCoilsRx</Name>
+            <BitSize>2080</BitSize>
+            <BaseType Namespace="Tc2_ModbusSrv">FB_MBReadInputs</BaseType>
+            <BitOffs>5758144</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>p_EtherCATDiag.fbEcatDiag1</Name>
+            <BitSize>8032</BitSize>
+            <BaseType Namespace="LCLS_General">FB_EcatDiag</BaseType>
+            <BitOffs>5760224</BitOffs>
+          </Symbol>
         </DataArea>
       </DataAreas>
       <Deployment/>
@@ -11707,7 +11794,7 @@ VGC</Comment>
         </Property>
         <Property>
           <Name>ChangeDate</Name>
-          <Value>2020-07-28T17:40:52</Value>
+          <Value>2021-04-28T23:24:39</Value>
         </Property>
         <Property>
           <Name>GeneratedCodeSize</Name>
@@ -11715,7 +11802,7 @@ VGC</Comment>
         </Property>
         <Property>
           <Name>GlobalDataSize</Name>
-          <Value>81920</Value>
+          <Value>86016</Value>
         </Property>
       </Properties>
     </Module>
