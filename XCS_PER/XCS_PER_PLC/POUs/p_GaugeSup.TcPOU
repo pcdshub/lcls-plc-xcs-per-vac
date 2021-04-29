@@ -3,7 +3,7 @@
   <POU Name="p_GaugeSup" Id="{78d5f85d-9799-4512-bee8-19c16f64f92a}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_GaugeSup
 VAR
-fbPBT_GCC_02 : FB_500;//_VG;	
+fbPBT_GCC_02 : FB_500;//_VG;
 fbPBT_GCC_04 : FB_500;//_VG;
 fbPBT_GCC_06 : FB_500;//_VG;
 fbPBT_GCC_07 : FB_500;//_VG;

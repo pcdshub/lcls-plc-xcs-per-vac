@@ -263,9 +263,5 @@ mb_Output_Registers[253]:=0;  //default
 mb_Output_Registers[254]:=0;  //default
 mb_Output_Registers[255]:=0;  //default]]></ST>
     </Implementation>
-    <LineIds Name="p_ModbusTx_OutputReg">
-      <LineId Id="6" Count="254" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

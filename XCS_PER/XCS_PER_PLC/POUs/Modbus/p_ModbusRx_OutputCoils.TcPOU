@@ -262,12 +262,5 @@ vgcPBT_VGC_04.xOvrdOpn:=mb_Output_Coils[203];  //Valve overrides
 //mb_Output_Coils[254];  //
 //mb_Output_Coils[255];  //]]></ST>
     </Implementation>
-    <LineIds Name="p_ModbusRx_OutputCoils">
-      <LineId Id="6" Count="117" />
-      <LineId Id="125" Count="4" />
-      <LineId Id="260" Count="0" />
-      <LineId Id="130" Count="129" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

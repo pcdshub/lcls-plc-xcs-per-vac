@@ -3,13 +3,13 @@
   <POU Name="p_ModbusTx_InputCoils" Id="{aa599134-85f8-40a9-84fb-1508ea01a12d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_ModbusTx_InputCoils
 VAR
-	
+
 END_VAR
 
 VAR_OUTPUT
-	
 
-	XHV_DIS: BOOL;
+
+    XHV_DIS: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[mb_Input_Coils[0]:=FALSE;  //default
@@ -269,9 +269,5 @@ mb_Input_Coils[253]:=FALSE;  //VG readbacks
 mb_Input_Coils[254]:=FALSE;  //VG readbacks
 mb_Input_Coils[255]:=FALSE;  //VG readbacks]]></ST>
     </Implementation>
-    <LineIds Name="p_ModbusTx_InputCoils">
-      <LineId Id="6" Count="254" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

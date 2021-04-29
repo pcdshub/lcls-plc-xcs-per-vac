@@ -3,12 +3,12 @@
   <POU Name="p_ValveSup" Id="{a86edaae-e6c6-4d95-8d17-2b811943a0ea}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM p_ValveSup
 VAR
-	fbPBT_VGC_01 : FB_VGC;
-	fbPBT_VGC_02 : FB_VGC;
-	fbPBT_VGC_03 : FB_VGC;
-	fbPBT_VGC_04 : FB_VGC;
-	
-	//vgDownstream: LCLSVACUUMLIB.ST_VG;
+    fbPBT_VGC_01 : FB_VGC;
+    fbPBT_VGC_02 : FB_VGC;
+    fbPBT_VGC_03 : FB_VGC;
+    fbPBT_VGC_04 : FB_VGC;
+
+    //vgDownstream: LCLSVACUUMLIB.ST_VG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -28,12 +28,5 @@ vgMON_DUMMY.xAT_VAC := g_ixDSVacOK;
 fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_stDSG:=vgMON_DUMMY, i_xDis_DPIlk:=FALSE);
 ]]></ST>
     </Implementation>
-    <LineIds Name="p_ValveSup">
-      <LineId Id="14" Count="8" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="38" Count="1" />
-      <LineId Id="27" Count="1" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

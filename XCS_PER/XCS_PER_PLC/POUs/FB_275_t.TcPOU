@@ -3,7 +3,7 @@
   <POU Name="FB_275_t" Id="{c7ed38c5-1632-4c13-8a74-9f223c4eeee5}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_275_t
 VAR_IN_OUT
-	PG : ST_VG;
+    PG : ST_VG;
 END_VAR
 VAR_INPUT
 END_VAR
@@ -11,10 +11,10 @@ VAR_OUTPUT
 END_VAR
 VAR
 
-	MinPressure: REAL := 1E-4;
+    MinPressure: REAL := 1E-4;
 
-	V : REAL;
-	Vlowest: REAL := 10;
+    V : REAL;
+    Vlowest: REAL := 10;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(* This function block is used to provide protection and automatic turn on of ion gauges,
@@ -23,12 +23,12 @@ END_VAR]]></Declaration>
 
 //Default setpoint 50 mT
 IF PG.rVAC_SP = 0 THEN
-	PG.rVAC_SP := 5E-2;
+    PG.rVAC_SP := 5E-2;
 END_IF
 
 (* Real-value calculation *)
 
-V := 10*INT_TO_REAL(PG.iPRESS_R)/32767;	
+V := 10*INT_TO_REAL(PG.iPRESS_R)/32767;
 
 Vlowest := MIN(V, Vlowest);
 
@@ -58,7 +58,7 @@ PG.wState := 04; //Most likely not connected
 PG.rPRESS := -1;
 
 ELSE
-	
+
 PG.wState := 03; //Larger voltage, probably out of range?
 PG.rPRESS := -1;
 END_IF

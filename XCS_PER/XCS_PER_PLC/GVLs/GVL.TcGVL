@@ -2,36 +2,36 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
   <GVL Name="GVL" Id="{e5d46824-4bb8-4d09-a797-1003763708be}">
     <Declaration><![CDATA[VAR_GLOBAL
-	
-	/// User Memory Variables 
-	
-	// upstream vacuum ok
+
+    /// User Memory Variables
+
+    // upstream vacuum ok
 //	g_ixUSVacOK	 :	BOOL; //upstream vacuum OK
 //	i_xDSVacOK	 :	BOOL; //downstream vacuum OK should this be XCSVacOK?
-	g_ixDSVacOK	 :	BOOL;	// downstream vacuum OK
-	q_xXCS_MPSOK :  BOOL; //XCS gate valves all at open position
-	//i_xXCS_ppsStopperPos_Out : BOOL; 
-	//i_xXCS_ppsStopperPos_In  : BOOL;
-	//q_xXCS_preS45_MPSOK      : BOOL;
-	
-	q_xXCS_VGC_OK : BOOL;
-	g_xFirstPass  : BOOL :=TRUE;
-	g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus
-	g_xNoHFXPLCResponse : BOOL := TRUE;
-	
-	LOTO: BOOL := TRUE;
-	xLOTO_Override: BOOL := TRUE;
-	/// test mb_Input_Coils[0] with "modpoll -r 32769 -t 1 127.0.0.1" 
-	mb_Input_Coils: ARRAY[0..255] OF BOOL;
-	/// test mb_Output_Coils[0] with "modpoll -r 32769 -t 0 127.0.0.1" 
-	mb_Output_Coils: ARRAY[0..255] OF BOOL;
-	/// test mb_Input_Registers[0] with "modpoll -r 32769 -t 3 127.0.0.1" 
-	mb_Input_Registers: ARRAY[0..255] OF WORD;
-	/// test mb_Output_Registers[0] with "modpoll -r 32769 -t 4 127.0.0.1" 
-	mb_Output_Registers: ARRAY[0..255] OF WORD;
-	/// test mb_PLC_Memory[0] with "modpoll -r 12289 -t 4 127.0.0.1" 
-	mb_PLC_Memory AT %MW0: ARRAY[0..1000] OF WORD;
-	
+    g_ixDSVacOK	 :	BOOL;	// downstream vacuum OK
+    q_xXCS_MPSOK :  BOOL; //XCS gate valves all at open position
+    //i_xXCS_ppsStopperPos_Out : BOOL;
+    //i_xXCS_ppsStopperPos_In  : BOOL;
+    //q_xXCS_preS45_MPSOK      : BOOL;
+
+    q_xXCS_VGC_OK : BOOL;
+    g_xFirstPass  : BOOL :=TRUE;
+    g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus
+    g_xNoHFXPLCResponse : BOOL := TRUE;
+
+    LOTO: BOOL := TRUE;
+    xLOTO_Override: BOOL := TRUE;
+    /// test mb_Input_Coils[0] with "modpoll -r 32769 -t 1 127.0.0.1"
+    mb_Input_Coils: ARRAY[0..255] OF BOOL;
+    /// test mb_Output_Coils[0] with "modpoll -r 32769 -t 0 127.0.0.1"
+    mb_Output_Coils: ARRAY[0..255] OF BOOL;
+    /// test mb_Input_Registers[0] with "modpoll -r 32769 -t 3 127.0.0.1"
+    mb_Input_Registers: ARRAY[0..255] OF WORD;
+    /// test mb_Output_Registers[0] with "modpoll -r 32769 -t 4 127.0.0.1"
+    mb_Output_Registers: ARRAY[0..255] OF WORD;
+    /// test mb_PLC_Memory[0] with "modpoll -r 12289 -t 4 127.0.0.1"
+    mb_PLC_Memory AT %MW0: ARRAY[0..1000] OF WORD;
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

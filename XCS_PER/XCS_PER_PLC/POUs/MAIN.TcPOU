@@ -3,7 +3,7 @@
   <POU Name="MAIN" Id="{b9d23d5e-bdcb-4017-9242-a3dd838997b7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	myBoolean : BOOL;
+    myBoolean : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -15,13 +15,13 @@ p_ModbusRx_PLCMemory();
 p_XLegacyPLCModbus();
 
 (* 	HARD-WIRED I/O UPDATE
-	Update IO 
+    Update IO
 *)
 
 p_SoftIOMap();
 
 (* 	RESOLVE LOGIC
-	Device Control & Monitoring 
+    Device Control & Monitoring
 *)
 
 p_GaugeSup();
@@ -30,15 +30,15 @@ p_ValveSup();
 p_MPSSup();
 
 (* 	HARD-WIRED I/O UPDATE
-	Update IO 
+    Update IO
 *)
 p_EtherCATDiag();
 
 p_SoftIOMap();
 
 (* 	EPICS Tx UPDATE
-	Modbus Map Receive
-	IMPORTANT: This is the LAST subroutine to be called. 
+    Modbus Map Receive
+    IMPORTANT: This is the LAST subroutine to be called.
 *)
 p_ModbusTx_InputCoils();
 p_ModbusTx_OutputCoils();
@@ -48,11 +48,5 @@ p_ModbusTx_PLCMemory();
 
 g_xFirstPass := FALSE; // set this false after the first pass]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="6" Count="23" />
-      <LineId Id="47" Count="1" />
-      <LineId Id="30" Count="12" />
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

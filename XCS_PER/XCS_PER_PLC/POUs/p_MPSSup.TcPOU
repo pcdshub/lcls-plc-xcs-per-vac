@@ -7,13 +7,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-q_xXCS_MPSOK := g_xIOState AND vgcPBT_VGC_01.i_xOpnLS AND vgcPBT_VGC_02.i_xOpnLS AND vgcPBT_VGC_03.i_xOpnLS AND vgcPBT_VGC_04.i_xOpnLS; 
+q_xXCS_MPSOK := g_xIOState AND vgcPBT_VGC_01.i_xOpnLS AND vgcPBT_VGC_02.i_xOpnLS AND vgcPBT_VGC_03.i_xOpnLS AND vgcPBT_VGC_04.i_xOpnLS;
 //									]]></ST>
     </Implementation>
-    <LineIds Name="p_MPSSup">
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
