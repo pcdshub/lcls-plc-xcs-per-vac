@@ -1,0 +1,37 @@
+
+Links
+-----
+
+.. csv-table::
+    :header: Owner A, Item A, Owner B, Item B
+    :align: center
+
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.g_aEcatMaster1, TIID^Device 1 (EtherCAT), InfoData^AmsNetId
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c01, TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB1 XCS:PBT:GCC/GPI:02 (EP3174-0002), AI Standard Channel 1^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS13_EB1_ep3174c02, TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB1 XCS:PBT:GCC/GPI:02 (EP3174-0002), AI Standard Channel 2^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS20_EB1_ep3174c01, TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB1 XCS:PBT:GCC/GPI:04 (EP3174-0002), AI Standard Channel 1^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS20_EB1_ep3174c02, TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB1 XCS:PBT:GCC/GPI:04 (EP3174-0002), AI Standard Channel 2^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c01, TIID^Device 1 (EtherCAT)^XRT IDNO 83 EB1 XCS:PBT:GCC/GPI:09 (EP3174-0002), AI Standard Channel 1^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_iS83_EB1_ep3174c02, TIID^Device 1 (EtherCAT)^XRT IDNO 83 EB1 XCS:PBT:GCC/GPI:09 (EP3174-0002), AI Standard Channel 2^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c01, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06/07 (EP3174-0002), AI Standard Channel 1^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c02, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06/07 (EP3174-0002), AI Standard Channel 2^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c03, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06/07 (EP3174-0002), AI Standard Channel 3^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_is78_EB2_ep3174c04, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB2 XCS:PBT:GCC/GPI:06/07 (EP3174-0002), AI Standard Channel 4^Value
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xS14_EB1_ep2338c01, TIID^Device 1 (EtherCAT)^XRT IDNO 14 EB1 XCS:PBT:VGC:01 (EP2338-1002), Channel 1^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xS14_EB1_ep2338c02, TIID^Device 1 (EtherCAT)^XRT IDNO 14 EB1 XCS:PBT:VGC:01 (EP2338-1002), Channel 2^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c01, TIID^Device 1 (EtherCAT)^XRT IDNO 63 EB1 XCS:PBT:VGC:04 (EP2338-1002), Channel 1^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xS63_EB1_ep2338c02, TIID^Device 1 (EtherCAT)^XRT IDNO 63 EB1 XCS:PBT:VGC:04 (EP2338-1002), Channel 2^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c01, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB1 XCS:PBT:VGC:02 (EP2338-1002), Channel 1^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xs78_EB1_ep2338c02, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB1 XCS:PBT:VGC:02 (EP2338-1002), Channel 2^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c01, TIID^Device 1 (EtherCAT)^XRT IDNO 80 EB1 XCS:PBT:VGC:03 (EP2338-1002), Channel 1^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Inputs^GVL_IO.i_xs80_EB1_ep2338c02, TIID^Device 1 (EtherCAT)^XRT IDNO 80 EB1 XCS:PBT:VGC:03 (EP2338-1002), Channel 2^Input
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xS13_EB2_ep2624c01, TIID^Device 1 (EtherCAT)^XRT IDNO 13 EB2 XCS:PBT:GCC:02 (EP2624-0002), Channel 1^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xS14_EB1_ep2338c03, TIID^Device 1 (EtherCAT)^XRT IDNO 14 EB1 XCS:PBT:VGC:01 (EP2338-1002), Channel 11^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xS20_EB2_ep2624c01, TIID^Device 1 (EtherCAT)^XRT IDNO 20 EB2 XCS:PBT:GCC:04 (EP2624-0002), Channel 1^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xS63_EB1_ep2338c03, TIID^Device 1 (EtherCAT)^XRT IDNO 63 EB1 XCS:PBT:VGC:04 (EP2338-1002), Channel 11^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xS83_EB2_ep2624c01, TIID^Device 1 (EtherCAT)^XRT IDNO 83 EB2 XCS:PBT:GCC:09 (EP2624-0002), Channel 1^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xs26_EB1_ep2338c03, TIID^Device 1 (EtherCAT)^XRT IDNO 26 EB1 XCS:PBT:MPS_OK  (EP2338-0001), Channel 9^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xs78_EB1_ep2338c03, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB1 XCS:PBT:VGC:02 (EP2338-1002), Channel 11^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xs78_EB3_ep2624c01, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB3 XCS:PBT:GCC:06/07 (EP2624-0002), Channel 1^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xs78_EB3_ep2624c02, TIID^Device 1 (EtherCAT)^XRT IDNO 78 EB3 XCS:PBT:GCC:06/07 (EP2624-0002), Channel 2^Output
+        TIPC^XCS_PER_PLC^XCS_PER_PLC Instance, PlcTask Outputs^GVL_IO.q_xs80_EB1_ep2338c03, TIID^Device 1 (EtherCAT)^XRT IDNO 80 EB1 XCS:PBT:VGC:03 (EP2338-1002), Channel 11^Output
