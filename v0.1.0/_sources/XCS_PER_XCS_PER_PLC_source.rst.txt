@@ -1,0 +1,2525 @@
+
+
+DUTs
+----
+
+
+GVLs
+----
+
+
+GVL
+^^^
+
+::
+
+    VAR_GLOBAL
+
+        /// User Memory Variables
+
+        // upstream vacuum ok
+    //	g_ixUSVacOK	 :	BOOL; //upstream vacuum OK
+    //	i_xDSVacOK	 :	BOOL; //downstream vacuum OK should this be XCSVacOK?
+        g_ixDSVacOK	 :	BOOL;	// downstream vacuum OK
+        q_xXCS_MPSOK :  BOOL; //XCS gate valves all at open position
+        //i_xXCS_ppsStopperPos_Out : BOOL;
+        //i_xXCS_ppsStopperPos_In  : BOOL;
+        //q_xXCS_preS45_MPSOK      : BOOL;
+
+        q_xXCS_VGC_OK : BOOL;
+        g_xFirstPass  : BOOL :=TRUE;
+        g_xIOState	  :	BOOL; //Used to confirm operation of the fieldbus
+        g_xNoHFXPLCResponse : BOOL := TRUE;
+
+        LOTO: BOOL := TRUE;
+        xLOTO_Override: BOOL := TRUE;
+        /// test mb_Input_Coils[0] with "modpoll -r 32769 -t 1 127.0.0.1"
+        mb_Input_Coils: ARRAY[0..255] OF BOOL;
+        /// test mb_Output_Coils[0] with "modpoll -r 32769 -t 0 127.0.0.1"
+        mb_Output_Coils: ARRAY[0..255] OF BOOL;
+        /// test mb_Input_Registers[0] with "modpoll -r 32769 -t 3 127.0.0.1"
+        mb_Input_Registers: ARRAY[0..255] OF WORD;
+        /// test mb_Output_Registers[0] with "modpoll -r 32769 -t 4 127.0.0.1"
+        mb_Output_Registers: ARRAY[0..255] OF WORD;
+        /// test mb_PLC_Memory[0] with "modpoll -r 12289 -t 4 127.0.0.1"
+        mb_PLC_Memory AT %MW0: ARRAY[0..1000] OF WORD;
+
+    END_VAR
+
+
+GVL_IO
+^^^^^^
+
+::
+
+    VAR_GLOBAL
+        //Need to change these to reflect XCS stands and stuff
+
+    /// AMS NetID
+        g_aEcatMaster1 AT %I* : AMSNETID;
+
+        (* Generic PLC Rail *)
+        i_iR32_31el3064s01c01 AT %I*: INT;
+        i_iR32_31el3064s01c02 AT %I*: INT;
+        i_iR32_31el3064s01c03 AT %I*: INT;
+        i_iR32_31el3064s01c04 AT %I*: INT;
+
+        i_xR32_31el1008s02c01 AT %I*: BOOL;
+        i_xR32_31el1008s02c02 AT %I*: BOOL;
+        i_xR32_31el1008s02c03 AT %I*: BOOL;
+        i_xR32_31el1008s02c04 AT %I*: BOOL;
+        i_xR32_31el1008s02c05 AT %I*: BOOL;
+        i_xR32_31el1008s02c06 AT %I*: BOOL;
+        i_xR32_31el1008s02c07 AT %I*: BOOL;
+        i_xR32_31el1008s02c08 AT %I*: BOOL;
+
+        q_xR32_31el2008s03c01 AT %Q*: BOOL;
+        q_xR32_31el2008s03c02 AT %Q*: BOOL;
+        q_xR32_31el2008s03c03 AT %Q*: BOOL;
+        q_xR32_31el2008s03c04 AT %Q*: BOOL;
+        q_xR32_31el2008s03c05 AT %Q*: BOOL;
+        q_xR32_31el2008s03c06 AT %Q*: BOOL;
+        q_xR32_31el2008s03c07 AT %Q*: BOOL;
+        q_xR32_31el2008s03c08 AT %Q*: BOOL;
+
+        q_xR32_31el2798s04c01 AT %Q*: BOOL;
+        q_xR32_31el2798s04c02 AT %Q*: BOOL;
+        q_xR32_31el2798s04c03 AT %Q*: BOOL;
+        q_xR32_31el2798s04c04 AT %Q*: BOOL;
+        q_xR32_31el2798s04c05 AT %Q*: BOOL;
+        q_xR32_31el2798s04c06 AT %Q*: BOOL;
+        q_xR32_31el2798s04c07 AT %Q*: BOOL;
+
+        (* Perimeter valve before LODCM XRT Stand IDNO 63*)
+        i_xS63_EB1_ep2338c01 AT %I* : BOOL;
+        i_xS63_EB1_ep2338c02 AT %I* : BOOL;
+        q_xS63_EB1_ep2338c03 AT %Q* : BOOL;
+        q_xS63_EB1_ep2338c04 AT %Q* : BOOL;
+        i_xS63_EB1_ep2338c05 AT %I* : BOOL;
+        i_xS63_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS63_EB1_ep2338c07 AT %Q* : BOOL;
+        q_xS63_EB1_ep2338c08 AT %Q* : BOOL;
+
+        (* Gauges at perimeter XRT Stand IDNO 83*)
+        i_iS83_EB1_ep3174c01 AT %I* : INT;
+        i_iS83_EB1_ep3174c02 AT %I* : INT;
+        i_iS83_EB1_ep3174c03 AT %I* : INT;
+        i_iS83_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS83_EB2_ep2624c01 AT %Q* : BOOL;
+        q_xS83_EB2_ep2624c02 AT %Q* : BOOL;
+        q_xS83_EB2_ep2624c03 AT %Q* : BOOL;
+        q_xS83_EB2_ep2624c04 AT %Q* : BOOL;
+
+            (* XRT Stand IDNO 26 *)
+        q_xs26_EB1_ep2338c01 AT %Q* : BOOL;
+        i_xs26_EB1_ep2338c02 AT %I* : BOOL;
+        q_xs26_EB1_ep2338c03 AT %Q* : BOOL;
+        q_xs26_EB1_ep2338c04 AT %Q* : BOOL;
+        i_xs26_EB1_ep2338c05 AT %I* : BOOL;
+        i_xs26_EB1_ep2338c06 AT %I* : BOOL;
+        q_xs26_EB1_ep2338c07 AT %Q* : BOOL;
+        q_xs26_EB1_ep2338c08 AT %Q* : BOOL;
+
+            (* XRT Stand IDNO 80 *)
+        i_xs80_EB1_ep2338c01 AT %I* : BOOL;
+        i_xs80_EB1_ep2338c02 AT %I* : BOOL;
+        q_xs80_EB1_ep2338c03 AT %Q* : BOOL;
+        q_xs80_EB1_ep2338c04 AT %Q* : BOOL;
+        i_xs80_EB1_ep2338c05 AT %I* : BOOL;
+        i_xs80_EB1_ep2338c06 AT %I* : BOOL;
+        q_xs80_EB1_ep2338c07 AT %Q* : BOOL;
+        q_xs80_EB1_ep2338c08 AT %Q* : BOOL;
+
+        (* XRT Stand IDNO 78 *)
+        i_xs78_EB1_ep2338c01 AT %I* : BOOL;
+        i_xs78_EB1_ep2338c02 AT %I* : BOOL;
+        q_xs78_EB1_ep2338c03 AT %Q* : BOOL;
+        q_xs78_EB1_ep2338c04 AT %Q* : BOOL;
+        i_xs78_EB1_ep2338c05 AT %I* : BOOL;
+        i_xs78_EB1_ep2338c06 AT %I* : BOOL;
+        q_xs78_EB1_ep2338c07 AT %Q* : BOOL;
+        q_xs78_EB1_ep2338c08 AT %Q* : BOOL;
+
+        i_is78_EB2_ep3174c01 AT %I* : INT;
+        i_is78_EB2_ep3174c02 AT %I* : INT;
+        i_is78_EB2_ep3174c03 AT %I* : INT;
+        i_is78_EB2_ep3174c04 AT %I* : INT;
+
+        q_xs78_EB3_ep2624c01 AT %Q* : BOOL;
+        q_xs78_EB3_ep2624c02 AT %Q* : BOOL;
+        q_xs78_EB3_ep2624c03 AT %Q* : BOOL;
+        q_xs78_EB3_ep2624c04 AT %Q* : BOOL;
+
+
+        (* XRT Stand IDNO 20 *)
+        i_iS20_EB1_ep3174c01 AT %I* : INT;
+        i_iS20_EB1_ep3174c02 AT %I* : INT;
+        i_iS20_EB1_ep3174c03 AT %I* : INT;
+        i_iS20_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS20_EB2_ep2624c01 AT %Q* : BOOL;
+        q_xS20_EB2_ep2624c02 AT %Q* : BOOL;
+        q_xS20_EB2_ep2624c03 AT %Q* : BOOL;
+        q_xS20_EB2_ep2624c04 AT %Q* : BOOL;
+
+
+        (* XRT stand 14 *)
+        i_xS14_EB1_ep2338c01 AT %I* : BOOL;
+        i_xS14_EB1_ep2338c02 AT %I* : BOOL;
+        q_xS14_EB1_ep2338c03 AT %Q* : BOOL;
+        q_xS14_EB1_ep2338c04 AT %Q* : BOOL;
+        i_xS14_EB1_ep2338c05 AT %I* : BOOL;
+        i_xS14_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS14_EB1_ep2338c07 AT %Q* : BOOL;
+        q_xS14_EB1_ep2338c08 AT %Q* : BOOL;
+
+        (* XRT stand 13 *)
+        i_iS13_EB1_ep3174c01 AT %I* : INT;
+        i_iS13_EB1_ep3174c02 AT %I* : INT;
+        i_iS13_EB1_ep3174c03 AT %I* : INT;
+        i_iS13_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS13_EB2_ep2624c01 AT %Q* : BOOL;
+        q_xS13_EB2_ep2624c02 AT %Q* : BOOL;
+        q_xS13_EB2_ep2624c03 AT %Q* : BOOL;
+        q_xS13_EB2_ep2624c04 AT %Q* : BOOL;
+
+
+    END_VAR
+
+
+GVL_Variables_Devices
+^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    VAR_GLOBAL
+
+        //change these to reflect xcs devices
+        //VGC
+    vgcPBT_VGC_01 : ST_VGC;
+    vgcPBT_VGC_02 : ST_VGC;
+    vgcPBT_VGC_03 : ST_VGC;
+    vgcPBT_VGC_04 : ST_VGC;
+
+
+    //Vacuum Gauges
+
+    //GPI
+    vgPBT_GPI_02 : ST_VG; // real Pirani Gauge
+    vgPBT_GPI_04 : ST_VG;
+    vgPBT_GPI_06 : ST_VG;
+    vgPBT_GPI_07 : ST_VG;
+    vgPBT_GPI_09 : ST_VG;
+
+
+    //GCC
+    vgPBT_GCC_02 : ST_VG;
+    vgPBT_GCC_04 : ST_VG;
+    vgPBT_GCC_06 : ST_VG;
+    vgPBT_GCC_07 : ST_VG;
+    vgPBT_GCC_09 : ST_VG;
+    vgMON_DUMMY : ST_VG := (rPRESS := 1e-9, xAT_VAC := TRUE, xPRESS_OK :=True); //For downstream OK, comes from DG2
+
+
+    END_VAR
+
+
+POUs
+----
+
+
+FB_275_t
+^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_275_t
+    VAR_IN_OUT
+        PG : ST_VG;
+    END_VAR
+    VAR_INPUT
+    END_VAR
+    VAR_OUTPUT
+    END_VAR
+    VAR
+
+        MinPressure: REAL := 1E-4;
+
+        V : REAL;
+        Vlowest: REAL := 10;
+    END_VAR
+    (* This function block is used to provide protection and automatic turn on of ion gauges,
+     it also manages the turn on of the AT_VAC boolean, and checks to make sure the pressure is good *)
+    (* For MKS 275 mini-convectron *)
+
+    //Default setpoint 50 mT
+    IF PG.rVAC_SP = 0 THEN
+        PG.rVAC_SP := 5E-2;
+    END_IF
+
+    (* Real-value calculation *)
+
+    V := 10*INT_TO_REAL(PG.iPRESS_R)/32767;
+
+    Vlowest := MIN(V, Vlowest);
+
+    IF V > 0.3 AND V < 0.38 THEN
+
+    PG.rPRESS := MinPressure;
+    PG.wState := 02;
+
+    ELSIF V >= 0.38 AND V < 2.842 THEN
+
+    PG.rPRESS := LREAL_TO_REAL( -0.02585 + 0.03767*V + 0.04563*EXPT(V,2)+ 0.1151*EXPT(V,3) - 0.04158*EXPT(V,4)+ 0.008737*EXPT(V,5));
+    PG.wState := 01;
+
+    ELSIF V >= 2.842 AND V < 4.945 THEN
+
+    PG.rPRESS := LREAL_TO_REAL((0.1031-0.02322*V+0.07229*EXPT(V,2))/(1-0.3986*V+0.07438*EXPT(V,2)-0.006866*EXPT(V,3)));
+    PG.wState := 01;
+
+    ELSIF V >= 4.945 AND V < 5.7 THEN
+
+    PG.rPRESS := LREAL_TO_REAL((100.624-20.5623*V)/(1-0.37679*V+0.0348656*EXPT(V,2)));
+    PG.wState := 01;
+
+    ELSIF V <= 0.36 THEN
+
+    PG.wState := 04; //Most likely not connected
+    PG.rPRESS := -1;
+
+    ELSE
+
+    PG.wState := 03; //Larger voltage, probably out of range?
+    PG.rPRESS := -1;
+    END_IF
+
+    (* Protection Functions *)
+    (* If the PG pressure is greater than the IG.PRO_SP then the gauge is disabled *)
+    (* If the PG pressure is less than the IG.PRO_SP then the gauge is enabled *)
+    (* This FB also implements some hysteresis so the gauge doesn't have rapid power cycling while near the turn on boundary *)
+
+    (* Pressure OK check *)
+    PG.xPRESS_OK := (PG.rPRESS >= MinPressure);
+
+    (* Setpoint evaluation *)
+    PG.xAT_VAC := PG.xPRESS_OK AND (PG.rPRESS<PG.rVAC_SP);
+
+    END_FUNCTION_BLOCK
+
+
+FB_500_VG
+^^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_500_VG
+    VAR_IN_OUT
+        IG : ST_VG;
+    END_VAR
+    VAR_INPUT
+        PG	:	ST_VG;
+    END_VAR
+    VAR_OUTPUT
+        xHV_SW: BOOL;
+        rPRESS: INT;
+        rVAC_SP: INT;
+    END_VAR
+    VAR
+        rV : REAL;
+        pBase : REAL;
+        vBase : REAL;
+        vSlope : REAL;
+        GaugeTurnOnTmr : TON;
+        MinPressure: REAL := 1E-9;
+        cDefaultPressure : REAL := 0;
+    END_VAR
+    (* 500 Logarithmic Output Conversion, factory default configuration *)
+
+    rV := 10*INT_TO_REAL(IG.iPRESS_R)/32767;
+    vBase := 0;
+    pBase := 1.0E-10;
+    vSlope := 1.0;
+    //IG.rPRESS := EXPT(10,((rV-vBase)/vSlope+LOG(pBase)));
+
+
+    IF rV >= 0.49 AND rV < 0.52  THEN
+        IG.wState := 5;
+        IG.rPRESS := cDefaultPressure;
+    ELSIF rV < 0.4 THEN
+        IG.wState := 4;//HV Off/ gauge disconnected
+        IG.rPRESS := cDefaultPressure;
+    ELSE
+        IG.wState := 1;
+        IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    END_IF
+
+
+
+
+
+    (* Ion Gauge Protection Functions *)
+    (* If the PG pressure is greater than the VG.PRO_SP then the gauge is disabled *)
+    (* If the PG pressure is less than the VG.PRO_SP then the gauge is enabled *)
+    (* This FB also implements some hysteresis so the gauge doesn't have rapid power cycling while near the turn on boundary *)
+
+
+
+    IF PG.rPRESS < IG.rPRO_SP AND PG.xPRESS_OK THEN
+
+        IG.xHV_DIS := IG.xHV_SW;
+
+    ELSIF IG.xHV_DIS THEN
+        IF IG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR)  OR PG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR) THEN
+            IG.xHV_DIS := FALSE;
+            IG.xHV_SW := FALSE;
+        END_IF
+    ELSE
+        IG.xHV_DIS := FALSE;
+        IG.xHV_SW := FALSE;
+    END_IF
+
+    (* Pressure gauge OK checks *)
+
+    GaugeTurnOnTmr(IN:=IG.xHV_DIS, PT:=T#10S, Q=>IG.xTurnOnTime);
+
+    //IG.xPRESS_OK := ((IG.rPRESS > MinPressure) AND IG.xHV_DIS AND IG.xTurnOnTime) OR IG.xBAKEOUT;
+
+    //Backwards compatibility
+    IG.xPRESS_OK := (IG.wState = 1) OR IG.xBAKEOUT;
+
+    (* Setpoint evaluation *)
+    IG.xAT_VAC := (IG.xPRESS_OK AND (IG.rPRESS < IG.rVAC_SP)) OR IG.xBAKEOUT;;
+
+    END_FUNCTION_BLOCK
+
+
+FB_500_VG_1
+^^^^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_500_VG_1
+    VAR_IN_OUT
+        IG : ST_VG;
+    END_VAR
+    VAR_INPUT
+        PG	:	ST_VG;
+    END_VAR
+    VAR_OUTPUT
+        xHV_SW: BOOL;
+        rPRESS: INT;
+        rVAC_SP: INT;
+    END_VAR
+    VAR
+        rV : REAL;
+        GaugeTurnOnTmr : TON;
+        MinPressure: REAL := 1E-10;
+
+    END_VAR
+    VAR CONSTANT
+        cDefaultPressure : REAL := 750.0;
+        vBase	:	REAL := 0; //corresponding vbase 0V based on default curve.  See manual pg. 44
+        pBase	:	REAL := 1.0E-10; //default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.
+        vSlope	:	REAL := 1.0; //looks correct for default curve
+    END_VAR
+    (* 500 Logarithmic Output Conversion, factory default configuration *)
+
+    rV := 10*INT_TO_REAL(IG.iPRESS_R)/32767;
+
+    IF rV >= 0.49 AND rV < 0.50  THEN
+        IG.eState := E_PressureState.Starting;
+        IG.rPRESS := cDefaultPressure;
+    ELSIF rV < 0.4 THEN
+        IG.eState := E_PressureState.Off;
+        IG.rPRESS := cDefaultPressure;
+    ELSE
+        IG.eState := E_PressureState.Valid;
+        IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    END_IF
+
+
+
+    (* Ion Gauge Protection Functions *)
+    (* If the PG pressure is greater than the VG.PRO_SP then the gauge is disabled *)
+    (* If the PG pressure is less than the VG.PRO_SP then the gauge is enabled *)
+    (* This FB also implements some hysteresis so the gauge doesn't have rapid power cycling while near the turn on boundary *)
+
+    IF PG.rPRESS <= IG.rPRO_SP AND PG.xPRESS_OK THEN
+
+        IG.xHV_DIS := IG.xHV_SW;
+
+    ELSIF IG.xHV_DIS THEN
+        IF IG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR)  OR PG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR) THEN
+            IG.xHV_DIS := FALSE;
+            IG.xHV_SW := FALSE;
+        END_IF
+    ELSE
+        IG.xHV_DIS := FALSE;
+        IG.xHV_SW := FALSE;
+    END_IF
+
+    (* Pressure gauge OK checks *)
+
+    //Backwards compatibility
+    IG.xPRESS_OK := (IG.eState = E_PressureState.Valid) OR IG.xBAKEOUT;
+
+    (* Setpoint evaluation *)
+    IG.xAT_VAC := (IG.xPRESS_OK AND (IG.rPRESS < IG.rVAC_SP)) OR IG.xBAKEOUT;
+
+    END_FUNCTION_BLOCK
+
+
+MAIN
+^^^^
+
+::
+
+    PROGRAM MAIN
+    VAR
+        myBoolean : BOOL;
+    END_VAR
+    (* Modbus receive *)
+    p_ModbusRx_OutputReg();
+    p_ModbusRx_OutputCoils();
+    p_ModbusRx_PLCMemory();
+
+    p_XLegacyPLCModbus();
+
+    (* 	HARD-WIRED I/O UPDATE
+        Update IO
+    *)
+
+    p_SoftIOMap();
+
+    (* 	RESOLVE LOGIC
+        Device Control & Monitoring
+    *)
+
+    p_GaugeSup();
+    p_ValveSup();
+    //p_TurboSup();
+    p_MPSSup();
+
+    (* 	HARD-WIRED I/O UPDATE
+        Update IO
+    *)
+    p_EtherCATDiag();
+
+    p_SoftIOMap();
+
+    (* 	EPICS Tx UPDATE
+        Modbus Map Receive
+        IMPORTANT: This is the LAST subroutine to be called.
+    *)
+    p_ModbusTx_InputCoils();
+    p_ModbusTx_OutputCoils();
+    p_ModbusTx_InputReg();
+    p_ModbusTx_OutputReg();
+    p_ModbusTx_PLCMemory();
+
+    g_xFirstPass := FALSE; // set this false after the first pass
+
+    END_PROGRAM
+
+
+p_EtherCATDiag
+^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_EtherCATDiag
+    VAR
+        fbEcatDiag1	:	LCLS_General.FB_EcatDiag;
+    END_VAR
+    fbEcatDiag1(i_AMSNetId:=g_aEcatMaster1, i_xFirstPass:=g_xFirstPass, q_xAllStatesGood=>g_xIOState);
+
+    END_PROGRAM
+
+
+p_GaugeSup
+^^^^^^^^^^
+
+::
+
+    PROGRAM p_GaugeSup
+    VAR
+    fbPBT_GCC_02 : FB_500_VG_1;//_VG;
+    fbPBT_GCC_04 : FB_500_VG_1;//_VG;
+    fbPBT_GCC_06 : FB_500_VG_1;//_VG;
+    fbPBT_GCC_07 : FB_500_VG_1;//_VG;
+    fbPBT_GCC_09 : FB_500_VG_1;//_VG;
+
+    //fb_DUMB_GPI_D1 : FB_Dumb_Gauge;
+    fbPBT_GPI_02 : FB_275;
+    fbPBT_GPI_04 : FB_275;
+    fbPBT_GPI_06 : FB_275;
+    fbPBT_GPI_07 : FB_275;
+    fbPBT_GPI_09 : FB_275;
+    END_VAR
+    (* Vacuum Gauge Supervisor *)
+
+    (* Check the upstream PLC for the upstream vacuum OK signal -- p_XLegacyPLCModbus *)
+    //vgMXT_GCC_03.xAT_VAC := g_ixUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
+    //vgMXT_GCC_03.xPRESS_OK := g_ixUSVacOK;
+
+
+    (* Check the downstream PLC for the downstream vacuum OK signal -- p_XLegacyPLCModbus *)
+    //vgMON_GCC_04??.xAT_VAC := i_xDSVacOK; //NEED TO DECIDE HOW TO HANDLE DSV
+    //vgMON_GCC_04??.xPRESS_OK := i_xDSVacOK;
+
+    (* Calculate Pirani *)
+
+    fbPBT_GPI_02(PG:=vgPBT_GPI_02);
+    fbPBT_GPI_04(PG:=vgPBT_GPI_04);
+    fbPBT_GPI_06(PG:=vgPBT_GPI_06);
+    fbPBT_GPI_07(PG:=vgPBT_GPI_07);
+    fbPBT_GPI_09(PG:=vgPBT_GPI_09);
+
+    (* Calculate Cold Cathode *)
+    //vgPBT_GPI_D1.xPRESS_OK := TRUE;
+    //vgPBT_GPI_D1.rPRESS := 1E-3;
+
+    fbPBT_GCC_02(PG:=vgPBT_GPI_02,IG:=vgPBT_GCC_02);
+    fbPBT_GCC_04(PG:=vgPBT_GPI_04,IG:=vgPBT_GCC_04);
+    fbPBT_GCC_06(PG:=vgPBT_GPI_06,IG:=vgPBT_GCC_06);
+    fbPBT_GCC_07(PG:=vgPBT_GPI_07,IG:=vgPBT_GCC_07);
+    fbPBT_GCC_09(PG:=vgPBT_GPI_09,IG:=vgPBT_GCC_09);
+
+    END_PROGRAM
+
+
+p_ModbusRx_OutputCoils
+^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusRx_OutputCoils
+    VAR
+    END_VAR
+    //mb_Output_Coils[0];  //System Controls
+    g_stSystem.xOverrideMode:=mb_Output_Coils[1];  //System Controls
+    //mb_Output_Coils[2];  //System Controls
+    //mb_Output_Coils[3];  //System Controls
+    //mb_Output_Coils[4];  //System Controls
+    //mb_Output_Coils[5];  //System Controls
+    //mb_Output_Coils[6];  //System Controls
+    //mb_Output_Coils[7];  //System Controls
+    //mb_Output_Coils[8];  //System Controls
+    //mb_Output_Coils[9];  //System Controls
+    vgcPBT_VGC_01.xOPN_SW:=mb_Output_Coils[10];  //Valve switch controls
+    vgcPBT_VGC_02.xOPN_SW:=mb_Output_Coils[11];  //Valve switch controls
+    vgcPBT_VGC_03.xOPN_SW:=mb_Output_Coils[12];  //Valve switch controls
+    vgcPBT_VGC_04.xOPN_SW:=mb_Output_Coils[13];  //Valve switch controls
+    //mb_Output_Coils[14];  //Valve switch controls
+    //mb_Output_Coils[15];  //Valve switch controls
+    //mb_Output_Coils[16];  //Valve switch controls
+    //mb_Output_Coils[17];  //Valve switch controls
+    //mb_Output_Coils[18];  //Valve switch controls
+    //mb_Output_Coils[19];  //Valve switch controls
+    //mb_Output_Coils[20];  //Valve switch controls
+    //mb_Output_Coils[21];  //Valve switch controls
+    //mb_Output_Coils[22];  //Valve switch controls
+    //mb_Output_Coils[23];  //Valve switch controls
+    //mb_Output_Coils[24];  //Valve switch controls
+    //mb_Output_Coils[25];  //Valve switch controls
+    //mb_Output_Coils[26];  //Valve switch controls
+    //mb_Output_Coils[27];  //Valve switch controls
+    //mb_Output_Coils[28];  //Valve switch controls
+    //mb_Output_Coils[29];  //Valve switch controls
+    //mb_Output_Coils[30];  //Valve switch controls
+    //mb_Output_Coils[31];  //Valve switch controls
+    //mb_Output_Coils[32];  //Valve switch controls
+    //mb_Output_Coils[33];  //Valve switch controls
+    //mb_Output_Coils[34];  //Valve switch controls
+    //mb_Output_Coils[35];  //Valve switch controls
+    //mb_Output_Coils[36];  //Valve switch controls
+    //mb_Output_Coils[37];  //Valve switch controls
+    //mb_Output_Coils[38];  //Valve switch controls
+    //mb_Output_Coils[39];  //Valve switch controls
+    //mb_Output_Coils[40];  //Valve switch controls
+    //mb_Output_Coils[41];  //Valve switch controls
+    //mb_Output_Coils[42];  //Valve switch controls
+    //mb_Output_Coils[43];  //Valve switch controls
+    //mb_Output_Coils[44];  //Valve switch controls
+    //mb_Output_Coils[45];  //Valve switch controls
+    //mb_Output_Coils[46];  //Valve switch controls
+    //mb_Output_Coils[47];  //Valve switch controls
+    //mb_Output_Coils[48];  //Valve switch controls
+    //mb_Output_Coils[49];  //Valve switch controls
+    //mb_Output_Coils[50];  //Valve switch controls
+    //mb_Output_Coils[51];  //Valve switch controls
+    //mb_Output_Coils[52];  //Valve switch controls
+    //mb_Output_Coils[53];  //Valve switch controls
+    //mb_Output_Coils[54];  //Valve switch controls
+    //mb_Output_Coils[55];  //Valve switch controls
+    //mb_Output_Coils[56];  //Valve switch controls
+    //mb_Output_Coils[57];  //Valve switch controls
+    //mb_Output_Coils[58];  //Valve switch controls
+    //mb_Output_Coils[59];  //Valve switch controls
+    //mb_Output_Coils[60];  //Valve switch controls
+    //mb_Output_Coils[61];  //Valve switch controls
+    //mb_Output_Coils[62];  //Valve switch controls
+    //mb_Output_Coils[63];  //Valve switch controls
+    //mb_Output_Coils[64];  //Valve switch controls
+    //mb_Output_Coils[65];  //Valve switch controls
+    //mb_Output_Coils[66];  //Valve switch controls
+    //mb_Output_Coils[67];  //Valve switch controls
+    //mb_Output_Coils[68];  //Valve switch controls
+    //mb_Output_Coils[69];  //Valve switch controls
+    //mb_Output_Coils[70];  //Turbo Controls
+    //mb_Output_Coils[71];  //Turbo Controls
+    //mb_Output_Coils[72];  //Turbo Controls
+    //mb_Output_Coils[74];  //Turbo Controls
+    //mb_Output_Coils[75];  //Turbo Controls
+    //mb_Output_Coils[76];  //Turbo Controls
+    //mb_Output_Coils[77];  //Turbo Controls
+    //mb_Output_Coils[78];  //Turbo Controls
+    //mb_Output_Coils[79];  //Turbo Controls
+    //mb_Output_Coils[80];  //Turbo Controls
+    //mb_Output_Coils[81];  //Turbo Controls
+    //mb_Output_Coils[82];  //Turbo Controls
+    //mb_Output_Coils[83];  //Turbo Controls
+    //mb_Output_Coils[84];  //Turbo Controls
+    //mb_Output_Coils[85];  //Turbo Controls
+    //mb_Output_Coils[86];  //Turbo Controls
+    //mb_Output_Coils[87];  //Turbo Controls
+    //mb_Output_Coils[88];  //Turbo Controls
+    //mb_Output_Coils[89];  //Turbo Controls
+    //mb_Output_Coils[90];  //Turbo Controls
+    //mb_Output_Coils[91];  //Turbo Controls
+    //mb_Output_Coils[92];  //Turbo Controls
+    //mb_Output_Coils[93];  //Turbo Controls
+    //mb_Output_Coils[94];  //Turbo Controls
+    //mb_Output_Coils[95];  //Turbo Controls
+    //mb_Output_Coils[96];  //Turbo Controls
+    //mb_Output_Coils[97];  //Turbo Controls
+    //mb_Output_Coils[98];  //Turbo Controls
+    //mb_Output_Coils[99];  //Turbo Controls
+    //mb_Output_Coils[100];  //Turbo Controls
+    //mb_Output_Coils[101];  //Turbo Controls
+    //mb_Output_Coils[102];  //Turbo Controls
+    //mb_Output_Coils[103];  //Turbo Controls
+    //mb_Output_Coils[104];  //Turbo Controls
+    //mb_Output_Coils[105];  //Turbo Controls
+    //mb_Output_Coils[106];  //Turbo Controls
+    //mb_Output_Coils[107];  //Turbo Controls
+    //mb_Output_Coils[108];  //Turbo Controls
+    //mb_Output_Coils[109];  //Turbo Controls
+    //mb_Output_Coils[110];  //Turbo Controls
+    //mb_Output_Coils[111];  //Turbo Controls
+    //mb_Output_Coils[112];  //Turbo Controls
+    //mb_Output_Coils[113];  //Turbo Controls
+    //mb_Output_Coils[114];  //Turbo Controls
+    //mb_Output_Coils[115];  //Turbo Controls
+    //mb_Output_Coils[116];  //Turbo Controls
+    //mb_Output_Coils[117];  //Turbo Controls
+    //mb_Output_Coils[118];  //Turbo Controls
+    //mb_Output_Coils[119];  //Turbo Controls
+    vgPBT_GCC_02.xHV_SW:=mb_Output_Coils[120];  //CC HV Enable
+    vgPBT_GCC_04.xHV_SW:=mb_Output_Coils[121];  //CC HV Enable
+    vgPBT_GCC_06.xHV_SW:=mb_Output_Coils[122];  //CC HV Enable
+    vgPBT_GCC_07.xHV_SW:=mb_Output_Coils[123];  //CC HV Enable
+    vgPBT_GCC_09.xHV_SW:=mb_Output_Coils[124];  //CC HV Enable
+    //mb_Output_Coils[125];  //CC HV Enable
+    //mb_Output_Coils[126];  //CC HV Enable
+    //mb_Output_Coils[127];  //CC HV Enable
+    //mb_Output_Coils[128];  //CC HV Enable
+    //mb_Output_Coils[129];  //CC HV Enable
+    //mb_Output_Coils[130];  //CC HV Enable
+    //mb_Output_Coils[131];  //CC HV Enable
+    //mb_Output_Coils[132];  //CC HV Enable
+    //mb_Output_Coils[133];  //CC HV Enable
+    //mb_Output_Coils[134];  //CC HV Enable
+    //mb_Output_Coils[135];  //CC HV Enable
+    //mb_Output_Coils[136];  //CC HV Enable
+    //mb_Output_Coils[137];  //CC HV Enable
+    //mb_Output_Coils[138];  //CC HV Enable
+    //mb_Output_Coils[139];  //CC HV Enable
+    //mb_Output_Coils[140];  //CC HV Enable
+    //mb_Output_Coils[141];  //CC HV Enable
+    //mb_Output_Coils[142];  //CC HV Enable
+    //mb_Output_Coils[143];  //CC HV Enable
+    //mb_Output_Coils[144];  //CC HV Enable
+    //mb_Output_Coils[145];  //CC HV Enable
+    //mb_Output_Coils[146];  //CC HV Enable
+    //mb_Output_Coils[147];  //CC HV Enable
+    //mb_Output_Coils[148];  //CC HV Enable
+    //mb_Output_Coils[149];  //CC HV Enable
+    //mb_Output_Coils[150];  //CC HV Enable
+    //mb_Output_Coils[151];  //CC HV Enable
+    //mb_Output_Coils[152];  //CC HV Enable
+    //mb_Output_Coils[153];  //CC HV Enable
+    //mb_Output_Coils[154];  //CC HV Enable
+    //mb_Output_Coils[155];  //CC HV Enable
+    //mb_Output_Coils[156];  //CC HV Enable
+    //mb_Output_Coils[157];  //CC HV Enable
+    //mb_Output_Coils[158];  //CC HV Enable
+    //mb_Output_Coils[159];  //CC HV Enable
+    //mb_Output_Coils[160];  //
+    //mb_Output_Coils[161];  //
+    //mb_Output_Coils[162];  //
+    //mb_Output_Coils[163];  //
+    //mb_Output_Coils[164];  //
+    //mb_Output_Coils[165];  //
+    //mb_Output_Coils[166];  //
+    //mb_Output_Coils[167];  //
+    //mb_Output_Coils[168];  //
+    //mb_Output_Coils[169];  //
+    //mb_Output_Coils[170];  //
+    //mb_Output_Coils[171];  //
+    //mb_Output_Coils[172];  //
+    //mb_Output_Coils[173];  //
+    //mb_Output_Coils[174];  //
+    //mb_Output_Coils[175];  //
+    //mb_Output_Coils[176];  //
+    //mb_Output_Coils[177];  //
+    //mb_Output_Coils[178];  //
+    //mb_Output_Coils[179];  //
+    //mb_Output_Coils[180];  //
+    //mb_Output_Coils[181];  //
+    //mb_Output_Coils[182];  //
+    //mb_Output_Coils[183];  //
+    //mb_Output_Coils[184];  //
+    //mb_Output_Coils[185];  //
+    //mb_Output_Coils[186];  //
+    //mb_Output_Coils[187];  //
+    //mb_Output_Coils[188];  //
+    //mb_Output_Coils[189];  //
+    //mb_Output_Coils[190];  //
+    //mb_Output_Coils[191];  //
+    //mb_Output_Coils[192];  //
+    //mb_Output_Coils[193];  //
+    //mb_Output_Coils[194];  //
+    //mb_Output_Coils[195];  //
+    //mb_Output_Coils[196];  //
+    //mb_Output_Coils[197];  //
+    //mb_Output_Coils[198];  //
+    //mb_Output_Coils[199];  //
+    vgcPBT_VGC_01.xOvrdOpn:=mb_Output_Coils[200];  //Valve overrides
+    vgcPBT_VGC_02.xOvrdOpn:=mb_Output_Coils[201];  //Valve overrides
+    vgcPBT_VGC_03.xOvrdOpn:=mb_Output_Coils[202];  //Valve overrides
+    vgcPBT_VGC_04.xOvrdOpn:=mb_Output_Coils[203];  //Valve overrides
+    //mb_Output_Coils[204];  //
+    //mb_Output_Coils[205];  //
+    //mb_Output_Coils[206];  //
+    //mb_Output_Coils[207];  //
+    //mb_Output_Coils[208];  //
+    //mb_Output_Coils[209];  //
+    //mb_Output_Coils[210];  //
+    //mb_Output_Coils[211];  //
+    //mb_Output_Coils[212];  //
+    //mb_Output_Coils[213];  //
+    //mb_Output_Coils[214];  //
+    //mb_Output_Coils[215];  //
+    //mb_Output_Coils[216];  //
+    //mb_Output_Coils[217];  //
+    //mb_Output_Coils[218];  //
+    //mb_Output_Coils[219];  //
+    //mb_Output_Coils[220];  //
+    //mb_Output_Coils[221];  //
+    //mb_Output_Coils[222];  //
+    //mb_Output_Coils[223];  //
+    //mb_Output_Coils[224];  //
+    //mb_Output_Coils[225];  //
+    //mb_Output_Coils[226];  //
+    //mb_Output_Coils[227];  //
+    //mb_Output_Coils[228];  //
+    //mb_Output_Coils[229];  //
+    //mb_Output_Coils[230];  //
+    //mb_Output_Coils[231];  //
+    //mb_Output_Coils[232];  //
+    //mb_Output_Coils[233];  //
+    //mb_Output_Coils[234];  //
+    //mb_Output_Coils[235];  //
+    //mb_Output_Coils[236];  //
+    //mb_Output_Coils[237];  //
+    //mb_Output_Coils[238];  //
+    //mb_Output_Coils[239];  //
+    //mb_Output_Coils[240];  //
+    //mb_Output_Coils[241];  //
+    //mb_Output_Coils[242];  //
+    //mb_Output_Coils[243];  //
+    //mb_Output_Coils[244];  //
+    //mb_Output_Coils[245];  //
+    //mb_Output_Coils[246];  //
+    //mb_Output_Coils[247];  //
+    //mb_Output_Coils[248];  //
+    //mb_Output_Coils[249];  //
+    //mb_Output_Coils[250];  //
+    //mb_Output_Coils[251];  //
+    //mb_Output_Coils[252];  //
+    //mb_Output_Coils[253];  //
+    //mb_Output_Coils[254];  //
+    //mb_Output_Coils[255];  //
+
+    END_PROGRAM
+
+
+p_ModbusRx_OutputReg
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusRx_OutputReg
+    VAR
+    END_VAR
+    //mb_Output_Registers[0];  //System parameters
+    //mb_Output_Registers[1];  //System parameters
+    //mb_Output_Registers[2];  //System parameters
+    //mb_Output_Registers[3];  //System parameters
+    //mb_Output_Registers[4];  //System parameters
+    //mb_Output_Registers[5];  //System parameters
+    //mb_Output_Registers[6];  //System parameters
+    //mb_Output_Registers[7];  //System parameters
+    //mb_Output_Registers[8];  //System parameters
+    //mb_Output_Registers[9];  //System parameters
+    //mb_Output_Registers[10];  //VG setpoint
+    //mb_Output_Registers[11];  //VG setpoint
+    //mb_Output_Registers[12];  //VG setpoint
+    //mb_Output_Registers[13];  //VG setpoint
+    //mb_Output_Registers[14];  //VG setpoint
+    //mb_Output_Registers[15];  //VG setpoint
+    //mb_Output_Registers[16];  //VG setpoint
+    //mb_Output_Registers[17];  //VG setpoint
+    //mb_Output_Registers[18];  //VG setpoint
+    //mb_Output_Registers[19];  //VG setpoint
+    //mb_Output_Registers[20];  //VG setpoint
+    //mb_Output_Registers[21];  //VG setpoint
+    //mb_Output_Registers[22];  //VG setpoint
+    //mb_Output_Registers[23];  //VG setpoint
+    //mb_Output_Registers[24];  //VG setpoint
+    //mb_Output_Registers[25];  //VG setpoint
+    //mb_Output_Registers[26];  //VG setpoint
+    //mb_Output_Registers[27];  //VG setpoint
+    //mb_Output_Registers[28];  //VG setpoint
+    //mb_Output_Registers[29];  //VG setpoint
+    //mb_Output_Registers[30];  //VG setpoint
+    //mb_Output_Registers[31];  //VG setpoint
+    //mb_Output_Registers[32];  //VG setpoint
+    //mb_Output_Registers[33];  //VG setpoint
+    //mb_Output_Registers[34];  //VG setpoint
+    //mb_Output_Registers[35];  //VG setpoint
+    //mb_Output_Registers[36];  //VG setpoint
+    //mb_Output_Registers[37];  //VG setpoint
+    //mb_Output_Registers[38];  //VG setpoint
+    //mb_Output_Registers[39];  //VG setpoint
+    //mb_Output_Registers[40];  //VG setpoint
+    //mb_Output_Registers[41];  //VG setpoint
+    //mb_Output_Registers[42];  //VG setpoint
+    //mb_Output_Registers[43];  //VG setpoint
+    //mb_Output_Registers[44];  //VG setpoint
+    //mb_Output_Registers[45];  //VG setpoint
+    //mb_Output_Registers[46];  //VG setpoint
+    //mb_Output_Registers[47];  //VG setpoint
+    //mb_Output_Registers[48];  //VG setpoint
+    //mb_Output_Registers[49];  //VG setpoint
+    //mb_Output_Registers[50];  //VG setpoint
+    //mb_Output_Registers[51];  //VG setpoint
+    //mb_Output_Registers[52];  //VG setpoint
+    //mb_Output_Registers[53];  //VG setpoint
+    //mb_Output_Registers[54];  //VG setpoint
+    //mb_Output_Registers[55];  //VG setpoint
+    //mb_Output_Registers[56];  //VG setpoint
+    //mb_Output_Registers[57];  //VG setpoint
+    //mb_Output_Registers[58];  //VG setpoint
+    //mb_Output_Registers[59];  //VG setpoint
+    //mb_Output_Registers[60];  //default
+    //mb_Output_Registers[61];  //default
+    //mb_Output_Registers[62];  //default
+    //mb_Output_Registers[63];  //default
+    //mb_Output_Registers[64];  //default
+    //mb_Output_Registers[65];  //default
+    //mb_Output_Registers[66];  //default
+    //mb_Output_Registers[67];  //default
+    //mb_Output_Registers[68];  //default
+    //mb_Output_Registers[69];  //default
+    //mb_Output_Registers[70];  //default
+    //mb_Output_Registers[71];  //default
+    //mb_Output_Registers[72];  //default
+    //mb_Output_Registers[73];  //default
+    //mb_Output_Registers[74];  //default
+    //mb_Output_Registers[75];  //default
+    //mb_Output_Registers[76];  //default
+    //mb_Output_Registers[77];  //default
+    //mb_Output_Registers[78];  //default
+    //mb_Output_Registers[79];  //default
+    //mb_Output_Registers[80];  //default
+    //mb_Output_Registers[81];  //default
+    //mb_Output_Registers[82];  //default
+    //mb_Output_Registers[83];  //default
+    //mb_Output_Registers[84];  //default
+    //mb_Output_Registers[85];  //default
+    //mb_Output_Registers[86];  //default
+    //mb_Output_Registers[87];  //default
+    //mb_Output_Registers[88];  //default
+    //mb_Output_Registers[89];  //default
+    //mb_Output_Registers[90];  //default
+    //mb_Output_Registers[91];  //default
+    //mb_Output_Registers[92];  //default
+    //mb_Output_Registers[93];  //default
+    //mb_Output_Registers[94];  //default
+    //mb_Output_Registers[95];  //default
+    //mb_Output_Registers[96];  //default
+    //mb_Output_Registers[97];  //default
+    //mb_Output_Registers[98];  //default
+    //mb_Output_Registers[99];  //default
+    //mb_Output_Registers[100];  //default
+    //mb_Output_Registers[101];  //default
+    //mb_Output_Registers[102];  //default
+    //mb_Output_Registers[103];  //default
+    //mb_Output_Registers[104];  //default
+    //mb_Output_Registers[105];  //default
+    //mb_Output_Registers[106];  //default
+    //mb_Output_Registers[107];  //default
+    //mb_Output_Registers[108];  //default
+    //mb_Output_Registers[109];  //default
+    //mb_Output_Registers[110];  //default
+    //mb_Output_Registers[111];  //default
+    //mb_Output_Registers[112];  //default
+    //mb_Output_Registers[113];  //default
+    //mb_Output_Registers[114];  //default
+    //mb_Output_Registers[115];  //default
+    //mb_Output_Registers[116];  //default
+    //mb_Output_Registers[117];  //default
+    //mb_Output_Registers[118];  //default
+    //mb_Output_Registers[119];  //default
+    //mb_Output_Registers[120];  //default
+    //mb_Output_Registers[121];  //default
+    //mb_Output_Registers[122];  //default
+    //mb_Output_Registers[123];  //default
+    //mb_Output_Registers[124];  //default
+    //mb_Output_Registers[125];  //default
+    //mb_Output_Registers[126];  //default
+    //mb_Output_Registers[127];  //default
+    //mb_Output_Registers[128];  //default
+    //mb_Output_Registers[129];  //default
+    //mb_Output_Registers[130];  //default
+    //mb_Output_Registers[131];  //default
+    //mb_Output_Registers[132];  //default
+    //mb_Output_Registers[133];  //default
+    //mb_Output_Registers[134];  //default
+    //mb_Output_Registers[135];  //default
+    //mb_Output_Registers[136];  //default
+    //mb_Output_Registers[137];  //default
+    //mb_Output_Registers[138];  //default
+    //mb_Output_Registers[139];  //default
+    //mb_Output_Registers[140];  //default
+    //mb_Output_Registers[141];  //default
+    //mb_Output_Registers[142];  //default
+    //mb_Output_Registers[143];  //default
+    //mb_Output_Registers[144];  //default
+    //mb_Output_Registers[145];  //default
+    //mb_Output_Registers[146];  //default
+    //mb_Output_Registers[147];  //default
+    //mb_Output_Registers[148];  //default
+    //mb_Output_Registers[149];  //default
+    //mb_Output_Registers[150];  //default
+    //mb_Output_Registers[151];  //default
+    //mb_Output_Registers[152];  //default
+    //mb_Output_Registers[153];  //default
+    //mb_Output_Registers[154];  //default
+    //mb_Output_Registers[155];  //default
+    //mb_Output_Registers[156];  //default
+    //mb_Output_Registers[157];  //default
+    //mb_Output_Registers[158];  //default
+    //mb_Output_Registers[159];  //default
+    //mb_Output_Registers[160];  //default
+    //mb_Output_Registers[161];  //default
+    //mb_Output_Registers[162];  //default
+    //mb_Output_Registers[163];  //default
+    //mb_Output_Registers[164];  //default
+    //mb_Output_Registers[165];  //default
+    //mb_Output_Registers[166];  //default
+    //mb_Output_Registers[167];  //default
+    //mb_Output_Registers[168];  //default
+    //mb_Output_Registers[169];  //default
+    //mb_Output_Registers[170];  //default
+    //mb_Output_Registers[171];  //default
+    //mb_Output_Registers[172];  //default
+    //mb_Output_Registers[173];  //default
+    //mb_Output_Registers[174];  //default
+    //mb_Output_Registers[175];  //default
+    //mb_Output_Registers[176];  //default
+    //mb_Output_Registers[177];  //default
+    //mb_Output_Registers[178];  //default
+    //mb_Output_Registers[179];  //default
+    //mb_Output_Registers[180];  //default
+    //mb_Output_Registers[181];  //default
+    //mb_Output_Registers[182];  //default
+    //mb_Output_Registers[183];  //default
+    //mb_Output_Registers[184];  //default
+    //mb_Output_Registers[185];  //default
+    //mb_Output_Registers[186];  //default
+    //mb_Output_Registers[187];  //default
+    //mb_Output_Registers[188];  //default
+    //mb_Output_Registers[189];  //default
+    //mb_Output_Registers[190];  //default
+    //mb_Output_Registers[191];  //default
+    //mb_Output_Registers[192];  //default
+    //mb_Output_Registers[193];  //default
+    //mb_Output_Registers[194];  //default
+    //mb_Output_Registers[195];  //default
+    //mb_Output_Registers[196];  //default
+    //mb_Output_Registers[197];  //default
+    //mb_Output_Registers[198];  //default
+    //mb_Output_Registers[199];  //default
+    //mb_Output_Registers[200];  //default
+    //mb_Output_Registers[201];  //default
+    //mb_Output_Registers[202];  //default
+    //mb_Output_Registers[203];  //default
+    //mb_Output_Registers[204];  //default
+    //mb_Output_Registers[205];  //default
+    //mb_Output_Registers[206];  //default
+    //mb_Output_Registers[207];  //default
+    //mb_Output_Registers[208];  //default
+    //mb_Output_Registers[209];  //default
+    //mb_Output_Registers[210];  //default
+    //mb_Output_Registers[211];  //default
+    //mb_Output_Registers[212];  //default
+    //mb_Output_Registers[213];  //default
+    //mb_Output_Registers[214];  //default
+    //mb_Output_Registers[215];  //default
+    //mb_Output_Registers[216];  //default
+    //mb_Output_Registers[217];  //default
+    //mb_Output_Registers[218];  //default
+    //mb_Output_Registers[219];  //default
+    //mb_Output_Registers[220];  //default
+    //mb_Output_Registers[221];  //default
+    //mb_Output_Registers[222];  //default
+    //mb_Output_Registers[223];  //default
+    //mb_Output_Registers[224];  //default
+    //mb_Output_Registers[225];  //default
+    //mb_Output_Registers[226];  //default
+    //mb_Output_Registers[227];  //default
+    //mb_Output_Registers[228];  //default
+    //mb_Output_Registers[229];  //default
+    //mb_Output_Registers[230];  //default
+    //mb_Output_Registers[231];  //default
+    //mb_Output_Registers[232];  //default
+    //mb_Output_Registers[233];  //default
+    //mb_Output_Registers[234];  //default
+    //mb_Output_Registers[235];  //default
+    //mb_Output_Registers[236];  //default
+    //mb_Output_Registers[237];  //default
+    //mb_Output_Registers[238];  //default
+    //mb_Output_Registers[239];  //default
+    //mb_Output_Registers[240];  //default
+    //mb_Output_Registers[241];  //default
+    //mb_Output_Registers[242];  //default
+    //mb_Output_Registers[243];  //default
+    //mb_Output_Registers[244];  //default
+    //mb_Output_Registers[245];  //default
+    //mb_Output_Registers[246];  //default
+    //mb_Output_Registers[247];  //default
+    //mb_Output_Registers[248];  //default
+    //mb_Output_Registers[249];  //default
+    //mb_Output_Registers[250];  //default
+    //mb_Output_Registers[251];  //default
+    //mb_Output_Registers[252];  //default
+    //mb_Output_Registers[253];  //default
+    //mb_Output_Registers[254];  //default
+    //mb_Output_Registers[255];  //default
+
+    END_PROGRAM
+
+
+p_ModbusRx_PLCMemory
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusRx_PLCMemory
+    VAR
+    END_VAR
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[70]), srcAddr:=ADR(vgPBT_GCC_02.rVAC_SP), n:=SIZEOF(vgPBT_GCC_02.rVAC_SP));  //VG pressure sp readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[72]), srcAddr:=ADR(vgPBT_GPI_02.rVAC_SP), n:=SIZEOF(vgPBT_GPI_02.rVAC_SP));  //VG pressure sp readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[74]), srcAddr:=ADR(vgPBT_GCC_04.rVAC_SP), n:=SIZEOF(vgPBT_GCC_04.rVAC_SP));  //VG pressure sp readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[76]), srcAddr:=ADR(vgPBT_GPI_04.rVAC_SP), n:=SIZEOF(vgPBT_GPI_04.rVAC_SP));  //VG pressure sp readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[78]), srcAddr:=ADR(vgPBT_GCC_06.rVAC_SP), n:=SIZEOF(vgPBT_GCC_06.rVAC_SP));  //VG pressure sp readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[80]), srcAddr:=ADR(vgPBT_GPI_06.rVAC_SP), n:=SIZEOF(vgPBT_GPI_06.rVAC_SP));  //VG pressure sp readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[82]), srcAddr:=ADR(vgPBT_GCC_07.rVAC_SP), n:=SIZEOF(vgPBT_GCC_07.rVAC_SP));  //VG pressure sp readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[84]), srcAddr:=ADR(vgPBT_GPI_07.rVAC_SP), n:=SIZEOF(vgPBT_GPI_07.rVAC_SP));  //VG pressure sp readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[86]), srcAddr:=ADR(vgPBT_GCC_09.rVAC_SP), n:=SIZEOF(vgPBT_GCC_09.rVAC_SP));  //VG pressure sp readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[88]), srcAddr:=ADR(vgPBT_GPI_09.rVAC_SP), n:=SIZEOF(vgPBT_GPI_09.rVAC_SP));  //VG pressure sp readbacks
+
+    END_PROGRAM
+
+
+p_ModbusTx_InputCoils
+^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusTx_InputCoils
+    VAR
+
+    END_VAR
+
+    VAR_OUTPUT
+
+
+        XHV_DIS: BOOL;
+    END_VAR
+    mb_Input_Coils[0]:=FALSE;  //default
+    //mb_Input_Coils[1]:=i_xMFX_ppsStopperPos_Out;  //default
+    //mb_Input_Coils[2]:=i_xMFX_ppsStopperPos_In;  //default
+    mb_Input_Coils[3]:=q_xXCS_MPSOK;  //default
+    mb_Input_Coils[4]:=g_xIOState;  //default
+    //mb_Input_Coils[5]:=i_xDG1_MMS01_OUT;  //default
+    mb_Input_Coils[6]:=FALSE;  //default
+    mb_Input_Coils[7]:=FALSE;  //default
+    mb_Input_Coils[8]:=FALSE;  //default
+    mb_Input_Coils[9]:=FALSE;  //default
+    mb_Input_Coils[10]:=vgcPBT_VGC_01.i_xOpnLS;  //Valve position readbacks
+    mb_Input_Coils[11]:=vgcPBT_VGC_01.i_xClsLS;  //Valve position readbacks
+    mb_Input_Coils[12]:=vgcPBT_VGC_02.i_xOpnLS;  //Valve position readbacks
+    mb_Input_Coils[13]:=vgcPBT_VGC_02.i_xClsLS;  //Valve position readbacks
+    mb_Input_Coils[14]:=vgcPBT_VGC_03.i_xOpnLS;  //Valve position readbacks
+    mb_Input_Coils[15]:=vgcPBT_VGC_03.i_xClsLS;  //Valve position readbacks
+    mb_Input_Coils[16]:=vgcPBT_VGC_04.i_xOpnLS;  //Valve position readbacks
+    mb_Input_Coils[17]:=vgcPBT_VGC_04.i_xClsLS;  //Valve position readbacks
+    mb_Input_Coils[18]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[19]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[20]:=FALSE; //Valve position readbacks
+    mb_Input_Coils[21]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[22]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[23]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[24]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[25]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[26]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[27]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[28]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[29]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[30]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[31]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[32]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[33]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[34]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[35]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[36]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[37]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[38]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[39]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[40]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[41]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[42]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[43]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[44]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[45]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[46]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[47]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[48]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[49]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[50]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[51]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[52]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[53]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[54]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[55]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[56]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[57]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[58]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[59]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[60]:=vgcPBT_VGC_01.xOPN_OK;  //Valve position readbacks
+    mb_Input_Coils[61]:=vgcPBT_VGC_02.xOPN_OK;  //Valve position readbacks
+    mb_Input_Coils[62]:=vgcPBT_VGC_03.xOPN_OK;  //Valve position readbacks
+    mb_Input_Coils[63]:=vgcPBT_VGC_04.xOPN_OK;  //Valve position readbacks
+    mb_Input_Coils[64]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[65]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[66]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[67]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[68]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[69]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[70]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[71]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[72]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[73]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[74]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[75]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[76]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[77]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[78]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[79]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[80]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[81]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[82]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[83]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[84]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[85]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[86]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[87]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[88]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[89]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[90]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[91]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[92]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[93]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[94]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[95]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[96]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[97]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[98]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[99]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[100]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[101]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[102]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[103]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[104]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[105]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[106]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[107]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[108]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[109]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[110]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[111]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[112]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[113]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[114]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[115]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[116]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[117]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[118]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[119]:=FALSE;  //Valve position readbacks
+    mb_Input_Coils[120]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[121]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[122]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[123]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[124]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[125]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[126]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[127]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[128]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[129]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[130]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[131]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[132]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[133]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[134]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[135]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[136]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[137]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[138]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[139]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[140]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[141]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[142]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[143]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[144]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[145]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[146]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[147]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[148]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[149]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[150]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[151]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[152]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[153]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[154]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[155]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[156]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[157]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[158]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[159]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[160]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[161]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[162]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[163]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[164]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[165]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[166]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[167]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[168]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[169]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[170]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[171]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[172]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[173]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[174]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[175]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[176]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[177]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[178]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[179]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[180]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[181]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[182]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[183]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[184]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[185]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[186]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[187]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[188]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[189]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[190]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[191]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[192]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[193]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[194]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[195]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[196]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[197]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[198]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[199]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[200]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[201]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[202]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[203]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[204]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[205]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[206]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[207]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[208]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[209]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[210]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[211]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[212]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[213]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[214]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[215]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[216]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[217]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[218]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[219]:=FALSE;  //Turbo pump readbacks
+    mb_Input_Coils[220]:=vgPBT_GCC_02.xAT_VAC;  //VG readbacks
+    mb_Input_Coils[221]:=vgPBT_GCC_02.xHV_DIS;  //VG readbacks
+    mb_Input_Coils[222]:=vgPBT_GCC_04.xAT_VAC;  //VG readbacks
+    mb_Input_Coils[223]:=vgPBT_GCC_04.xHV_DIS;  //VG readbacks
+    mb_Input_Coils[224]:=vgPBT_GCC_06.xAT_VAC;  //VG readbacks
+    mb_Input_Coils[225]:=vgPBT_GCC_06.xHV_DIS;  //VG readbacks
+    mb_Input_Coils[226]:=vgPBT_GCC_07.xAT_VAC;  //VG readbacks
+    mb_Input_Coils[227]:=vgPBT_GCC_07.xHV_DIS;  //VG readbacks
+    mb_Input_Coils[228]:=vgPBT_GCC_09.xAT_VAC;  //VG readbacks
+    mb_Input_Coils[229]:=vgPBT_GCC_09.xHV_DIS;  //VG readbacks
+    mb_Input_Coils[230]:=vgPBT_GCC_02.xPRESS_OK;  //VG readbacks
+    mb_Input_Coils[231]:=vgPBT_GCC_04.xPRESS_OK;  //VG readbacks
+    mb_Input_Coils[232]:=vgPBT_GCC_06.xPRESS_OK;  //VG readbacks
+    mb_Input_Coils[233]:=vgPBT_GCC_07.xPRESS_OK;  //VG readbacks
+    mb_Input_Coils[234]:=vgPBT_GCC_09.xPRESS_OK;  //VG readbacks
+    mb_Input_Coils[235]:=FALSE;  //VG readbacks
+    mb_Input_Coils[236]:=FALSE;  //VG readbacks
+    mb_Input_Coils[237]:=FALSE;  //VG readbacks
+    mb_Input_Coils[238]:=FALSE;  //VG readbacks
+    mb_Input_Coils[239]:=FALSE;  //VG readbacks
+    mb_Input_Coils[240]:=FALSE;  //VG readbacks
+    mb_Input_Coils[241]:=FALSE;  //VG readbacks
+    mb_Input_Coils[242]:=FALSE;  //VG readbacks
+    mb_Input_Coils[243]:=FALSE;  //VG readbacks
+    mb_Input_Coils[244]:=FALSE;  //VG readbacks
+    mb_Input_Coils[245]:=FALSE;  //VG readbacks
+    mb_Input_Coils[246]:=FALSE;  //VG readbacks
+    mb_Input_Coils[247]:=FALSE;  //VG readbacks
+    mb_Input_Coils[248]:=FALSE;  //VG readbacks
+    mb_Input_Coils[249]:=FALSE;  //VG readbacks
+    mb_Input_Coils[250]:=FALSE;  //VG readbacks
+    mb_Input_Coils[251]:=FALSE;  //VG readbacks
+    mb_Input_Coils[252]:=FALSE;  //VG readbacks
+    mb_Input_Coils[253]:=FALSE;  //VG readbacks
+    mb_Input_Coils[254]:=FALSE;  //VG readbacks
+    mb_Input_Coils[255]:=FALSE;  //VG readbacks
+
+    END_PROGRAM
+
+
+p_ModbusTx_InputReg
+^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusTx_InputReg
+    VAR
+    END_VAR
+    mb_Input_Registers[0]:=0;  //System info
+    mb_Input_Registers[1]:=0;  //System info
+    mb_Input_Registers[2]:=0;  //System info
+    mb_Input_Registers[3]:=0;  //System info
+    mb_Input_Registers[4]:=0;  //System info
+    mb_Input_Registers[5]:=0;  //System info
+    mb_Input_Registers[6]:=0;  //System info
+    mb_Input_Registers[7]:=0;  //System info
+    mb_Input_Registers[8]:=0;  //System info
+    mb_Input_Registers[9]:=0;  //System info
+    mb_Input_Registers[10]:=0;  //VG pressure readbacks
+    mb_Input_Registers[11]:=0;  //VG pressure readbacks
+    mb_Input_Registers[12]:=0;  //VG pressure readbacks
+    mb_Input_Registers[13]:=0;  //VG pressure readbacks
+    mb_Input_Registers[14]:=0;  //VG pressure readbacks
+    mb_Input_Registers[15]:=0;  //VG pressure readbacks
+    mb_Input_Registers[16]:=0;  //VG pressure readbacks
+    mb_Input_Registers[17]:=0;  //VG pressure readbacks
+    mb_Input_Registers[18]:=0;  //VG pressure readbacks
+    mb_Input_Registers[19]:=0;  //VG pressure readbacks
+    mb_Input_Registers[20]:=0;  //VG pressure readbacks
+    mb_Input_Registers[21]:=0;  //VG pressure readbacks
+    mb_Input_Registers[22]:=0;  //VG pressure readbacks
+    mb_Input_Registers[23]:=0;  //VG pressure readbacks
+    mb_Input_Registers[24]:=0;  //VG pressure readbacks
+    mb_Input_Registers[25]:=0;  //VG pressure readbacks
+    mb_Input_Registers[26]:=0;  //VG pressure readbacks
+    mb_Input_Registers[27]:=0;  //VG pressure readbacks
+    mb_Input_Registers[28]:=0;  //VG pressure readbacks
+    mb_Input_Registers[29]:=0;  //VG pressure readbacks
+    mb_Input_Registers[30]:=0;  //VG pressure readbacks
+    mb_Input_Registers[31]:=0;  //VG pressure readbacks
+    mb_Input_Registers[32]:=0;  //VG pressure readbacks
+    mb_Input_Registers[33]:=0;  //VG pressure readbacks
+    mb_Input_Registers[34]:=0;  //VG pressure readbacks
+    mb_Input_Registers[35]:=0;  //VG pressure readbacks
+    mb_Input_Registers[36]:=0;  //VG pressure readbacks
+    mb_Input_Registers[37]:=0;  //VG pressure readbacks
+    mb_Input_Registers[38]:=0;  //VG pressure readbacks
+    mb_Input_Registers[39]:=0;  //VG pressure readbacks
+    mb_Input_Registers[40]:=0;  //VG pressure readbacks
+    mb_Input_Registers[41]:=0;  //VG pressure readbacks
+    mb_Input_Registers[42]:=0;  //VG pressure readbacks
+    mb_Input_Registers[43]:=0;  //VG pressure readbacks
+    mb_Input_Registers[44]:=0;  //VG pressure readbacks
+    mb_Input_Registers[45]:=0;  //VG pressure readbacks
+    mb_Input_Registers[46]:=0;  //VG pressure readbacks
+    mb_Input_Registers[47]:=0;  //VG pressure readbacks
+    mb_Input_Registers[48]:=0;  //VG pressure readbacks
+    mb_Input_Registers[49]:=0;  //VG pressure readbacks
+    mb_Input_Registers[50]:=0;  //VG pressure readbacks
+    mb_Input_Registers[51]:=0;  //VG pressure readbacks
+    mb_Input_Registers[52]:=0;  //VG pressure readbacks
+    mb_Input_Registers[53]:=0;  //VG pressure readbacks
+    mb_Input_Registers[54]:=0;  //VG pressure readbacks
+    mb_Input_Registers[55]:=0;  //VG pressure readbacks
+    mb_Input_Registers[56]:=0;  //VG pressure readbacks
+    mb_Input_Registers[57]:=0;  //VG pressure readbacks
+    mb_Input_Registers[58]:=0;  //VG pressure readbacks
+    mb_Input_Registers[59]:=0;  //VG pressure readbacks
+    mb_Input_Registers[60]:=0;  //VG pressure readbacks
+    mb_Input_Registers[61]:=0;  //VG pressure readbacks
+    mb_Input_Registers[62]:=0;  //VG pressure readbacks
+    mb_Input_Registers[63]:=0;  //VG pressure readbacks
+    mb_Input_Registers[64]:=0;  //VG pressure readbacks
+    mb_Input_Registers[65]:=0;  //VG pressure readbacks
+    mb_Input_Registers[66]:=0;  //VG pressure readbacks
+    mb_Input_Registers[67]:=0;  //VG pressure readbacks
+    mb_Input_Registers[68]:=0;  //VG pressure readbacks
+    mb_Input_Registers[69]:=0;  //VG pressure readbacks
+    mb_Input_Registers[70]:=TO_WORD(vgPBT_GPI_02.eState);  //VG state readbacks
+    mb_Input_Registers[71]:=TO_WORD(vgPBT_GPI_04.eState);  //VG state readbacks
+    mb_Input_Registers[72]:=TO_WORD(vgPBT_GPI_06.eState);  //VG state readbacks
+    mb_Input_Registers[73]:=TO_WORD(vgPBT_GPI_07.eState);  //VG state readbacks
+    mb_Input_Registers[74]:=TO_WORD(vgPBT_GPI_09.eState);  //VG state readbacks
+    mb_Input_Registers[75]:=TO_WORD(vgPBT_GCC_02.eState);  //VG state readbacks
+    mb_Input_Registers[76]:=TO_WORD(vgPBT_GCC_04.eState);  //VG state readbacks
+    mb_Input_Registers[77]:=TO_WORD(vgPBT_GCC_06.eState);  //VG state readbacks
+    mb_Input_Registers[78]:=TO_WORD(vgPBT_GCC_07.eState);  //VG state readbacks
+    mb_Input_Registers[79]:=TO_WORD(vgPBT_GCC_09.eState);  //VG state readbacks
+    mb_Input_Registers[80]:=0;  //VG state readbacks
+    mb_Input_Registers[81]:=0;  //VG state readbacks
+    mb_Input_Registers[82]:=0;  //VG state readbacks
+    mb_Input_Registers[83]:=0;  //VG state readbacks
+    mb_Input_Registers[84]:=0;  //VG state readbacks
+    mb_Input_Registers[85]:=0;  //VG state readbacks
+    mb_Input_Registers[86]:=0;  //VG state readbacks
+    mb_Input_Registers[87]:=0;  //VG state readbacks
+    mb_Input_Registers[88]:=0;  //VG state readbacks
+    mb_Input_Registers[89]:=0;  //VG state readbacks
+    mb_Input_Registers[90]:=0;  //VG state readbacks
+    mb_Input_Registers[91]:=0;  //VG state readbacks
+    mb_Input_Registers[92]:=0;  //VG state readbacks
+    mb_Input_Registers[93]:=0;  //VG state readbacks
+    mb_Input_Registers[94]:=0;  //VG state readbacks
+    mb_Input_Registers[95]:=0;  //VG state readbacks
+    mb_Input_Registers[96]:=0;  //VG state readbacks
+    mb_Input_Registers[97]:=0;  //VG state readbacks
+    mb_Input_Registers[98]:=0;  //VG state readbacks
+    mb_Input_Registers[99]:=0;  //VG state readbacks
+    mb_Input_Registers[100]:=0;  //VG state readbacks
+    mb_Input_Registers[101]:=0;  //VG state readbacks
+    mb_Input_Registers[102]:=0;  //VG state readbacks
+    mb_Input_Registers[103]:=0;  //VG state readbacks
+    mb_Input_Registers[104]:=0;  //VG state readbacks
+    mb_Input_Registers[105]:=0;  //VG state readbacks
+    mb_Input_Registers[106]:=0;  //VG state readbacks
+    mb_Input_Registers[107]:=0;  //VG state readbacks
+    mb_Input_Registers[108]:=0;  //VG state readbacks
+    mb_Input_Registers[109]:=0;  //VG state readbacks
+    mb_Input_Registers[110]:=0;  //VG state readbacks
+    mb_Input_Registers[111]:=0;  //VG state readbacks
+    mb_Input_Registers[112]:=0;  //VG state readbacks
+    mb_Input_Registers[113]:=0;  //VG state readbacks
+    mb_Input_Registers[114]:=0;  //VG state readbacks
+    mb_Input_Registers[115]:=0;  //VG state readbacks
+    mb_Input_Registers[116]:=0;  //VG state readbacks
+    mb_Input_Registers[117]:=0;  //VG state readbacks
+    mb_Input_Registers[118]:=0;  //VG state readbacks
+    mb_Input_Registers[119]:=0;  //VG state readbacks
+    mb_Input_Registers[120]:=0;  //default
+    mb_Input_Registers[121]:=0;  //default
+    mb_Input_Registers[122]:=0;  //default
+    mb_Input_Registers[123]:=0;  //default
+    mb_Input_Registers[124]:=0;  //default
+    mb_Input_Registers[125]:=0;  //default
+    mb_Input_Registers[126]:=0;  //default
+    mb_Input_Registers[127]:=0;  //default
+    mb_Input_Registers[128]:=0;  //default
+    mb_Input_Registers[129]:=0;  //default
+    mb_Input_Registers[130]:=0;  //default
+    mb_Input_Registers[131]:=0;  //default
+    mb_Input_Registers[132]:=0;  //default
+    mb_Input_Registers[133]:=0;  //default
+    mb_Input_Registers[134]:=0;  //default
+    mb_Input_Registers[135]:=0;  //default
+    mb_Input_Registers[136]:=0;  //default
+    mb_Input_Registers[137]:=0;  //default
+    mb_Input_Registers[138]:=0;  //default
+    mb_Input_Registers[139]:=0;  //default
+    mb_Input_Registers[140]:=0;  //default
+    mb_Input_Registers[141]:=0;  //default
+    mb_Input_Registers[142]:=0;  //default
+    mb_Input_Registers[143]:=0;  //default
+    mb_Input_Registers[144]:=0;  //default
+    mb_Input_Registers[145]:=0;  //default
+    mb_Input_Registers[146]:=0;  //default
+    mb_Input_Registers[147]:=0;  //default
+    mb_Input_Registers[148]:=0;  //default
+    mb_Input_Registers[149]:=0;  //default
+    mb_Input_Registers[150]:=0;  //default
+    mb_Input_Registers[151]:=0;  //default
+    mb_Input_Registers[152]:=0;  //default
+    mb_Input_Registers[153]:=0;  //default
+    mb_Input_Registers[154]:=0;  //default
+    mb_Input_Registers[155]:=0;  //default
+    mb_Input_Registers[156]:=0;  //default
+    mb_Input_Registers[157]:=0;  //default
+    mb_Input_Registers[158]:=0;  //default
+    mb_Input_Registers[159]:=0;  //default
+    mb_Input_Registers[160]:=0;  //default
+    mb_Input_Registers[161]:=0;  //default
+    mb_Input_Registers[162]:=0;  //default
+    mb_Input_Registers[163]:=0;  //default
+    mb_Input_Registers[164]:=0;  //default
+    mb_Input_Registers[165]:=0;  //default
+    mb_Input_Registers[166]:=0;  //default
+    mb_Input_Registers[167]:=0;  //default
+    mb_Input_Registers[168]:=0;  //default
+    mb_Input_Registers[169]:=0;  //default
+    mb_Input_Registers[170]:=0;  //default
+    mb_Input_Registers[171]:=0;  //default
+    mb_Input_Registers[172]:=0;  //default
+    mb_Input_Registers[173]:=0;  //default
+    mb_Input_Registers[174]:=0;  //default
+    mb_Input_Registers[175]:=0;  //default
+    mb_Input_Registers[176]:=0;  //default
+    mb_Input_Registers[177]:=0;  //default
+    mb_Input_Registers[178]:=0;  //default
+    mb_Input_Registers[179]:=0;  //default
+    mb_Input_Registers[180]:=0;  //default
+    mb_Input_Registers[181]:=0;  //default
+    mb_Input_Registers[182]:=0;  //default
+    mb_Input_Registers[183]:=0;  //default
+    mb_Input_Registers[184]:=0;  //default
+    mb_Input_Registers[185]:=0;  //default
+    mb_Input_Registers[186]:=0;  //default
+    mb_Input_Registers[187]:=0;  //default
+    mb_Input_Registers[188]:=0;  //default
+    mb_Input_Registers[189]:=0;  //default
+    mb_Input_Registers[190]:=0;  //default
+    mb_Input_Registers[191]:=0;  //default
+    mb_Input_Registers[192]:=0;  //default
+    mb_Input_Registers[193]:=0;  //default
+    mb_Input_Registers[194]:=0;  //default
+    mb_Input_Registers[195]:=0;  //default
+    mb_Input_Registers[196]:=0;  //default
+    mb_Input_Registers[197]:=0;  //default
+    mb_Input_Registers[198]:=0;  //default
+    mb_Input_Registers[199]:=0;  //default
+    mb_Input_Registers[200]:=0;  //default
+    mb_Input_Registers[201]:=0;  //default
+    mb_Input_Registers[202]:=0;  //default
+    mb_Input_Registers[203]:=0;  //default
+    mb_Input_Registers[204]:=0;  //default
+    mb_Input_Registers[205]:=0;  //default
+    mb_Input_Registers[206]:=0;  //default
+    mb_Input_Registers[207]:=0;  //default
+    mb_Input_Registers[208]:=0;  //default
+    mb_Input_Registers[209]:=0;  //default
+    mb_Input_Registers[210]:=0;  //default
+    mb_Input_Registers[211]:=0;  //default
+    mb_Input_Registers[212]:=0;  //default
+    mb_Input_Registers[213]:=0;  //default
+    mb_Input_Registers[214]:=0;  //default
+    mb_Input_Registers[215]:=0;  //default
+    mb_Input_Registers[216]:=0;  //default
+    mb_Input_Registers[217]:=0;  //default
+    mb_Input_Registers[218]:=0;  //default
+    mb_Input_Registers[219]:=0;  //default
+    mb_Input_Registers[220]:=0;  //default
+    mb_Input_Registers[221]:=0;  //default
+    mb_Input_Registers[222]:=0;  //default
+    mb_Input_Registers[223]:=0;  //default
+    mb_Input_Registers[224]:=0;  //default
+    mb_Input_Registers[225]:=0;  //default
+    mb_Input_Registers[226]:=0;  //default
+    mb_Input_Registers[227]:=0;  //default
+    mb_Input_Registers[228]:=0;  //default
+    mb_Input_Registers[229]:=0;  //default
+    mb_Input_Registers[230]:=0;  //default
+    mb_Input_Registers[231]:=0;  //default
+    mb_Input_Registers[232]:=0;  //default
+    mb_Input_Registers[233]:=0;  //default
+    mb_Input_Registers[234]:=0;  //default
+    mb_Input_Registers[235]:=0;  //default
+    mb_Input_Registers[236]:=0;  //default
+    mb_Input_Registers[237]:=0;  //default
+    mb_Input_Registers[238]:=0;  //default
+    mb_Input_Registers[239]:=0;  //default
+    mb_Input_Registers[240]:=0;  //default
+    mb_Input_Registers[241]:=0;  //default
+    mb_Input_Registers[242]:=0;  //default
+    mb_Input_Registers[243]:=0;  //default
+    mb_Input_Registers[244]:=0;  //default
+    mb_Input_Registers[245]:=0;  //default
+    mb_Input_Registers[246]:=0;  //default
+    mb_Input_Registers[247]:=0;  //default
+    mb_Input_Registers[248]:=0;  //default
+    mb_Input_Registers[249]:=0;  //default
+    mb_Input_Registers[250]:=0;  //default
+    mb_Input_Registers[251]:=0;  //default
+    mb_Input_Registers[252]:=0;  //default
+    mb_Input_Registers[253]:=0;  //default
+    mb_Input_Registers[254]:=0;  //default
+    mb_Input_Registers[255]:=0;  //default
+
+    END_PROGRAM
+
+
+p_ModbusTx_OutputCoils
+^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusTx_OutputCoils
+    VAR
+    END_VAR
+    mb_Output_Coils[0]:=FALSE;  //System Controls
+    mb_Output_Coils[1]:=g_stSystem.xOverrideMode;  //System Controls
+    mb_Output_Coils[2]:=FALSE;  //System Controls
+    mb_Output_Coils[3] :=q_xXCS_VGC_OK;  //System Controls
+    mb_Output_Coils[4] :=FALSE;  //System Controls
+    mb_Output_Coils[5] :=q_xXCS_MPSOK;  //System Controlsmb_Output_Coils[2]:=FALSE;  //System Controls
+    mb_Output_Coils[6]:=FALSE;  //System Controls
+    mb_Output_Coils[7]:=FALSE;  //System Controls
+    mb_Output_Coils[8]:=FALSE;  //System Controls
+    mb_Output_Coils[9]:=FALSE;  //System Controls
+    mb_Output_Coils[10]:=vgcPBT_VGC_01.xOPN_SW;  //Valve switch controls
+    mb_Output_Coils[11]:=vgcPBT_VGC_02.xOPN_SW;  //Valve switch controls
+    mb_Output_Coils[12]:=vgcPBT_VGC_03.xOPN_SW;  //Valve switch controls
+    mb_Output_Coils[13]:=vgcPBT_VGC_04.xOPN_SW;  //Valve switch controls
+    mb_Output_Coils[14]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[15]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[16]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[17]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[18]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[19]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[20]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[21]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[22]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[23]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[24]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[25]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[26]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[27]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[28]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[29]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[30]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[31]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[32]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[33]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[34]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[35]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[36]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[37]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[38]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[39]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[40]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[41]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[42]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[43]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[44]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[45]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[46]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[47]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[48]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[49]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[50]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[51]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[52]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[53]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[54]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[55]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[56]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[57]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[58]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[59]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[60]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[61]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[62]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[63]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[64]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[65]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[66]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[67]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[68]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[69]:=FALSE;  //Valve switch controls
+    mb_Output_Coils[70]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[71]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[72]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[74]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[75]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[76]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[77]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[78]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[79]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[80]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[81]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[82]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[83]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[84]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[85]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[86]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[87]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[88]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[89]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[90]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[91]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[92]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[93]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[94]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[95]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[96]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[97]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[98]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[99]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[100]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[101]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[102]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[103]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[104]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[105]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[106]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[107]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[108]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[109]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[110]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[111]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[112]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[113]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[114]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[115]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[116]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[117]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[118]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[119]:=FALSE;  //Turbo Controls
+    mb_Output_Coils[120]:=vgPBT_GCC_02.xHV_SW;  //CC HV Enable
+    mb_Output_Coils[121]:=vgPBT_GCC_04.xHV_SW;  //CC HV Enable
+    mb_Output_Coils[122]:=vgPBT_GCC_06.xHV_SW;  //CC HV Enable
+    mb_Output_Coils[123]:=vgPBT_GCC_07.xHV_SW;  //CC HV Enable
+    mb_Output_Coils[124]:=vgPBT_GCC_09.xHV_SW;  //CC HV Enable
+    mb_Output_Coils[125]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[126]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[127]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[128]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[129]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[130]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[131]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[132]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[133]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[134]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[135]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[136]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[137]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[138]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[139]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[140]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[141]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[142]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[143]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[144]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[145]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[146]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[147]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[148]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[149]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[150]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[151]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[152]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[153]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[154]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[155]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[156]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[157]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[158]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[159]:=FALSE;  //CC HV Enable
+    mb_Output_Coils[160]:=FALSE;  //
+    mb_Output_Coils[161]:=FALSE;  //
+    mb_Output_Coils[162]:=FALSE;  //
+    mb_Output_Coils[163]:=FALSE;  //
+    mb_Output_Coils[164]:=FALSE;  //
+    mb_Output_Coils[165]:=FALSE;  //
+    mb_Output_Coils[166]:=FALSE;  //
+    mb_Output_Coils[167]:=FALSE;  //
+    mb_Output_Coils[168]:=FALSE;  //
+    mb_Output_Coils[169]:=FALSE;  //
+    mb_Output_Coils[170]:=FALSE;  //
+    mb_Output_Coils[171]:=FALSE;  //
+    mb_Output_Coils[172]:=FALSE;  //
+    mb_Output_Coils[173]:=FALSE;  //
+    mb_Output_Coils[174]:=FALSE;  //
+    mb_Output_Coils[175]:=FALSE;  //
+    mb_Output_Coils[176]:=FALSE;  //
+    mb_Output_Coils[177]:=FALSE;  //
+    mb_Output_Coils[178]:=FALSE;  //
+    mb_Output_Coils[179]:=FALSE;  //
+    mb_Output_Coils[180]:=FALSE;  //
+    mb_Output_Coils[181]:=FALSE;  //
+    mb_Output_Coils[182]:=FALSE;  //
+    mb_Output_Coils[183]:=FALSE;  //
+    mb_Output_Coils[184]:=FALSE;  //
+    mb_Output_Coils[185]:=FALSE;  //
+    mb_Output_Coils[186]:=FALSE;  //
+    mb_Output_Coils[187]:=FALSE;  //
+    mb_Output_Coils[188]:=FALSE;  //
+    mb_Output_Coils[189]:=FALSE;  //
+    mb_Output_Coils[190]:=FALSE;  //
+    mb_Output_Coils[191]:=FALSE;  //
+    mb_Output_Coils[192]:=FALSE;  //
+    mb_Output_Coils[193]:=FALSE;  //
+    mb_Output_Coils[194]:=FALSE;  //
+    mb_Output_Coils[195]:=FALSE;  //
+    mb_Output_Coils[196]:=FALSE;  //
+    mb_Output_Coils[197]:=FALSE;  //
+    mb_Output_Coils[198]:=FALSE;  //
+    mb_Output_Coils[199]:=FALSE;  //
+    mb_Output_Coils[200]:=vgcPBT_VGC_01.xOvrdOpn;  //Valve overrides
+    mb_Output_Coils[201]:=vgcPBT_VGC_02.xOvrdOpn;  //Valve overrides
+    mb_Output_Coils[202]:=vgcPBT_VGC_03.xOvrdOpn;  //Valve overrides
+    mb_Output_Coils[203]:=vgcPBT_VGC_04.xOvrdOpn;  //Valve overrides
+    mb_Output_Coils[204]:=FALSE;  //
+    mb_Output_Coils[205]:=FALSE;  //
+    mb_Output_Coils[206]:=FALSE;  //
+    mb_Output_Coils[207]:=FALSE;  //
+    mb_Output_Coils[208]:=FALSE;  //
+    mb_Output_Coils[209]:=FALSE;  //
+    mb_Output_Coils[210]:=FALSE;  //
+    mb_Output_Coils[211]:=FALSE;  //
+    mb_Output_Coils[212]:=FALSE;  //
+    mb_Output_Coils[213]:=FALSE;  //
+    mb_Output_Coils[214]:=FALSE;  //
+    mb_Output_Coils[215]:=FALSE;  //
+    mb_Output_Coils[216]:=FALSE;  //
+    mb_Output_Coils[217]:=FALSE;  //
+    mb_Output_Coils[218]:=FALSE;  //
+    mb_Output_Coils[219]:=FALSE;  //
+    mb_Output_Coils[220]:=FALSE;  //
+    mb_Output_Coils[221]:=FALSE;  //
+    mb_Output_Coils[222]:=FALSE;  //
+    mb_Output_Coils[223]:=FALSE;  //
+    mb_Output_Coils[224]:=FALSE;  //
+    mb_Output_Coils[225]:=FALSE;  //
+    mb_Output_Coils[226]:=FALSE;  //
+    mb_Output_Coils[227]:=FALSE;  //
+    mb_Output_Coils[228]:=FALSE;  //
+    mb_Output_Coils[229]:=FALSE;  //
+    mb_Output_Coils[230]:=FALSE;  //
+    mb_Output_Coils[231]:=FALSE;  //
+    mb_Output_Coils[232]:=FALSE;  //
+    mb_Output_Coils[233]:=FALSE;  //
+    mb_Output_Coils[234]:=FALSE;  //
+    mb_Output_Coils[235]:=FALSE;  //
+    mb_Output_Coils[236]:=FALSE;  //
+    mb_Output_Coils[237]:=FALSE;  //
+    mb_Output_Coils[238]:=FALSE;  //
+    mb_Output_Coils[239]:=FALSE;  //
+    mb_Output_Coils[240]:=FALSE;  //
+    mb_Output_Coils[241]:=FALSE;  //
+    mb_Output_Coils[242]:=FALSE;  //
+    mb_Output_Coils[243]:=FALSE;  //
+    mb_Output_Coils[244]:=FALSE;  //
+    mb_Output_Coils[245]:=FALSE;  //
+    mb_Output_Coils[246]:=FALSE;  //
+    mb_Output_Coils[247]:=FALSE;  //
+    mb_Output_Coils[248]:=FALSE;  //
+    mb_Output_Coils[249]:=FALSE;  //
+    mb_Output_Coils[250]:=FALSE;  //
+    mb_Output_Coils[251]:=FALSE;  //
+    mb_Output_Coils[252]:=FALSE;  //
+    mb_Output_Coils[253]:=FALSE;  //
+    mb_Output_Coils[254]:=FALSE;  //
+    mb_Output_Coils[255]:=FALSE;  //
+
+    END_PROGRAM
+
+
+p_ModbusTx_OutputReg
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusTx_OutputReg
+    VAR
+    END_VAR
+    mb_Output_Registers[0]:=0;  //System parameters
+    mb_Output_Registers[1]:=0;  //System parameters
+    mb_Output_Registers[2]:=0;  //System parameters
+    mb_Output_Registers[3]:=0;  //System parameters
+    mb_Output_Registers[4]:=0;  //System parameters
+    mb_Output_Registers[5]:=0;  //System parameters
+    mb_Output_Registers[6]:=0;  //System parameters
+    mb_Output_Registers[7]:=0;  //System parameters
+    mb_Output_Registers[8]:=0;  //System parameters
+    mb_Output_Registers[9]:=0;  //System parameters
+    (*mb_Output_Registers[10]:=vgPBT_GCC_02.iVacSp;  //VG setpoint
+    mb_Output_Registers[11]:=vgPBT_GPI_02.iVacSp;  //VG setpoint
+    mb_Output_Registers[12]:=vgPBT_GCC_04.iVacSp;  //VG setpoint
+    mb_Output_Registers[13]:=vgPBT_GPI_04.iVacSp;  //VG setpoint
+    mb_Output_Registers[14]:=vgPBT_GCC_06.iVacSp;  //VG setpoint
+    mb_Output_Registers[15]:=vgPBT_GPI_06.iVacSp;  //VG setpoint
+    mb_Output_Registers[16]:=vgPBT_GCC_07.iVacSp;  //VG setpoint
+    mb_Output_Registers[17]:=vgPBT_GPI_07.iVacSp;  //VG setpoint
+    mb_Output_Registers[18]:=vgPBT_GCC_09.iVacSp;  //VG setpoint
+    mb_Output_Registers[19]:=vgPBT_GPI_09.iVacSp;  //VG setpoint*)
+    mb_Output_Registers[20]:=0;  //VG setpoint
+    mb_Output_Registers[21]:=0;  //VG setpoint
+    mb_Output_Registers[22]:=0;  //VG setpoint
+    mb_Output_Registers[23]:=0;  //VG setpoint
+    mb_Output_Registers[24]:=0;  //VG setpoint
+    mb_Output_Registers[25]:=0;  //VG setpoint
+    mb_Output_Registers[26]:=0;  //VG setpoint
+    mb_Output_Registers[27]:=0;  //VG setpoint
+    mb_Output_Registers[28]:=0;  //VG setpoint
+    mb_Output_Registers[29]:=0;  //VG setpoint
+    mb_Output_Registers[30]:=0;  //VG setpoint
+    mb_Output_Registers[31]:=0;  //VG setpoint
+    mb_Output_Registers[32]:=0;  //VG setpoint
+    mb_Output_Registers[33]:=0;  //VG setpoint
+    mb_Output_Registers[34]:=0;  //VG setpoint
+    mb_Output_Registers[35]:=0;  //VG setpoint
+    mb_Output_Registers[36]:=0;  //VG setpoint
+    mb_Output_Registers[37]:=0;  //VG setpoint
+    mb_Output_Registers[38]:=0;  //VG setpoint
+    mb_Output_Registers[39]:=0;  //VG setpoint
+    mb_Output_Registers[40]:=0;  //VG setpoint
+    mb_Output_Registers[41]:=0;  //VG setpoint
+    mb_Output_Registers[42]:=0;  //VG setpoint
+    mb_Output_Registers[43]:=0;  //VG setpoint
+    mb_Output_Registers[44]:=0;  //VG setpoint
+    mb_Output_Registers[45]:=0;  //VG setpoint
+    mb_Output_Registers[46]:=0;  //VG setpoint
+    mb_Output_Registers[47]:=0;  //VG setpoint
+    mb_Output_Registers[48]:=0;  //VG setpoint
+    mb_Output_Registers[49]:=0;  //VG setpoint
+    mb_Output_Registers[50]:=0;  //VG setpoint
+    mb_Output_Registers[51]:=0;  //VG setpoint
+    mb_Output_Registers[52]:=0;  //VG setpoint
+    mb_Output_Registers[53]:=0;  //VG setpoint
+    mb_Output_Registers[54]:=0;  //VG setpoint
+    mb_Output_Registers[55]:=0;  //VG setpoint
+    mb_Output_Registers[56]:=0;  //VG setpoint
+    mb_Output_Registers[57]:=0;  //VG setpoint
+    mb_Output_Registers[58]:=0;  //VG setpoint
+    mb_Output_Registers[59]:=0;  //VG setpoint
+    mb_Output_Registers[60]:=0;  //default
+    mb_Output_Registers[61]:=0;  //default
+    mb_Output_Registers[62]:=0;  //default
+    mb_Output_Registers[63]:=0;  //default
+    mb_Output_Registers[64]:=0;  //default
+    mb_Output_Registers[65]:=0;  //default
+    mb_Output_Registers[66]:=0;  //default
+    mb_Output_Registers[67]:=0;  //default
+    mb_Output_Registers[68]:=0;  //default
+    mb_Output_Registers[69]:=0;  //default
+    mb_Output_Registers[70]:=0;  //default
+    mb_Output_Registers[71]:=0;  //default
+    mb_Output_Registers[72]:=0;  //default
+    mb_Output_Registers[73]:=0;  //default
+    mb_Output_Registers[74]:=0;  //default
+    mb_Output_Registers[75]:=0;  //default
+    mb_Output_Registers[76]:=0;  //default
+    mb_Output_Registers[77]:=0;  //default
+    mb_Output_Registers[78]:=0;  //default
+    mb_Output_Registers[79]:=0;  //default
+    mb_Output_Registers[80]:=0;  //default
+    mb_Output_Registers[81]:=0;  //default
+    mb_Output_Registers[82]:=0;  //default
+    mb_Output_Registers[83]:=0;  //default
+    mb_Output_Registers[84]:=0;  //default
+    mb_Output_Registers[85]:=0;  //default
+    mb_Output_Registers[86]:=0;  //default
+    mb_Output_Registers[87]:=0;  //default
+    mb_Output_Registers[88]:=0;  //default
+    mb_Output_Registers[89]:=0;  //default
+    mb_Output_Registers[90]:=0;  //default
+    mb_Output_Registers[91]:=0;  //default
+    mb_Output_Registers[92]:=0;  //default
+    mb_Output_Registers[93]:=0;  //default
+    mb_Output_Registers[94]:=0;  //default
+    mb_Output_Registers[95]:=0;  //default
+    mb_Output_Registers[96]:=0;  //default
+    mb_Output_Registers[97]:=0;  //default
+    mb_Output_Registers[98]:=0;  //default
+    mb_Output_Registers[99]:=0;  //default
+    mb_Output_Registers[100]:=0;  //default
+    mb_Output_Registers[101]:=0;  //default
+    mb_Output_Registers[102]:=0;  //default
+    mb_Output_Registers[103]:=0;  //default
+    mb_Output_Registers[104]:=0;  //default
+    mb_Output_Registers[105]:=0;  //default
+    mb_Output_Registers[106]:=0;  //default
+    mb_Output_Registers[107]:=0;  //default
+    mb_Output_Registers[108]:=0;  //default
+    mb_Output_Registers[109]:=0;  //default
+    mb_Output_Registers[110]:=0;  //default
+    mb_Output_Registers[111]:=0;  //default
+    mb_Output_Registers[112]:=0;  //default
+    mb_Output_Registers[113]:=0;  //default
+    mb_Output_Registers[114]:=0;  //default
+    mb_Output_Registers[115]:=0;  //default
+    mb_Output_Registers[116]:=0;  //default
+    mb_Output_Registers[117]:=0;  //default
+    mb_Output_Registers[118]:=0;  //default
+    mb_Output_Registers[119]:=0;  //default
+    mb_Output_Registers[120]:=0;  //default
+    mb_Output_Registers[121]:=0;  //default
+    mb_Output_Registers[122]:=0;  //default
+    mb_Output_Registers[123]:=0;  //default
+    mb_Output_Registers[124]:=0;  //default
+    mb_Output_Registers[125]:=0;  //default
+    mb_Output_Registers[126]:=0;  //default
+    mb_Output_Registers[127]:=0;  //default
+    mb_Output_Registers[128]:=0;  //default
+    mb_Output_Registers[129]:=0;  //default
+    mb_Output_Registers[130]:=0;  //default
+    mb_Output_Registers[131]:=0;  //default
+    mb_Output_Registers[132]:=0;  //default
+    mb_Output_Registers[133]:=0;  //default
+    mb_Output_Registers[134]:=0;  //default
+    mb_Output_Registers[135]:=0;  //default
+    mb_Output_Registers[136]:=0;  //default
+    mb_Output_Registers[137]:=0;  //default
+    mb_Output_Registers[138]:=0;  //default
+    mb_Output_Registers[139]:=0;  //default
+    mb_Output_Registers[140]:=0;  //default
+    mb_Output_Registers[141]:=0;  //default
+    mb_Output_Registers[142]:=0;  //default
+    mb_Output_Registers[143]:=0;  //default
+    mb_Output_Registers[144]:=0;  //default
+    mb_Output_Registers[145]:=0;  //default
+    mb_Output_Registers[146]:=0;  //default
+    mb_Output_Registers[147]:=0;  //default
+    mb_Output_Registers[148]:=0;  //default
+    mb_Output_Registers[149]:=0;  //default
+    mb_Output_Registers[150]:=0;  //default
+    mb_Output_Registers[151]:=0;  //default
+    mb_Output_Registers[152]:=0;  //default
+    mb_Output_Registers[153]:=0;  //default
+    mb_Output_Registers[154]:=0;  //default
+    mb_Output_Registers[155]:=0;  //default
+    mb_Output_Registers[156]:=0;  //default
+    mb_Output_Registers[157]:=0;  //default
+    mb_Output_Registers[158]:=0;  //default
+    mb_Output_Registers[159]:=0;  //default
+    mb_Output_Registers[160]:=0;  //default
+    mb_Output_Registers[161]:=0;  //default
+    mb_Output_Registers[162]:=0;  //default
+    mb_Output_Registers[163]:=0;  //default
+    mb_Output_Registers[164]:=0;  //default
+    mb_Output_Registers[165]:=0;  //default
+    mb_Output_Registers[166]:=0;  //default
+    mb_Output_Registers[167]:=0;  //default
+    mb_Output_Registers[168]:=0;  //default
+    mb_Output_Registers[169]:=0;  //default
+    mb_Output_Registers[170]:=0;  //default
+    mb_Output_Registers[171]:=0;  //default
+    mb_Output_Registers[172]:=0;  //default
+    mb_Output_Registers[173]:=0;  //default
+    mb_Output_Registers[174]:=0;  //default
+    mb_Output_Registers[175]:=0;  //default
+    mb_Output_Registers[176]:=0;  //default
+    mb_Output_Registers[177]:=0;  //default
+    mb_Output_Registers[178]:=0;  //default
+    mb_Output_Registers[179]:=0;  //default
+    mb_Output_Registers[180]:=0;  //default
+    mb_Output_Registers[181]:=0;  //default
+    mb_Output_Registers[182]:=0;  //default
+    mb_Output_Registers[183]:=0;  //default
+    mb_Output_Registers[184]:=0;  //default
+    mb_Output_Registers[185]:=0;  //default
+    mb_Output_Registers[186]:=0;  //default
+    mb_Output_Registers[187]:=0;  //default
+    mb_Output_Registers[188]:=0;  //default
+    mb_Output_Registers[189]:=0;  //default
+    mb_Output_Registers[190]:=0;  //default
+    mb_Output_Registers[191]:=0;  //default
+    mb_Output_Registers[192]:=0;  //default
+    mb_Output_Registers[193]:=0;  //default
+    mb_Output_Registers[194]:=0;  //default
+    mb_Output_Registers[195]:=0;  //default
+    mb_Output_Registers[196]:=0;  //default
+    mb_Output_Registers[197]:=0;  //default
+    mb_Output_Registers[198]:=0;  //default
+    mb_Output_Registers[199]:=0;  //default
+    mb_Output_Registers[200]:=0;  //default
+    mb_Output_Registers[201]:=0;  //default
+    mb_Output_Registers[202]:=0;  //default
+    mb_Output_Registers[203]:=0;  //default
+    mb_Output_Registers[204]:=0;  //default
+    mb_Output_Registers[205]:=0;  //default
+    mb_Output_Registers[206]:=0;  //default
+    mb_Output_Registers[207]:=0;  //default
+    mb_Output_Registers[208]:=0;  //default
+    mb_Output_Registers[209]:=0;  //default
+    mb_Output_Registers[210]:=0;  //default
+    mb_Output_Registers[211]:=0;  //default
+    mb_Output_Registers[212]:=0;  //default
+    mb_Output_Registers[213]:=0;  //default
+    mb_Output_Registers[214]:=0;  //default
+    mb_Output_Registers[215]:=0;  //default
+    mb_Output_Registers[216]:=0;  //default
+    mb_Output_Registers[217]:=0;  //default
+    mb_Output_Registers[218]:=0;  //default
+    mb_Output_Registers[219]:=0;  //default
+    mb_Output_Registers[220]:=0;  //default
+    mb_Output_Registers[221]:=0;  //default
+    mb_Output_Registers[222]:=0;  //default
+    mb_Output_Registers[223]:=0;  //default
+    mb_Output_Registers[224]:=0;  //default
+    mb_Output_Registers[225]:=0;  //default
+    mb_Output_Registers[226]:=0;  //default
+    mb_Output_Registers[227]:=0;  //default
+    mb_Output_Registers[228]:=0;  //default
+    mb_Output_Registers[229]:=0;  //default
+    mb_Output_Registers[230]:=0;  //default
+    mb_Output_Registers[231]:=0;  //default
+    mb_Output_Registers[232]:=0;  //default
+    mb_Output_Registers[233]:=0;  //default
+    mb_Output_Registers[234]:=0;  //default
+    mb_Output_Registers[235]:=0;  //default
+    mb_Output_Registers[236]:=0;  //default
+    mb_Output_Registers[237]:=0;  //default
+    mb_Output_Registers[238]:=0;  //default
+    mb_Output_Registers[239]:=0;  //default
+    mb_Output_Registers[240]:=0;  //default
+    mb_Output_Registers[241]:=0;  //default
+    mb_Output_Registers[242]:=0;  //default
+    mb_Output_Registers[243]:=0;  //default
+    mb_Output_Registers[244]:=0;  //default
+    mb_Output_Registers[245]:=0;  //default
+    mb_Output_Registers[246]:=0;  //default
+    mb_Output_Registers[247]:=0;  //default
+    mb_Output_Registers[248]:=0;  //default
+    mb_Output_Registers[249]:=0;  //default
+    mb_Output_Registers[250]:=0;  //default
+    mb_Output_Registers[251]:=0;  //default
+    mb_Output_Registers[252]:=0;  //default
+    mb_Output_Registers[253]:=0;  //default
+    mb_Output_Registers[254]:=0;  //default
+    mb_Output_Registers[255]:=0;  //default
+
+    END_PROGRAM
+
+
+p_ModbusTx_PLCMemory
+^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_ModbusTx_PLCMemory
+    VAR
+    END_VAR
+    (*mb_PLC_Memory[0]-[99] PLC aiFloat inputs *)
+
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[10]), srcAddr:=ADR(vgPBT_GCC_02.rPRESS), n:=SIZEOF(vgPBT_GCC_02.rPRESS));  //VG pressure readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[12]), srcAddr:=ADR(vgPBT_GPI_02.rPRESS), n:=SIZEOF(vgPBT_GPI_02.rPRESS));  //VG pressure readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[14]), srcAddr:=ADR(vgPBT_GCC_04.rPRESS), n:=SIZEOF(vgPBT_GCC_04.rPRESS));  //VG pressure readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[16]), srcAddr:=ADR(vgPBT_GPI_04.rPRESS), n:=SIZEOF(vgPBT_GPI_04.rPRESS));  //VG pressure readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[18]), srcAddr:=ADR(vgPBT_GCC_06.rPRESS), n:=SIZEOF(vgPBT_GCC_06.rPRESS));  //VG pressure readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[20]), srcAddr:=ADR(vgPBT_GPI_06.rPRESS), n:=SIZEOF(vgPBT_GPI_06.rPRESS));  //VG pressure readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[22]), srcAddr:=ADR(vgPBT_GCC_07.rPRESS), n:=SIZEOF(vgPBT_GCC_07.rPRESS));  //VG pressure readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[24]), srcAddr:=ADR(vgPBT_GPI_07.rPRESS), n:=SIZEOF(vgPBT_GPI_07.rPRESS));  //VG pressure readbacks
+
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[26]), srcAddr:=ADR(vgPBT_GCC_09.rPRESS), n:=SIZEOF(vgPBT_GCC_09.rPRESS));  //VG pressure readbacks
+    MEMCPY(destAddr:=ADR(mb_PLC_Memory[28]), srcAddr:=ADR(vgPBT_GPI_09.rPRESS), n:=SIZEOF(vgPBT_GPI_09.rPRESS));  //VG pressure readbacks
+
+    END_PROGRAM
+
+
+p_MPSSup
+^^^^^^^^
+
+::
+
+    PROGRAM p_MPSSup
+    VAR
+    END_VAR
+    q_xXCS_MPSOK := g_xIOState AND vgcPBT_VGC_01.i_xOpnLS AND vgcPBT_VGC_02.i_xOpnLS AND vgcPBT_VGC_03.i_xOpnLS AND vgcPBT_VGC_04.i_xOpnLS;
+    //
+
+    END_PROGRAM
+
+
+p_SoftIOMap
+^^^^^^^^^^^
+
+::
+
+    PROGRAM p_SoftIOMap
+    VAR
+    END_VAR
+    (* Generic PLC Rail *)
+    //	i_iR32_31el3064s01c01 AT %I*: INT;
+    //	i_iR32_31el3064s01c02 AT %I*: INT;
+    //	i_iR32_31el3064s01c03 AT %I*: INT;
+    //	i_iR32_31el3064s01c04 AT %I*: INT;
+
+    //	i_xR32_31el1008s02c01 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c05 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c03 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c04 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c05 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c06 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c07 AT %I*: BOOL;
+    //	i_xR32_31el1008s02c08 AT %I*: BOOL;
+
+    //	q_xR32_31el2008s03c01 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c02 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c03 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c04 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c05 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c06 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c07 AT %Q*: BOOL;
+    //	q_xR32_31el2008s03c08 AT %Q*: BOOL;
+
+    //	q_xR32_31el2798s04c01 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c02 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c03 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c04 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c05 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c06 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c07 AT %Q*: BOOL;
+    //	q_xR32_31el2798s04c08 AT %Q*: BOOL;
+    //vgMXT_GCC_06 : ST_VG;
+    //vgcMXT_VGC_04 : ST_VGC;
+
+
+            (* XRT Stand IDNO 13 *)
+        vgPBT_GPI_02.iPRESS_R := i_iS13_EB1_ep3174c01;
+        vgPBT_GCC_02.iPRESS_R := i_iS13_EB1_ep3174c02;
+    //	i_iS13_EB1_ep3174c03 AT %I* : INT;
+    //	i_iS13_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS13_EB2_ep2624c01 := vgPBT_GCC_02.xHV_DIS;
+        q_xS13_EB2_ep2624c02 := FALSE;
+        q_xS13_EB2_ep2624c03 := FALSE;
+        q_xS13_EB2_ep2624c04 := FALSE;
+
+        (* XRT stand IDNO 14 *)
+        vgcPBT_VGC_01.i_xOpnLS := i_xS14_EB1_ep2338c01;
+        vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
+        q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
+        q_xS14_EB1_ep2338c04 := FALSE;
+    //	i_xS14_EB1_ep2338c05 AT %I* : BOOL;
+    //	i_xS14_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS14_EB1_ep2338c07 := FALSE;
+        q_xS14_EB1_ep2338c08 := FALSE;
+    //g_ixUSVacOK :=
+
+
+        (* XRT stand IDNO 20 *)
+        vgPBT_GPI_04.iPRESS_R := i_iS20_EB1_ep3174c01;
+        vgPBT_GCC_04.iPRESS_R := i_iS20_EB1_ep3174c02;
+    //	i_iS20_EB1_ep3174c03 AT %I* : INT;
+    //	i_iS20_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS20_EB2_ep2624c01 := vgPBT_GCC_04.xHV_DIS;
+        q_xS20_EB2_ep2624c02 := FALSE;
+        q_xS20_EB2_ep2624c03 := FALSE;
+        q_xS20_EB2_ep2624c04 := FALSE;
+
+
+        (* XRT stand IDNO 78 *)
+        vgcPBT_VGC_02.i_xOpnLS := i_xS78_EB1_ep2338c01;
+        vgcPBT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
+        q_xS78_EB1_ep2338c03 := vgcPBT_VGC_02.xOPN_DO;
+        q_xS78_EB1_ep2338c04 := FALSE;
+        i_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+        i_xS78_EB1_ep2338c06 := FALSE;
+        q_xS78_EB1_ep2338c07 := FALSE;
+        q_xS78_EB1_ep2338c08 := FALSE;
+
+        vgPBT_GPI_06.iPRESS_R := i_iS78_EB2_ep3174c01;
+        vgPBT_GCC_06.iPRESS_R := i_iS78_EB2_ep3174c02;
+        vgPBT_GPI_07.iPRESS_R := i_iS78_EB2_ep3174c03;
+        vgPBT_GCC_07.iPRESS_R := i_iS78_EB2_ep3174c04;
+
+        q_xS78_EB3_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
+        q_xS78_EB3_ep2624c02 := vgPBT_GCC_07.xHV_DIS;
+        q_xS78_EB3_ep2624c03 := FALSE;
+        q_xS78_EB3_ep2624c04 := FALSE;
+
+
+        (* XRT stand IDNO 80 *)
+        vgcPBT_VGC_03.i_xOpnLS := i_xS80_EB1_ep2338c01;
+        vgcPBT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
+        q_xS80_EB1_ep2338c03 := vgcPBT_VGC_03.xOPN_DO;
+        q_xS80_EB1_ep2338c04 := FALSE;
+        i_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+    //	i_xS80_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS80_EB1_ep2338c07 := FALSE;
+        q_xS80_EB1_ep2338c08 := FALSE;
+
+
+        (* XRT stand IDNO 26 *)
+        q_xS26_EB1_ep2338c01 := q_xXCS_MPSOK;
+    //	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
+    //	q_xS26_EB1_ep2338c03 := ;
+        q_xS26_EB1_ep2338c04 := FALSE;
+        i_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+    //	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS26_EB1_ep2338c07 := FALSE;
+        q_xS26_EB1_ep2338c08 := FALSE;
+
+
+
+        (* XRT stand IDNO 83 *)
+        vgPBT_GPI_09.iPRESS_R := i_iS83_EB1_ep3174c01;
+        vgPBT_GCC_09.iPRESS_R := i_iS83_EB1_ep3174c02;
+    //	i_iS83_EB1_ep3174c03 AT %I* : INT;
+    //	i_iS83_EB1_ep3174c04 AT %I* : INT;
+
+        q_xS83_EB2_ep2624c01 := vgPBT_GCC_09.xHV_DIS;
+        q_xS83_EB2_ep2624c02 := FALSE;
+        q_xS83_EB2_ep2624c03 := FALSE;
+        q_xS83_EB2_ep2624c04 := FALSE;
+
+
+
+        (* XRT stand IDNO 63 *)
+        vgcPBT_VGC_04.i_xOpnLS := i_xS63_EB1_ep2338c01;
+        vgcPBT_VGC_04.i_xClsLS := i_xS63_EB1_ep2338c02;
+        q_xS63_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
+        q_xS63_EB1_ep2338c04 := FALSE;
+        i_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+    //	i_xS63_EB1_ep2338c06 AT %I* : BOOL;
+        q_xS63_EB1_ep2338c07 := FALSE;
+        q_xS63_EB1_ep2338c08 := FALSE;
+
+    END_PROGRAM
+
+
+p_ValveSup
+^^^^^^^^^^
+
+::
+
+    PROGRAM p_ValveSup
+    VAR
+        fbPBT_VGC_01 : FB_VGC;
+        fbPBT_VGC_02 : FB_VGC;
+        fbPBT_VGC_03 : FB_VGC;
+        fbPBT_VGC_04 : FB_VGC;
+
+        //vgDownstream: LCLSVACUUMLIB.ST_VG;
+    END_VAR
+    vgcPBT_VGC_01.xEXT_OK := TRUE;
+    fbPBT_VGC_01(iq_stValve:=vgcPBT_VGC_01, i_stDSG:=vgPBT_GCC_04, i_stUSG:=vgPBT_GCC_02, i_xDis_DPIlk:=FALSE);
+
+    vgcPBT_VGC_02.xEXT_OK := TRUE;
+    fbPBT_VGC_02(iq_stValve:=vgcPBT_VGC_02, i_stDSG:=vgPBT_GCC_06, i_stUSG:=vgPBT_GCC_04, i_xDis_DPIlk:=FALSE);
+
+    vgcPBT_VGC_03.xEXT_OK := TRUE;
+    fbPBT_VGC_03(iq_stValve:=vgcPBT_VGC_03, i_stDSG:=vgPBT_GCC_09, i_stUSG:=vgPBT_GCC_07, i_xDis_DPIlk:=FALSE);
+
+    vgcPBT_VGC_04.xEXT_OK := TRUE;
+    vgMON_DUMMY.xPRESS_OK := g_ixDSVacOK;
+    vgMON_DUMMY.xAT_VAC := g_ixDSVacOK;
+    fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_stDSG:=vgMON_DUMMY, i_xDis_DPIlk:=FALSE);
+
+    END_PROGRAM
+
+
+p_XLegacyPLCModbus
+^^^^^^^^^^^^^^^^^^
+
+::
+
+    PROGRAM p_XLegacyPLCModbus
+    VAR
+        fbHFX_PLCInputCoilsRx	:	FB_MBReadInputs;
+
+        i_xHFX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
+
+        ftResetHFX	: F_TRIG;
+        tonRetryHFX : TON;
+    END_VAR
+    (* Modbus Info for Koyo
+    Modbus Addresses for
+    Koyo DL05/06/240/250/260/430/440/450 PLCs
+    PLC Memory Type		| Modbus start address Decimal (octal) | Function codes
+    Inputs (X)			  2048 (04000)							2
+    Special Relays (SP)	  3072 (06000)							2
+    Outputs (Y)			  2048 (04000)							1, 5, 15
+    Control Relays (C)	  3072 (06000)							1, 5, 15
+    Timer Contacts (T)	  6144 (014000)							1, 5, 15
+    Counter Contacts (CT) 6400 (014400)							1, 5, 15
+    Stage Status Bits (S) 6144 (012000)							1, 5, 15
+    *)
+
+
+    (* HFX code *)
+    // Retry after some time
+    tonRetryHFX.IN := NOT fbHFX_PLCInputCoilsRx.bBusy;
+    tonRetryHFX.PT := T#10S;
+    tonRetryHFX();
+
+    ftResetHFX(CLK:=fbHFX_PLCInputCoilsRx.bBusy);
+    //ftResetHFX();
+
+    fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
+
+    fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.88.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#5S);
+
+    IF fbHFX_PLCInputCoilsRx.bError THEN
+        //run some error code for modbus
+        //if there's a modbus error, set all incoming bits to zero
+        // HFX PLC Relay coil C[3] is used for PBT downstream VacOK
+        i_xHFX_PLC_CnBits[0].0 := 0;
+        i_xHFX_PLC_CnBits[0].1 := 0;
+        i_xHFX_PLC_CnBits[0].2 := 0;
+        i_xHFX_PLC_CnBits[0].3 := 0;
+        i_xHFX_PLC_CnBits[0].4 := 0;
+        i_xHFX_PLC_CnBits[1].0 := 0;
+        i_xHFX_PLC_CnBits[1].1 := 0;
+        i_xHFX_PLC_CnBits[1].2 := 0;
+        g_ixDSVacOK := FALSE;
+        g_xNoHFXPLCResponse:= TRUE;
+
+
+    ELSIF Not ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
+        g_xNoHFXPLCResponse:= FALSE;
+        g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
+        fbHFX_PLCInputCoilsRx.bExecute :=False;
+    ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
+        //more error code cause we didn't manage to read anything
+        //g_ixDSVacOK := FALSE;
+        //g_xNoHFXPLCResponse:= TRUE;
+
+    END_IF
+
+    END_PROGRAM
+

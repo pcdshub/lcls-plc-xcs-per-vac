@@ -1,0 +1,29 @@
+lcls-plc-xcs-per-vac
+--------------------
+
+.. toctree::
+    :maxdepth: 2
+    :caption: XCS_PER
+
+    XCS_PER_pragmas
+    XCS_PER_nc
+    XCS_PER_boxes
+    XCS_PER_links
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: XCS_PER_PLC
+
+    XCS_PER_XCS_PER_PLC_summary
+    XCS_PER_XCS_PER_PLC_epics
+    XCS_PER_XCS_PER_PLC_source
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
