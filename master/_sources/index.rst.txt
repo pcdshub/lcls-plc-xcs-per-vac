@@ -7,6 +7,7 @@ lcls-plc-xcs-per-vac
 
     XCS_PER_pragmas
     XCS_PER_nc
+    XCS_PER_ethercat
     XCS_PER_boxes
     XCS_PER_links
 

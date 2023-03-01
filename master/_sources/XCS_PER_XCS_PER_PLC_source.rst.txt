@@ -47,6 +47,8 @@ GVL
     END_VAR
 
 
+
+
 GVL_IO
 ^^^^^^
 
@@ -189,6 +191,8 @@ GVL_IO
     END_VAR
 
 
+
+
 GVL_Variables_Devices
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -224,6 +228,8 @@ GVL_Variables_Devices
 
 
     END_VAR
+
+
 
 
 POUs
@@ -308,6 +314,8 @@ FB_275_t
     PG.xAT_VAC := PG.xPRESS_OK AND (PG.rPRESS<PG.rVAC_SP);
 
     END_FUNCTION_BLOCK
+
+
 
 
 FB_500_VG
@@ -396,6 +404,8 @@ FB_500_VG
     END_FUNCTION_BLOCK
 
 
+
+
 FB_500_VG_1
 ^^^^^^^^^^^
 
@@ -472,6 +482,119 @@ FB_500_VG_1
     END_FUNCTION_BLOCK
 
 
+
+
+FB_500_VG_2
+^^^^^^^^^^^
+
+::
+
+    FUNCTION_BLOCK FB_500_VG_2
+
+    VAR_IN_OUT
+        IG : ST_VG;
+    END_VAR
+
+    VAR_INPUT
+        PG	:	ST_VG;
+    END_VAR
+
+    VAR_OUTPUT
+        xHV_SW: BOOL;
+        rPRESS: INT;
+        rVAC_SP: INT;
+    END_VAR
+
+    VAR
+    	bInit			: BOOL := TRUE;
+        rV 				: REAL;
+        GaugeTurnOnTmr 	: TON;
+    	tStartupTimer	: TON;
+    END_VAR
+
+    VAR CONSTANT
+        //cDefaultPressure : REAL := 750.0;
+        //vBase	:	REAL := 0; //corresponding vbase 0V based on default curve.  See manual pg. 44
+        //pBase	:	REAL := 1.0E-10; //default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.
+        //vSlope	:	REAL := 1.0; //looks correct for default curve
+    	
+    	// Ranges have to match the configurator software
+    	pBase 			 : REAL := 1.0E-10;//default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.
+    	vBase 			 : REAL := 1;
+    	vDisconnected 	 : REAL := 0.5;
+    	vSlope 			 : REAL := 1.0; 
+    	vGaugeOff		 : REAL := 9.8;
+    	vNoDischarge	 : REAL := 9.3;
+    	MinPressure		 : REAL := 1E-10;
+    	cDefaultPressure : REAL := 0;
+    	rDeadband 		 : REAL := 0.3;
+    	iTermBits		 : UINT := 32767; // The terminal's maximum value in bits
+    END_VAR
+    IF (bInit) THEN
+    	tStartupTimer.IN:=TRUE;
+    	bInit :=FALSE;
+    END_IF
+
+    tStartupTimer(PT:=T#3S);
+
+    (* 500 Logarithmic Output Conversion, factory default configuration *)
+    rV := 10*INT_TO_REAL(IG.iPRESS_R)/iTermBits;
+
+    (* Set Guage State based on the Analog voltage*)
+    IF  NOT (tStartupTimer.Q) THEN // Give time for the gauge controller to start
+    	IG.eState := Off;
+    	IG.rPRESS := cDefaultPressure;
+    ELSIF rV < vDisconnected THEN
+    	IG.eState := GaugeDisconnected;
+    	IG.rPRESS := cDefaultPressure;
+    ELSIF rV >= vDisconnected AND rV < (vNoDischarge -rDeadband)  AND (IG.xHV_SW) THEN
+    	IG.eState := Valid;
+    	IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    ELSIF rV >= (vNoDischarge -rDeadband) AND rV <(vGaugeOff -rDeadband) AND (IG.xHV_SW)  THEN
+    	IG.eState := Starting;
+    	IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    ELSIF rV >= (vGaugeOff -rDeadband) THEN
+    	IG.eState := Off;
+    	//IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    	IG.rPRESS := cDefaultPressure;
+    ELSIF IG.rPRESS < MinPressure THEN
+    	IG.eState := PressInvalid;
+    	//IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+    	IG.rPRESS := cDefaultPressure;
+    END_IF
+
+    (* Ion Gauge Protection Functions *)
+    (* If the PG pressure is greater than the VG.PRO_SP then the gauge is disabled *)
+    (* If the PG pressure is less than the VG.PRO_SP then the gauge is enabled *)
+    (* This FB also implements some hysteresis so the gauge doesn't have rapid power cycling while near the turn on boundary *)
+
+    IF PG.rPRESS <= IG.rPRO_SP AND PG.xPRESS_OK THEN
+        IG.xHV_DIS := IG.xHV_SW;
+    ELSIF IG.xHV_DIS THEN
+        IF IG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR)  OR PG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR) THEN
+            IG.xHV_DIS := FALSE;
+            IG.xHV_SW  := FALSE;
+        END_IF
+    ELSE
+        IG.xHV_DIS := FALSE;
+        IG.xHV_SW  := FALSE;
+    END_IF
+
+    (* Pressure gauge OK checks *)
+
+    GaugeTurnOnTmr(IN:=IG.xHV_DIS, PT:=T#10S, Q=>IG.xTurnOnTime);
+
+    //Backwards compatibility
+    IG.xPRESS_OK := (IG.eState = E_PressureState.Valid) OR IG.xBAKEOUT;
+
+    (* Setpoint evaluation *)
+    IG.xAT_VAC := (IG.xPRESS_OK AND (IG.rPRESS < IG.rVAC_SP)) OR IG.xBAKEOUT;
+
+    END_FUNCTION_BLOCK
+
+
+
+
 MAIN
 ^^^^
 
@@ -525,6 +648,23 @@ MAIN
     END_PROGRAM
 
 
+Related:
+    * `p_EtherCATDiag`_
+    * `p_GaugeSup`_
+    * `p_MPSSup`_
+    * `p_ModbusRx_OutputCoils`_
+    * `p_ModbusRx_OutputReg`_
+    * `p_ModbusRx_PLCMemory`_
+    * `p_ModbusTx_InputCoils`_
+    * `p_ModbusTx_InputReg`_
+    * `p_ModbusTx_OutputCoils`_
+    * `p_ModbusTx_OutputReg`_
+    * `p_ModbusTx_PLCMemory`_
+    * `p_SoftIOMap`_
+    * `p_ValveSup`_
+    * `p_XLegacyPLCModbus`_
+
+
 p_EtherCATDiag
 ^^^^^^^^^^^^^^
 
@@ -539,6 +679,8 @@ p_EtherCATDiag
     END_PROGRAM
 
 
+
+
 p_GaugeSup
 ^^^^^^^^^^
 
@@ -546,11 +688,11 @@ p_GaugeSup
 
     PROGRAM p_GaugeSup
     VAR
-    fbPBT_GCC_02 : FB_500_VG_1;//_VG;
-    fbPBT_GCC_04 : FB_500_VG_1;//_VG;
-    fbPBT_GCC_06 : FB_500_VG_1;//_VG;
-    fbPBT_GCC_07 : FB_500_VG_1;//_VG;
-    fbPBT_GCC_09 : FB_500_VG_1;//_VG;
+    fbPBT_GCC_02 : FB_500_VG_2;//_VG;
+    fbPBT_GCC_04 : FB_500_VG_2;//_VG;
+    fbPBT_GCC_06 : FB_500_VG_2;//_VG;
+    fbPBT_GCC_07 : FB_500_VG_2;//_VG;
+    fbPBT_GCC_09 : FB_500_VG_2;//_VG;
 
     //fb_DUMB_GPI_D1 : FB_Dumb_Gauge;
     fbPBT_GPI_02 : FB_275;
@@ -589,6 +731,11 @@ p_GaugeSup
     fbPBT_GCC_09(PG:=vgPBT_GPI_09,IG:=vgPBT_GCC_09);
 
     END_PROGRAM
+
+
+Related:
+    * `FB_500_VG_2`_
+    * `p_XLegacyPLCModbus`_
 
 
 p_ModbusRx_OutputCoils
@@ -856,6 +1003,8 @@ p_ModbusRx_OutputCoils
     //mb_Output_Coils[255];  //
 
     END_PROGRAM
+
+
 
 
 p_ModbusRx_OutputReg
@@ -1126,6 +1275,8 @@ p_ModbusRx_OutputReg
     END_PROGRAM
 
 
+
+
 p_ModbusRx_PLCMemory
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -1150,6 +1301,8 @@ p_ModbusRx_PLCMemory
     MEMCPY(destAddr:=ADR(mb_PLC_Memory[88]), srcAddr:=ADR(vgPBT_GPI_09.rVAC_SP), n:=SIZEOF(vgPBT_GPI_09.rVAC_SP));  //VG pressure sp readbacks
 
     END_PROGRAM
+
+
 
 
 p_ModbusTx_InputCoils
@@ -1427,6 +1580,8 @@ p_ModbusTx_InputCoils
     END_PROGRAM
 
 
+
+
 p_ModbusTx_InputReg
 ^^^^^^^^^^^^^^^^^^^
 
@@ -1695,6 +1850,8 @@ p_ModbusTx_InputReg
     END_PROGRAM
 
 
+
+
 p_ModbusTx_OutputCoils
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -1960,6 +2117,8 @@ p_ModbusTx_OutputCoils
     mb_Output_Coils[255]:=FALSE;  //
 
     END_PROGRAM
+
+
 
 
 p_ModbusTx_OutputReg
@@ -2230,6 +2389,8 @@ p_ModbusTx_OutputReg
     END_PROGRAM
 
 
+
+
 p_ModbusTx_PLCMemory
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -2259,6 +2420,8 @@ p_ModbusTx_PLCMemory
     END_PROGRAM
 
 
+
+
 p_MPSSup
 ^^^^^^^^
 
@@ -2271,6 +2434,8 @@ p_MPSSup
     //
 
     END_PROGRAM
+
+
 
 
 p_SoftIOMap
@@ -2422,6 +2587,8 @@ p_SoftIOMap
     END_PROGRAM
 
 
+
+
 p_ValveSup
 ^^^^^^^^^^
 
@@ -2451,6 +2618,8 @@ p_ValveSup
     fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_stDSG:=vgMON_DUMMY, i_xDis_DPIlk:=FALSE);
 
     END_PROGRAM
+
+
 
 
 p_XLegacyPLCModbus
@@ -2522,4 +2691,6 @@ p_XLegacyPLCModbus
     END_IF
 
     END_PROGRAM
+
+
 
