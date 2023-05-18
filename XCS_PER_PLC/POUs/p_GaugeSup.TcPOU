@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="p_GaugeSup" Id="{78d5f85d-9799-4512-bee8-19c16f64f92a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_GaugeSup
+VAR
+fbPBT_GCC_02 : FB_500_VG_2; //_VG;
+fbPBT_GCC_04 : FB_500_VG_2; //_VG;
+fbPBT_GCC_06 : FB_500_VG_2; //_VG;
+fbPBT_GCC_07 : FB_500_VG_2; //_VG;
+fbPBT_GCC_09 : FB_500_VG_2; //_VG;
+
+//fb_DUMB_GPI_D1 : FB_Dumb_Gauge;
+fbPBT_GPI_02 : FB_275;
+fbPBT_GPI_04 : FB_275;
+fbPBT_GPI_06 : FB_275;
+fbPBT_GPI_07 : FB_275;
+fbPBT_GPI_09 : FB_275;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Vacuum Gauge Supervisor *)
+
+(* Check the upstream PLC for the upstream vacuum OK signal -- p_XLegacyPLCModbus *)
+//vgMXT_GCC_03.xAT_VAC := g_ixUSVacOK; //NEED TO DECIDE HOW TO HANDLE USV
+//vgMXT_GCC_03.xPRESS_OK := g_ixUSVacOK;
+
+
+(* Check the downstream PLC for the downstream vacuum OK signal -- p_XLegacyPLCModbus *)
+//vgMON_GCC_04??.xAT_VAC := i_xDSVacOK; //NEED TO DECIDE HOW TO HANDLE DSV
+//vgMON_GCC_04??.xPRESS_OK := i_xDSVacOK;
+
+(* Calculate Pirani *)
+
+fbPBT_GPI_02(PG:=vgPBT_GPI_02);
+fbPBT_GPI_04(PG:=vgPBT_GPI_04);
+fbPBT_GPI_06(PG:=vgPBT_GPI_06);
+fbPBT_GPI_07(PG:=vgPBT_GPI_07);
+fbPBT_GPI_09(PG:=vgPBT_GPI_09);
+
+(* Calculate Cold Cathode *)
+//vgPBT_GPI_D1.xPRESS_OK := TRUE;
+//vgPBT_GPI_D1.rPRESS := 1E-3;
+
+fbPBT_GCC_02(PG:=vgPBT_GPI_02,IG:=vgPBT_GCC_02);
+fbPBT_GCC_04(PG:=vgPBT_GPI_04,IG:=vgPBT_GCC_04);
+fbPBT_GCC_06(PG:=vgPBT_GPI_06,IG:=vgPBT_GCC_06);
+fbPBT_GCC_07(PG:=vgPBT_GPI_07,IG:=vgPBT_GCC_07);
+fbPBT_GCC_09(PG:=vgPBT_GPI_09,IG:=vgPBT_GCC_09);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
+  <POU Name="FB_500_VG_1" Id="{196127e6-0d8c-4eb4-9a64-19b0d2168125}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_500_VG_1
+VAR_IN_OUT
+    IG : ST_VG;
+END_VAR
+VAR_INPUT
+    PG	:	ST_VG;
+END_VAR
+VAR_OUTPUT
+    xHV_SW: BOOL;
+    rPRESS: INT;
+    rVAC_SP: INT;
+END_VAR
+VAR
+    rV : REAL;
+    GaugeTurnOnTmr : TON;
+    MinPressure: REAL := 1E-10;
+
+END_VAR
+VAR CONSTANT
+    cDefaultPressure : REAL := 750.0;
+    vBase	:	REAL := 0; //corresponding vbase 0V based on default curve.  See manual pg. 44
+    pBase	:	REAL := 1.0E-10; //default curve base pressure is 1E-10. Confusing since can't actually read that low using analog out.
+    vSlope	:	REAL := 1.0; //looks correct for default curve
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 500 Logarithmic Output Conversion, factory default configuration *)
+
+rV := 10*INT_TO_REAL(IG.iPRESS_R)/32767;
+
+IF rV >= 0.49 AND rV < 0.50  THEN
+    IG.eState := E_PressureState.Starting;
+    IG.rPRESS := cDefaultPressure;
+ELSIF rV < 0.4 THEN
+    IG.eState := E_PressureState.Off;
+    IG.rPRESS := cDefaultPressure;
+ELSE
+    IG.eState := E_PressureState.Valid;
+    IG.rPRESS := LREAL_TO_REAL(EXPT(10,((rV-vBase)/vSlope+LOG(pBase))));
+END_IF
+
+
+
+(* Ion Gauge Protection Functions *)
+(* If the PG pressure is greater than the VG.PRO_SP then the gauge is disabled *)
+(* If the PG pressure is less than the VG.PRO_SP then the gauge is enabled *)
+(* This FB also implements some hysteresis so the gauge doesn't have rapid power cycling while near the turn on boundary *)
+
+IF PG.rPRESS <= IG.rPRO_SP AND PG.xPRESS_OK THEN
+
+    IG.xHV_DIS := IG.xHV_SW;
+
+ELSIF IG.xHV_DIS THEN
+    IF IG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR)  OR PG.rPRESS > (IG.rPRO_SP + IG.rHYS_PR) THEN
+        IG.xHV_DIS := FALSE;
+        IG.xHV_SW := FALSE;
+    END_IF
+ELSE
+    IG.xHV_DIS := FALSE;
+    IG.xHV_SW := FALSE;
+END_IF
+
+(* Pressure gauge OK checks *)
+
+//Backwards compatibility
+IG.xPRESS_OK := (IG.eState = E_PressureState.Valid) OR IG.xBAKEOUT;
+
+(* Setpoint evaluation *)
+IG.xAT_VAC := (IG.xPRESS_OK AND (IG.rPRESS < IG.rVAC_SP)) OR IG.xBAKEOUT;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

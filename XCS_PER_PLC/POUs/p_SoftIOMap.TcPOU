@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="p_SoftIOMap" Id="{ed9ed49c-4fd3-4f06-aa1b-156689ac14b9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_SoftIOMap
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	(* Generic PLC Rail *)
+//	i_iR32_31el3064s01c01 AT %I*: INT;
+//	i_iR32_31el3064s01c02 AT %I*: INT;
+//	i_iR32_31el3064s01c03 AT %I*: INT;
+//	i_iR32_31el3064s01c04 AT %I*: INT;
+
+//	i_xR32_31el1008s02c01 AT %I*: BOOL;
+//	i_xR32_31el1008s02c05 AT %I*: BOOL;
+//	i_xR32_31el1008s02c03 AT %I*: BOOL;
+//	i_xR32_31el1008s02c04 AT %I*: BOOL;
+//	i_xR32_31el1008s02c05 AT %I*: BOOL;
+//	i_xR32_31el1008s02c06 AT %I*: BOOL;
+//	i_xR32_31el1008s02c07 AT %I*: BOOL;
+//	i_xR32_31el1008s02c08 AT %I*: BOOL;
+
+//	q_xR32_31el2008s03c01 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c02 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c03 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c04 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c05 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c06 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c07 AT %Q*: BOOL;
+//	q_xR32_31el2008s03c08 AT %Q*: BOOL;
+
+//	q_xR32_31el2798s04c01 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c02 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c03 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c04 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c05 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c06 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c07 AT %Q*: BOOL;
+//	q_xR32_31el2798s04c08 AT %Q*: BOOL;
+//vgMXT_GCC_06 : ST_VG;
+//vgcMXT_VGC_04 : ST_VGC;
+
+
+        (* XRT Stand IDNO 13 *)
+    vgPBT_GPI_02.iPRESS_R := i_iS13_EB1_ep3174c01;
+    vgPBT_GCC_02.iPRESS_R := i_iS13_EB1_ep3174c02;
+//	i_iS13_EB1_ep3174c03 AT %I* : INT;
+//	i_iS13_EB1_ep3174c04 AT %I* : INT;
+
+    q_xS13_EB2_ep2624c01 := vgPBT_GCC_02.xHV_DIS;
+    q_xS13_EB2_ep2624c02 := FALSE;
+    q_xS13_EB2_ep2624c03 := FALSE;
+    q_xS13_EB2_ep2624c04 := FALSE;
+
+    (* XRT stand IDNO 14 *)
+    vgcPBT_VGC_01.i_xOpnLS := i_xS14_EB1_ep2338c01;
+    vgcPBT_VGC_01.i_xClsLS := i_xS14_EB1_ep2338c02;
+    q_xS14_EB1_ep2338c03 := vgcPBT_VGC_01.xOPN_DO;
+    q_xS14_EB1_ep2338c04 := FALSE;
+//	i_xS14_EB1_ep2338c05 AT %I* : BOOL;
+//	i_xS14_EB1_ep2338c06 AT %I* : BOOL;
+    q_xS14_EB1_ep2338c07 := FALSE;
+    q_xS14_EB1_ep2338c08 := FALSE;
+//g_ixUSVacOK :=
+
+
+    (* XRT stand IDNO 20 *)
+    vgPBT_GPI_04.iPRESS_R := i_iS20_EB1_ep3174c01;
+    vgPBT_GCC_04.iPRESS_R := i_iS20_EB1_ep3174c02;
+//	i_iS20_EB1_ep3174c03 AT %I* : INT;
+//	i_iS20_EB1_ep3174c04 AT %I* : INT;
+
+    q_xS20_EB2_ep2624c01 := vgPBT_GCC_04.xHV_DIS;
+    q_xS20_EB2_ep2624c02 := FALSE;
+    q_xS20_EB2_ep2624c03 := FALSE;
+    q_xS20_EB2_ep2624c04 := FALSE;
+
+
+    (* XRT stand IDNO 78 *)
+    vgcPBT_VGC_02.i_xOpnLS := i_xS78_EB1_ep2338c01;
+    vgcPBT_VGC_02.i_xClsLS := i_xS78_EB1_ep2338c02;
+    q_xS78_EB1_ep2338c03 := vgcPBT_VGC_02.xOPN_DO;
+    q_xS78_EB1_ep2338c04 := FALSE;
+    i_xS78_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+    i_xS78_EB1_ep2338c06 := FALSE;
+    q_xS78_EB1_ep2338c07 := FALSE;
+    q_xS78_EB1_ep2338c08 := FALSE;
+
+    vgPBT_GPI_06.iPRESS_R := i_iS78_EB2_ep3174c01;
+    vgPBT_GCC_06.iPRESS_R := i_iS78_EB2_ep3174c02;
+    vgPBT_GPI_07.iPRESS_R := i_iS78_EB2_ep3174c03;
+    vgPBT_GCC_07.iPRESS_R := i_iS78_EB2_ep3174c04;
+
+    q_xS78_EB3_ep2624c01 := vgPBT_GCC_06.xHV_DIS;
+    q_xS78_EB3_ep2624c02 := vgPBT_GCC_07.xHV_DIS;
+    q_xS78_EB3_ep2624c03 := FALSE;
+    q_xS78_EB3_ep2624c04 := FALSE;
+
+
+    (* XRT stand IDNO 80 *)
+    vgcPBT_VGC_03.i_xOpnLS := i_xS80_EB1_ep2338c01;
+    vgcPBT_VGC_03.i_xClsLS := i_xS80_EB1_ep2338c02;
+    q_xS80_EB1_ep2338c03 := vgcPBT_VGC_03.xOPN_DO;
+    q_xS80_EB1_ep2338c04 := FALSE;
+    i_xS80_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS80_EB1_ep2338c06 AT %I* : BOOL;
+    q_xS80_EB1_ep2338c07 := FALSE;
+    q_xS80_EB1_ep2338c08 := FALSE;
+
+
+    (* XRT stand IDNO 26 *)
+    q_xS26_EB1_ep2338c01 := q_xXCS_MPSOK;
+//	vgcPBT_VGC_04.i_xClsLS := i_xS26_EB1_ep2338c02;
+//	q_xS26_EB1_ep2338c03 := ;
+    q_xS26_EB1_ep2338c04 := FALSE;
+    i_xS26_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS26_EB1_ep2338c06 AT %I* : BOOL;
+    q_xS26_EB1_ep2338c07 := FALSE;
+    q_xS26_EB1_ep2338c08 := FALSE;
+
+
+
+    (* XRT stand IDNO 83 *)
+    vgPBT_GPI_09.iPRESS_R := i_iS83_EB1_ep3174c01;
+    vgPBT_GCC_09.iPRESS_R := i_iS83_EB1_ep3174c02;
+//	i_iS83_EB1_ep3174c03 AT %I* : INT;
+//	i_iS83_EB1_ep3174c04 AT %I* : INT;
+
+    q_xS83_EB2_ep2624c01 := vgPBT_GCC_09.xHV_DIS;
+    q_xS83_EB2_ep2624c02 := FALSE;
+    q_xS83_EB2_ep2624c03 := FALSE;
+    q_xS83_EB2_ep2624c04 := FALSE;
+
+
+
+    (* XRT stand IDNO 63 *)
+    vgcPBT_VGC_04.i_xOpnLS := i_xS63_EB1_ep2338c01;
+    vgcPBT_VGC_04.i_xClsLS := i_xS63_EB1_ep2338c02;
+    q_xS63_EB1_ep2338c03 := vgcPBT_VGC_04.xOPN_DO;
+    q_xS63_EB1_ep2338c04 := FALSE;
+    i_xS63_EB1_ep2338c05 := FALSE; //AT %Q* : BOOL;
+//	i_xS63_EB1_ep2338c06 AT %I* : BOOL;
+    q_xS63_EB1_ep2338c07 := FALSE;
+    q_xS63_EB1_ep2338c08 := FALSE;
+
+    ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

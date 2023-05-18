@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="p_MPSSup" Id="{606dda39-341f-4609-835a-4778708a8932}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_MPSSup
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+q_xXCS_MPSOK := g_xIOState AND vgcPBT_VGC_01.i_xOpnLS AND vgcPBT_VGC_02.i_xOpnLS AND vgcPBT_VGC_03.i_xOpnLS AND vgcPBT_VGC_04.i_xOpnLS;
+//									]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

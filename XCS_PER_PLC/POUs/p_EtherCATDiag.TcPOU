@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
+  <POU Name="p_EtherCATDiag" Id="{19e5e726-066d-4fae-968d-98c55136430e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_EtherCATDiag
+VAR
+    fbEcatDiag1	:	LCLS_General.FB_EcatDiag;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbEcatDiag1(i_AMSNetId:=g_aEcatMaster1, i_xFirstPass:=g_xFirstPass, q_xAllStatesGood=>g_xIOState);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

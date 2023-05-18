@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="p_ValveSup" Id="{a86edaae-e6c6-4d95-8d17-2b811943a0ea}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_ValveSup
+VAR
+    fbPBT_VGC_01 : FB_VGC;
+    fbPBT_VGC_02 : FB_VGC;
+    fbPBT_VGC_03 : FB_VGC;
+    fbPBT_VGC_04 : FB_VGC;
+
+    //vgDownstream: LCLSVACUUMLIB.ST_VG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+vgcPBT_VGC_01.xEXT_OK := TRUE;
+fbPBT_VGC_01(iq_stValve:=vgcPBT_VGC_01, i_stDSG:=vgPBT_GCC_04, i_stUSG:=vgPBT_GCC_02, i_xDis_DPIlk:=FALSE);
+
+vgcPBT_VGC_02.xEXT_OK := TRUE;
+fbPBT_VGC_02(iq_stValve:=vgcPBT_VGC_02, i_stDSG:=vgPBT_GCC_06, i_stUSG:=vgPBT_GCC_04, i_xDis_DPIlk:=FALSE);
+
+vgcPBT_VGC_03.xEXT_OK := TRUE;
+fbPBT_VGC_03(iq_stValve:=vgcPBT_VGC_03, i_stDSG:=vgPBT_GCC_09, i_stUSG:=vgPBT_GCC_07, i_xDis_DPIlk:=FALSE);
+
+vgcPBT_VGC_04.xEXT_OK := TRUE;
+vgMON_DUMMY.xPRESS_OK := g_ixDSVacOK;
+vgMON_DUMMY.xAT_VAC := g_ixDSVacOK;
+fbPBT_VGC_04(iq_stValve:=vgcPBT_VGC_04,  i_stUSG:=vgPBT_GCC_09, i_stDSG:=vgMON_DUMMY, i_xDis_DPIlk:=FALSE);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.14">
+  <POU Name="p_XLegacyPLCModbus" Id="{a477c376-dd06-40c3-b569-438369655d9b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_XLegacyPLCModbus
+VAR
+    fbHFX_PLCInputCoilsRx	:	FB_MBReadInputs;
+
+    i_xHFX_PLC_CnBits	:	ARRAY [0..20] OF BYTE;
+
+    ftResetHFX	: F_TRIG;
+    tonRetryHFX : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+(* Modbus Info for Koyo
+Modbus Addresses for
+Koyo DL05/06/240/250/260/430/440/450 PLCs
+PLC Memory Type		| Modbus start address Decimal (octal) | Function codes
+Inputs (X)			  2048 (04000)							2
+Special Relays (SP)	  3072 (06000)							2
+Outputs (Y)			  2048 (04000)							1, 5, 15
+Control Relays (C)	  3072 (06000)							1, 5, 15
+Timer Contacts (T)	  6144 (014000)							1, 5, 15
+Counter Contacts (CT) 6400 (014400)							1, 5, 15
+Stage Status Bits (S) 6144 (012000)							1, 5, 15
+*)
+
+
+(* HFX code *)
+// Retry after some time
+tonRetryHFX.IN := NOT fbHFX_PLCInputCoilsRx.bBusy;
+tonRetryHFX.PT := T#10S;
+tonRetryHFX();
+
+ftResetHFX(CLK:=fbHFX_PLCInputCoilsRx.bBusy);
+//ftResetHFX();
+
+fbHFX_PLCInputCoilsRx.bExecute := ftResetHFX.Q OR tonRetryHFX.Q;
+
+fbHFX_PLCInputCoilsRx(sIPAddr:='172.21.88.95', nTCPPort:=502, nQuantity:=32, nMBAddr:=8#6000, cbLength:=SIZEOF(i_xHFX_PLC_CnBits),  pDestAddr:=ADR(i_xHFX_PLC_CnBits), tTimeout:=T#5S);
+
+IF fbHFX_PLCInputCoilsRx.bError THEN
+    //run some error code for modbus
+    //if there's a modbus error, set all incoming bits to zero
+    // HFX PLC Relay coil C[3] is used for PBT downstream VacOK
+    i_xHFX_PLC_CnBits[0].0 := 0;
+    i_xHFX_PLC_CnBits[0].1 := 0;
+    i_xHFX_PLC_CnBits[0].2 := 0;
+    i_xHFX_PLC_CnBits[0].3 := 0;
+    i_xHFX_PLC_CnBits[0].4 := 0;
+    i_xHFX_PLC_CnBits[1].0 := 0;
+    i_xHFX_PLC_CnBits[1].1 := 0;
+    i_xHFX_PLC_CnBits[1].2 := 0;
+    g_ixDSVacOK := FALSE;
+    g_xNoHFXPLCResponse:= TRUE;
+
+
+ELSIF Not ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead > 0 THEN
+    g_xNoHFXPLCResponse:= FALSE;
+    g_ixDSVacOK := i_xHFX_PLC_CnBits[0].2;
+    fbHFX_PLCInputCoilsRx.bExecute :=False;
+ELSIF ftResetHFX.Q AND fbHFX_PLCInputCoilsRx.cbRead = 0 THEN
+    //more error code cause we didn't manage to read anything
+    //g_ixDSVacOK := FALSE;
+    //g_xNoHFXPLCResponse:= TRUE;
+
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

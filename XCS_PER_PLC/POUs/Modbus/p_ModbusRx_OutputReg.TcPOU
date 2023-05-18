@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="p_ModbusRx_OutputReg" Id="{d9911956-9f9b-4d51-ae75-836a7064f136}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM p_ModbusRx_OutputReg
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//mb_Output_Registers[0];  //System parameters
+//mb_Output_Registers[1];  //System parameters
+//mb_Output_Registers[2];  //System parameters
+//mb_Output_Registers[3];  //System parameters
+//mb_Output_Registers[4];  //System parameters
+//mb_Output_Registers[5];  //System parameters
+//mb_Output_Registers[6];  //System parameters
+//mb_Output_Registers[7];  //System parameters
+//mb_Output_Registers[8];  //System parameters
+//mb_Output_Registers[9];  //System parameters
+//mb_Output_Registers[10];  //VG setpoint
+//mb_Output_Registers[11];  //VG setpoint
+//mb_Output_Registers[12];  //VG setpoint
+//mb_Output_Registers[13];  //VG setpoint
+//mb_Output_Registers[14];  //VG setpoint
+//mb_Output_Registers[15];  //VG setpoint
+//mb_Output_Registers[16];  //VG setpoint
+//mb_Output_Registers[17];  //VG setpoint
+//mb_Output_Registers[18];  //VG setpoint
+//mb_Output_Registers[19];  //VG setpoint
+//mb_Output_Registers[20];  //VG setpoint
+//mb_Output_Registers[21];  //VG setpoint
+//mb_Output_Registers[22];  //VG setpoint
+//mb_Output_Registers[23];  //VG setpoint
+//mb_Output_Registers[24];  //VG setpoint
+//mb_Output_Registers[25];  //VG setpoint
+//mb_Output_Registers[26];  //VG setpoint
+//mb_Output_Registers[27];  //VG setpoint
+//mb_Output_Registers[28];  //VG setpoint
+//mb_Output_Registers[29];  //VG setpoint
+//mb_Output_Registers[30];  //VG setpoint
+//mb_Output_Registers[31];  //VG setpoint
+//mb_Output_Registers[32];  //VG setpoint
+//mb_Output_Registers[33];  //VG setpoint
+//mb_Output_Registers[34];  //VG setpoint
+//mb_Output_Registers[35];  //VG setpoint
+//mb_Output_Registers[36];  //VG setpoint
+//mb_Output_Registers[37];  //VG setpoint
+//mb_Output_Registers[38];  //VG setpoint
+//mb_Output_Registers[39];  //VG setpoint
+//mb_Output_Registers[40];  //VG setpoint
+//mb_Output_Registers[41];  //VG setpoint
+//mb_Output_Registers[42];  //VG setpoint
+//mb_Output_Registers[43];  //VG setpoint
+//mb_Output_Registers[44];  //VG setpoint
+//mb_Output_Registers[45];  //VG setpoint
+//mb_Output_Registers[46];  //VG setpoint
+//mb_Output_Registers[47];  //VG setpoint
+//mb_Output_Registers[48];  //VG setpoint
+//mb_Output_Registers[49];  //VG setpoint
+//mb_Output_Registers[50];  //VG setpoint
+//mb_Output_Registers[51];  //VG setpoint
+//mb_Output_Registers[52];  //VG setpoint
+//mb_Output_Registers[53];  //VG setpoint
+//mb_Output_Registers[54];  //VG setpoint
+//mb_Output_Registers[55];  //VG setpoint
+//mb_Output_Registers[56];  //VG setpoint
+//mb_Output_Registers[57];  //VG setpoint
+//mb_Output_Registers[58];  //VG setpoint
+//mb_Output_Registers[59];  //VG setpoint
+//mb_Output_Registers[60];  //default
+//mb_Output_Registers[61];  //default
+//mb_Output_Registers[62];  //default
+//mb_Output_Registers[63];  //default
+//mb_Output_Registers[64];  //default
+//mb_Output_Registers[65];  //default
+//mb_Output_Registers[66];  //default
+//mb_Output_Registers[67];  //default
+//mb_Output_Registers[68];  //default
+//mb_Output_Registers[69];  //default
+//mb_Output_Registers[70];  //default
+//mb_Output_Registers[71];  //default
+//mb_Output_Registers[72];  //default
+//mb_Output_Registers[73];  //default
+//mb_Output_Registers[74];  //default
+//mb_Output_Registers[75];  //default
+//mb_Output_Registers[76];  //default
+//mb_Output_Registers[77];  //default
+//mb_Output_Registers[78];  //default
+//mb_Output_Registers[79];  //default
+//mb_Output_Registers[80];  //default
+//mb_Output_Registers[81];  //default
+//mb_Output_Registers[82];  //default
+//mb_Output_Registers[83];  //default
+//mb_Output_Registers[84];  //default
+//mb_Output_Registers[85];  //default
+//mb_Output_Registers[86];  //default
+//mb_Output_Registers[87];  //default
+//mb_Output_Registers[88];  //default
+//mb_Output_Registers[89];  //default
+//mb_Output_Registers[90];  //default
+//mb_Output_Registers[91];  //default
+//mb_Output_Registers[92];  //default
+//mb_Output_Registers[93];  //default
+//mb_Output_Registers[94];  //default
+//mb_Output_Registers[95];  //default
+//mb_Output_Registers[96];  //default
+//mb_Output_Registers[97];  //default
+//mb_Output_Registers[98];  //default
+//mb_Output_Registers[99];  //default
+//mb_Output_Registers[100];  //default
+//mb_Output_Registers[101];  //default
+//mb_Output_Registers[102];  //default
+//mb_Output_Registers[103];  //default
+//mb_Output_Registers[104];  //default
+//mb_Output_Registers[105];  //default
+//mb_Output_Registers[106];  //default
+//mb_Output_Registers[107];  //default
+//mb_Output_Registers[108];  //default
+//mb_Output_Registers[109];  //default
+//mb_Output_Registers[110];  //default
+//mb_Output_Registers[111];  //default
+//mb_Output_Registers[112];  //default
+//mb_Output_Registers[113];  //default
+//mb_Output_Registers[114];  //default
+//mb_Output_Registers[115];  //default
+//mb_Output_Registers[116];  //default
+//mb_Output_Registers[117];  //default
+//mb_Output_Registers[118];  //default
+//mb_Output_Registers[119];  //default
+//mb_Output_Registers[120];  //default
+//mb_Output_Registers[121];  //default
+//mb_Output_Registers[122];  //default
+//mb_Output_Registers[123];  //default
+//mb_Output_Registers[124];  //default
+//mb_Output_Registers[125];  //default
+//mb_Output_Registers[126];  //default
+//mb_Output_Registers[127];  //default
+//mb_Output_Registers[128];  //default
+//mb_Output_Registers[129];  //default
+//mb_Output_Registers[130];  //default
+//mb_Output_Registers[131];  //default
+//mb_Output_Registers[132];  //default
+//mb_Output_Registers[133];  //default
+//mb_Output_Registers[134];  //default
+//mb_Output_Registers[135];  //default
+//mb_Output_Registers[136];  //default
+//mb_Output_Registers[137];  //default
+//mb_Output_Registers[138];  //default
+//mb_Output_Registers[139];  //default
+//mb_Output_Registers[140];  //default
+//mb_Output_Registers[141];  //default
+//mb_Output_Registers[142];  //default
+//mb_Output_Registers[143];  //default
+//mb_Output_Registers[144];  //default
+//mb_Output_Registers[145];  //default
+//mb_Output_Registers[146];  //default
+//mb_Output_Registers[147];  //default
+//mb_Output_Registers[148];  //default
+//mb_Output_Registers[149];  //default
+//mb_Output_Registers[150];  //default
+//mb_Output_Registers[151];  //default
+//mb_Output_Registers[152];  //default
+//mb_Output_Registers[153];  //default
+//mb_Output_Registers[154];  //default
+//mb_Output_Registers[155];  //default
+//mb_Output_Registers[156];  //default
+//mb_Output_Registers[157];  //default
+//mb_Output_Registers[158];  //default
+//mb_Output_Registers[159];  //default
+//mb_Output_Registers[160];  //default
+//mb_Output_Registers[161];  //default
+//mb_Output_Registers[162];  //default
+//mb_Output_Registers[163];  //default
+//mb_Output_Registers[164];  //default
+//mb_Output_Registers[165];  //default
+//mb_Output_Registers[166];  //default
+//mb_Output_Registers[167];  //default
+//mb_Output_Registers[168];  //default
+//mb_Output_Registers[169];  //default
+//mb_Output_Registers[170];  //default
+//mb_Output_Registers[171];  //default
+//mb_Output_Registers[172];  //default
+//mb_Output_Registers[173];  //default
+//mb_Output_Registers[174];  //default
+//mb_Output_Registers[175];  //default
+//mb_Output_Registers[176];  //default
+//mb_Output_Registers[177];  //default
+//mb_Output_Registers[178];  //default
+//mb_Output_Registers[179];  //default
+//mb_Output_Registers[180];  //default
+//mb_Output_Registers[181];  //default
+//mb_Output_Registers[182];  //default
+//mb_Output_Registers[183];  //default
+//mb_Output_Registers[184];  //default
+//mb_Output_Registers[185];  //default
+//mb_Output_Registers[186];  //default
+//mb_Output_Registers[187];  //default
+//mb_Output_Registers[188];  //default
+//mb_Output_Registers[189];  //default
+//mb_Output_Registers[190];  //default
+//mb_Output_Registers[191];  //default
+//mb_Output_Registers[192];  //default
+//mb_Output_Registers[193];  //default
+//mb_Output_Registers[194];  //default
+//mb_Output_Registers[195];  //default
+//mb_Output_Registers[196];  //default
+//mb_Output_Registers[197];  //default
+//mb_Output_Registers[198];  //default
+//mb_Output_Registers[199];  //default
+//mb_Output_Registers[200];  //default
+//mb_Output_Registers[201];  //default
+//mb_Output_Registers[202];  //default
+//mb_Output_Registers[203];  //default
+//mb_Output_Registers[204];  //default
+//mb_Output_Registers[205];  //default
+//mb_Output_Registers[206];  //default
+//mb_Output_Registers[207];  //default
+//mb_Output_Registers[208];  //default
+//mb_Output_Registers[209];  //default
+//mb_Output_Registers[210];  //default
+//mb_Output_Registers[211];  //default
+//mb_Output_Registers[212];  //default
+//mb_Output_Registers[213];  //default
+//mb_Output_Registers[214];  //default
+//mb_Output_Registers[215];  //default
+//mb_Output_Registers[216];  //default
+//mb_Output_Registers[217];  //default
+//mb_Output_Registers[218];  //default
+//mb_Output_Registers[219];  //default
+//mb_Output_Registers[220];  //default
+//mb_Output_Registers[221];  //default
+//mb_Output_Registers[222];  //default
+//mb_Output_Registers[223];  //default
+//mb_Output_Registers[224];  //default
+//mb_Output_Registers[225];  //default
+//mb_Output_Registers[226];  //default
+//mb_Output_Registers[227];  //default
+//mb_Output_Registers[228];  //default
+//mb_Output_Registers[229];  //default
+//mb_Output_Registers[230];  //default
+//mb_Output_Registers[231];  //default
+//mb_Output_Registers[232];  //default
+//mb_Output_Registers[233];  //default
+//mb_Output_Registers[234];  //default
+//mb_Output_Registers[235];  //default
+//mb_Output_Registers[236];  //default
+//mb_Output_Registers[237];  //default
+//mb_Output_Registers[238];  //default
+//mb_Output_Registers[239];  //default
+//mb_Output_Registers[240];  //default
+//mb_Output_Registers[241];  //default
+//mb_Output_Registers[242];  //default
+//mb_Output_Registers[243];  //default
+//mb_Output_Registers[244];  //default
+//mb_Output_Registers[245];  //default
+//mb_Output_Registers[246];  //default
+//mb_Output_Registers[247];  //default
+//mb_Output_Registers[248];  //default
+//mb_Output_Registers[249];  //default
+//mb_Output_Registers[250];  //default
+//mb_Output_Registers[251];  //default
+//mb_Output_Registers[252];  //default
+//mb_Output_Registers[253];  //default
+//mb_Output_Registers[254];  //default
+//mb_Output_Registers[255];  //default]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
